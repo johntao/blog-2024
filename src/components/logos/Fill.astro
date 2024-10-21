@@ -1,0 +1,47 @@
+---
+const isDark = false;
+const colorScheme = isDark
+	? {
+			background: "#2D2D2D",
+			font: "#FFFFFF",
+		}
+	: {
+			background: "#F0F0F0",
+			font: "#333333",
+		};
+---
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 13">
+	<!-- Background rectangle -->
+	<rect
+		x="0"
+		y="0"
+		width="22"
+		height="10"
+		rx="1"
+		ry="1"
+		fill={colorScheme.background}></rect>
+	<!-- Terminal text -->
+	<text
+		x="2"
+		y="7"
+		font-family="Menlo, Monaco, 'Courier New', monospace"
+		font-size="5"
+		fill={colorScheme.font}
+	>
+		JT.1&gt;
+	</text>
+	<!-- Cursor -->
+	<rect x="19" y="3" width="1" height="5" fill={colorScheme.font}>
+		<animate
+			attributeName="opacity"
+			values="1;0;1"
+			dur="1s"
+			repeatCount="indefinite"></animate>
+	</rect>
+</svg>
+<style>
+	svg {
+		width: 120px;
+	}
+</style>

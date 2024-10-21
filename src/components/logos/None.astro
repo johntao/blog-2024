@@ -1,0 +1,42 @@
+---
+const isDark = false;
+const colors = isDark
+	? {
+			bg: "#2D2D2D",
+			font: "#FFFFFF",
+		}
+	: {
+			background: "#F0F0F0",
+			font: "#333333",
+		};
+---
+
+<svg
+	xmlns="http://www.w3.org/2000/svg"
+	viewBox="0 0 19 4"
+	style={{ backgroundColor: colors.bg }}
+>
+	<text
+		x="0"
+		y="0"
+		dominant-baseline="hanging"
+		font-family="Menlo, Monaco, 'Courier New', monospace"
+		font-size="5"
+		fill={colors.font}
+	>
+		JT.1&gt;
+	</text>
+	<!-- Cursor -->
+	<rect x="17" y="0" width="1" height="5" fill={colors.font}>
+		<animate
+			attributeName="opacity"
+			values="1;0;1"
+			dur="1s"
+			repeatCount="indefinite"></animate>
+	</rect>
+</svg>
+<style>
+	svg {
+		width: 120px;
+	}
+</style>
