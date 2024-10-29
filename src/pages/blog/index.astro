@@ -101,22 +101,21 @@ const posts = (await getCollection("blog")).sort(
 			<section>
 				<ul>
 					{
-						posts.map((post: any) => (
-							<li>
-								<a href={`/blog/${post.slug}/`}>
-									<img
-										width={720}
-										height={360}
-										src={post.data.heroImage}
-										alt=""
-									/>
-									<h4 class="title">{post.data.title}</h4>
-									<p class="date">
-										<FormattedDate date={post.data.pubDate} />
-									</p>
-								</a>
-							</li>
-						))
+						posts.map(post => {
+							// const { remarkPluginFrontmatter } = await post.render();
+							return (
+								<li>
+									<a href={`/blog/${post.slug}/`}>
+										<img width={720} height={360} src={post.data.heroImage} alt="" />
+										<h4 class="title">{post.data.title}</h4>
+										<p class="date">
+											<FormattedDate date={post.data.pubDate} />
+											{/* <span class="float-right">{remarkPluginFrontmatter.minutesRead}</span> */}
+										</p>
+									</a>
+								</li>
+							);
+						})
 					}
 				</ul>
 			</section>
