@@ -1,7 +1,8 @@
 ---
+import PostLink from "@/components/PostLink.astro";
 import BaseHtml from "@/layouts/BaseHtml.astro";
+import { sortByPubDate } from "@/utils/data.util";
 import { getCollection } from "astro:content";
-import FormattedDate from "@/components/FormattedDate.astro";
 
 // type PostPath = {
 // 	slug: any;
@@ -12,10 +13,7 @@ import FormattedDate from "@/components/FormattedDate.astro";
 // 	};
 // };
 
-const posts = (await getCollection("blog")).sort(
-	(a, b) =>
-		b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-);
+const posts = (await getCollection("blog")).sort(sortByPubDate);
 ---
 
 <BaseHtml>
@@ -25,18 +23,7 @@ const posts = (await getCollection("blog")).sort(
 				{
 					posts.map(post => {
 						// const { remarkPluginFrontmatter } = await post.render();
-						return (
-							<li>
-								<a href={`/blog/${post.slug}/`}>
-									<img width={720} height={360} src={post.data.heroImage} alt="" />
-									<h4 class="title">{post.data.title}</h4>
-									<p class="date">
-										<FormattedDate date={post.data.pubDate} />
-										{/* <span class="float-right">{remarkPluginFrontmatter.minutesRead}</span> */}
-									</p>
-								</a>
-							</li>
-						);
+						return <li><PostLink post={post} /></li>;
 					})
 				}
 			</ul>
@@ -59,44 +46,6 @@ const posts = (await getCollection("blog")).sort(
 	ul li {
 		width: calc(50% - 1rem);
 	}
-	ul li * {
-		text-decoration: none;
-		transition: 0.2s ease;
-	}
-	ul li:first-child {
-		width: 100%;
-		margin-bottom: 1rem;
-		text-align: center;
-	}
-	ul li:first-child img {
-		width: 100%;
-	}
-	ul li:first-child .title {
-		font-size: 2.369rem;
-	}
-	ul li img {
-		margin-bottom: 0.5rem;
-		border-radius: 12px;
-	}
-	ul li a {
-		display: block;
-	}
-	.title {
-		margin: 0;
-		color: rgb(var(--black));
-		line-height: 1;
-	}
-	.date {
-		margin: 0;
-		color: rgb(var(--gray));
-	}
-	ul li a:hover h4,
-	ul li a:hover .date {
-		color: rgb(var(--accent));
-	}
-	ul a:hover img {
-		box-shadow: var(--box-shadow);
-	}
 	@media (max-width: 720px) {
 		ul {
 			gap: 0.5em;
@@ -104,12 +53,6 @@ const posts = (await getCollection("blog")).sort(
 		ul li {
 			width: 100%;
 			text-align: center;
-		}
-		ul li:first-child {
-			margin-bottom: 0;
-		}
-		ul li:first-child .title {
-			font-size: 1.563em;
 		}
 	}
 </style>
