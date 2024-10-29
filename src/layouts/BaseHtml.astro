@@ -1,0 +1,31 @@
+---
+import BaseHead from "@/components/BaseHead.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "@/consts";
+
+interface BaseHtmlProps {
+	title?: string;
+	description?: string;
+	// mainStyle?: astroHTML.JSX.CSSProperties;
+}
+const {
+	title,
+	description,
+	// mainStyle,
+} = Astro.props as BaseHtmlProps;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={title ?? SITE_TITLE} description={description ?? SITE_DESCRIPTION} />
+	</head>
+	<body>
+		<Header />
+		<slot />
+		<!-- <main>
+		</main> -->
+		<Footer />
+	</body>
+</html>

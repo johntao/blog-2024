@@ -2,7 +2,11 @@
   "extends": "astro/tsconfigs/strict",
 	// "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.astro", "src/components/PostOverview.tsx"]
 	"compilerOptions": {
-		"strictNullChecks": true
+		"strictNullChecks": true,
+		"baseUrl": ".",
+		"paths": {
+			"@/*": ["./src/*"]
+		}
 	// 	// Enable top-level await, and other modern ESM features.
 	// 	"target": "ESNext",
 	// 	"module": "ESNext",
@@ -33,9 +37,5 @@
 	// 	"isolatedModules": true,
 	// 	// Add type definitions for our Vite runtime.
 	// 	"types": ["vite/client"],
-	// 	"baseUrl": ".",
-	// 	"paths": {
-	// 		"@/*": ["./src/*"]
-	// 	}
 	},
 }
