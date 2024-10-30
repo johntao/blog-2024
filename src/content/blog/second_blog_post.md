@@ -1,5 +1,5 @@
 ---
-layout: ../../layouts/BlogPost.astro
+# layout: ../../layouts/BlogPost.astro
 title: "This is the second post of my new Astro blog."
 pubDate: 2023-12-24
 description: "This is the second post of my new Astro blog."
