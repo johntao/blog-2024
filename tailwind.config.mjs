@@ -16,6 +16,7 @@ export default {
 	theme: {
 		spacing: {
 			0.7: '0.2rem',
+			23: '5.8rem',
 		},
 		extend: {
 			// typography: {
