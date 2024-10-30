@@ -1,0 +1,38 @@
+---
+import PostLink from "@/components/PostLink.astro";
+import BaseHtml from "@/layouts/BaseHtml.astro";
+import type { BlogEntry } from "@/utils/data.util";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths(): Promise<any> {
+	const postsWithTags = await getCollection("blog", q => q.data.tags);
+	const tags: Set<string> = new Set(
+		postsWithTags.map(q => q.data.tags!).flat(),
+	);
+	return [...tags].map(tag => ({
+		params: { tag },
+		props: {
+			posts: postsWithTags.filter(post => post.data.tags!.includes(tag)),
+		},
+	}));
+}
+
+interface Props {
+	posts: BlogEntry[];
+}
+const { tag } = Astro.params;
+const { posts } = Astro.props;
+---
+
+<BaseHtml>
+	<h1>Posts with #{tag}</h1>
+	<div>
+		{
+			posts.map((q) => (
+				<div class="mb-4 basis-1 last:mb-0">
+					<PostLink post={q} />
+				</div>
+			))
+		}
+	</div>
+</BaseHtml>
