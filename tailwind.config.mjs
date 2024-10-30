@@ -14,11 +14,11 @@ export default {
 	// darkMode: 'class',
 	content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
 	theme: {
-		spacing: {
-			0.7: '0.2rem',
-			23: '5.8rem',
-		},
 		extend: {
+			spacing: {
+				0.7: '0.2rem',
+				23: '5.8rem',
+			},
 			// typography: {
 			// 	DEFAULT: { css: disabledCss },
 			// 	sm: { css: disabledCss },

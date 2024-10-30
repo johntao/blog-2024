@@ -21,11 +21,11 @@ const {
 	<head>
 		<BaseHead title={title ?? SITE_TITLE} description={description ?? SITE_DESCRIPTION} />
 	</head>
-	<body>
+	<body class="min-h-screen flex flex-col font-mono">
 		<Header />
-		<slot />
-		<!-- <main>
-		</main> -->
+		<main class="flex-grow max-w-3xl mx-auto">
+			<slot />
+		</main>
 		<Footer />
 	</body>
 </html>

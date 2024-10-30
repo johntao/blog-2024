@@ -1,0 +1,41 @@
+---
+import FormattedDate from "@/components/FormattedDate.astro";
+import { type BlogEntry } from "@/utils/data.util";
+
+interface Props {
+	post: BlogEntry;
+}
+
+const { post } = Astro.props;
+const data = post.data;
+const url = post.slug;
+
+---
+
+<FormattedDate date={data.pubDate} />
+<a href={`/blog/${url}`}>
+	{data.title}
+</a>
+
+<style>
+	/* * {
+		text-decoration: none;
+		transition: 0.2s ease;
+	}
+	a {
+		display: block;
+	}
+	.title {
+		margin: 0;
+		color: rgb(var(--black));
+		line-height: 1;
+	}
+	.date {
+		margin: 0;
+		color: rgb(var(--gray));
+	}
+	a:hover h4,
+	a:hover .date {
+		color: rgb(var(--accent));
+	} */
+</style>

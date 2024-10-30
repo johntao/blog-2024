@@ -1,5 +1,5 @@
 ---
-import PostLink from "@/components/PostLinkWithImg.astro";
+import PostLink from "@/components/PostLink.astro";
 import BaseHtml from "@/layouts/BaseHtml.astro";
 import { sortByPubDate } from "@/utils/data.util";
 import { getCollection } from "astro:content";
@@ -17,25 +17,18 @@ const posts = (await getCollection("blog")).sort(sortByPubDate);
 ---
 
 <BaseHtml>
-	<main>
-		<section>
-			<ul>
-				{
-					posts.map(post => {
-						// const { remarkPluginFrontmatter } = await post.render();
-						return <li><PostLink post={post} /></li>;
-					})
-				}
-			</ul>
-		</section>
-	</main>
+	<ul>
+		{
+			posts.map(post => {
+				// const { remarkPluginFrontmatter } = await post.render();
+				return <li><PostLink post={post} /></li>;
+			})
+		}
+	</ul>
 </BaseHtml>
 
 <style>
-	main {
-		width: 960px;
-	}
-	ul {
+	/* ul {
 		display: flex;
 		flex-wrap: wrap;
 		gap: 2rem;
@@ -54,5 +47,5 @@ const posts = (await getCollection("blog")).sort(sortByPubDate);
 			width: 100%;
 			text-align: center;
 		}
-	}
+	} */
 </style>
