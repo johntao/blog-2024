@@ -19,6 +19,8 @@ const { title, description, image = '/blog-placeholder-1.jpg' } = Astro.props;
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <meta name="generator" content={Astro.generator} />
+<!-- <link rel="sitemap" href="/sitemap-index.xml" />
+<link rel="alternate" type="application/rss+xml" href="/rss.xml" /> -->
 
 <!-- Font preloads -->
 <link rel="preload" href="/fonts/atkinson-regular.woff" as="font" type="font/woff" crossorigin />
@@ -31,6 +33,7 @@ const { title, description, image = '/blog-placeholder-1.jpg' } = Astro.props;
 <title>{title}</title>
 <meta name="title" content={title} />
 <meta name="description" content={description} />
+<!-- <meta name="author" content="" /> -->
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website" />
@@ -45,3 +48,19 @@ const { title, description, image = '/blog-placeholder-1.jpg' } = Astro.props;
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image, Astro.url)} />
+
+<!-- <script>
+	{
+		const DARK_MODE = 'dark-mode';
+		const isDarkMode = localStorage.getItem(DARK_MODE) === 'true';
+		const isPreferDarkMode = !(DARK_MODE in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches;
+		const cls = document.querySelector('html')?.classList;
+		if (isDarkMode || isPreferDarkMode) {
+			localStorage.setItem(DARK_MODE, 'true');
+			cls && cls.add('dark');
+		} else {
+			localStorage.setItem(DARK_MODE, 'false');
+			cls && cls.remove('dark');
+		}
+	}
+</script> -->
