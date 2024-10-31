@@ -7,12 +7,12 @@ import BaseHtml from '@/layouts/BaseHtml.astro';
 // const { description } = AppConfig;
 
 const allPosts = await Astro.glob('../../content/blog/*.md');
-const allTags: Set<string> = new Set(allPosts.map((post) => post.frontmatter.tags).flat());
+const allTags: Set<string> = new Set(allPosts.filter(q => q.frontmatter.tags).map((post) => post.frontmatter.tags).flat());
 ---
 
 <BaseHtml>
   <h1>Tags</h1>
   <div class="mx-auto w-full max-w-screen-md">
-    <Tags tags={[...allTags]} withHref={true} />
+    <Tags tags={['no-tag', ...allTags]} withHref={true} />
   </div>
 </BaseHtml>

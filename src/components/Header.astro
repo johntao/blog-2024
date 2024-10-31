@@ -6,15 +6,12 @@ import Logo from "./logos/None.astro";
 <header class="bg-gray-200 px-4 py-1.5">
 	<nav class="flex items-center justify-between">
 		<Logo />
-		<div class="internal-links">
-			<HeaderLink href="/">Home</HeaderLink>
-			<HeaderLink href="/blog">Blog</HeaderLink>
+		<div>
+			<HeaderLink href="/">Blog</HeaderLink>
 			<HeaderLink href="/tag">Tag</HeaderLink>
-			<HeaderLink href="/about">About</HeaderLink>
 		</div>
-		<div class="social-links">
+		<div>
 			<a href="https://github.com/johntao" target="_blank">
-				<span class="sr-only">Go to John Tao's GitHub repo</span>
 				<svg class="size-6" viewBox="0 0 16 16" aria-hidden="true">
 					<text dominant-baseline="hanging">🔎</text>
 				</svg>
@@ -22,44 +19,3 @@ import Logo from "./logos/None.astro";
 		</div>
 	</nav>
 </header>
-<style>
-	/* header {
-		margin: 0;
-		padding: 0 1em;
-		background: white;
-		box-shadow: 0 2px 8px rgba(var(--black), 5%);
-	}
-	h2 {
-		margin: 0;
-		font-size: 1em;
-	}
-
-	h2 a,
-	h2 a.active {
-		text-decoration: none;
-	}
-	nav {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-	}
-	nav a {
-		padding: 0.2em 0.5em;
-		color: var(--black);
-		border-bottom: 4px solid transparent;
-		text-decoration: none;
-	}
-	nav a.active {
-		text-decoration: none;
-		border-bottom-color: var(--accent);
-	}
-	.social-links,
-	.social-links a {
-		display: flex;
-	}
-	@media (max-width: 720px) {
-		.social-links {
-			display: none;
-		}
-	} */
-</style>

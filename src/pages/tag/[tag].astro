@@ -1,18 +1,25 @@
 ---
-import PostLink from "@/components/PostLinkWithImg.astro";
+import PostList from "@/components/PostList.astro";
 import BaseHtml from "@/layouts/BaseHtml.astro";
 import type { BlogEntry } from "@/utils/data.util";
 import { getCollection } from "astro:content";
 
+//TODO: rework to group by
 export async function getStaticPaths(): Promise<any> {
-	const postsWithTags = await getCollection("blog", q => q.data.tags);
+	const allPosts = await getCollection("blog");
+	const postsHaveTags = allPosts.filter(q => q.data.tags);
+	const postsNoTags = allPosts.filter(q => !q.data.tags);
 	const tags: Set<string> = new Set(
-		postsWithTags.map(q => q.data.tags!).flat(),
+		postsHaveTags
+			.map((q) => q.data.tags!)
+			.flat(),
 	);
-	return [...tags].map(tag => ({
+	return ['no-tag', ...tags].map((tag, idx) => ({
 		params: { tag },
 		props: {
-			posts: postsWithTags.filter(post => post.data.tags!.includes(tag)),
+			posts: idx
+				? postsHaveTags.filter((post) => post.data.tags!.includes(tag))
+				: postsNoTags,
 		},
 	}));
 }
@@ -21,18 +28,12 @@ interface Props {
 	posts: BlogEntry[];
 }
 const { tag } = Astro.params;
+const isUndefined = !tag;
+const header = isUndefined ? "Posts without a tag" : `Posts with #${tag}`;
 const { posts } = Astro.props;
 ---
 
 <BaseHtml>
-	<h1>Posts with #{tag}</h1>
-	<div>
-		{
-			posts.map((q) => (
-				<div class="mb-4 basis-1 last:mb-0">
-					<PostLink post={q} />
-				</div>
-			))
-		}
-	</div>
+	<header class="text-lg mb-4">{header}</header>
+	<PostList posts={posts} />
 </BaseHtml>

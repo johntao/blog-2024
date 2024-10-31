@@ -1,0 +1,25 @@
+---
+import LatestPost from '@/components/LatestPost.astro';
+import BaseHtml from '@/layouts/BaseHtml.astro';
+---
+
+<BaseHtml>
+	<main>
+		<h1>Hello, Visitor!</h1>
+		<p>Welcome to John Tao's blog.</p>
+		<p>This blog is built by the lovely <a href="https://astro.build/">Astro</a> blog starter template.</p>
+		<LatestPost  />
+	</main>
+</BaseHtml>
+
+<style>
+	body {
+		min-height: 100vh;
+		display: flex;
+		flex-direction: column;
+	}
+	main {
+		padding: 0 0 15% 0;
+		text-align: center;
+	}
+</style>

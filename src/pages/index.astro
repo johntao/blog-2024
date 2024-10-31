@@ -1,25 +1,25 @@
 ---
-import LatestPost from '@/components/LatestPost.astro';
-import BaseHtml from '@/layouts/BaseHtml.astro';
+import FormattedDate from "@/components/FormattedDate.astro";
+import BaseHtml from "@/layouts/BaseHtml.astro";
+import { sortByPubDate } from "@/utils/data.util";
+import { getCollection } from "astro:content";
+
+const posts = (await getCollection("blog")).sort(sortByPubDate);
 ---
 
 <BaseHtml>
-	<main>
-		<h1>Hello, Visitor!</h1>
-		<p>Welcome to John Tao's blog.</p>
-		<p>This blog is built by the lovely <a href="https://astro.build/">Astro</a> blog starter template.</p>
-		<LatestPost  />
-	</main>
+	<ul>
+		{
+			posts.map((post) => {
+				// const { remarkPluginFrontmatter } = await post.render();
+				const { data, slug } = post;
+				return (
+					<li>
+						<FormattedDate className="inline-block w-32" date={data.pubDate} />
+						<a href={`/blog/${slug}`}>{data.title}</a>
+					</li>
+				);
+			})
+		}
+	</ul>
 </BaseHtml>
-
-<style>
-	body {
-		min-height: 100vh;
-		display: flex;
-		flex-direction: column;
-	}
-	main {
-		padding: 0 0 15% 0;
-		text-align: center;
-	}
-</style>

@@ -1,12 +1,12 @@
 ---
-import Layout from "../layouts/BlogPost.astro";
+import BaseHtml from "../layouts/BaseHtml.astro";
+// pubDate={new Date("2024-10-23")}
+// heroImage="/blog-placeholder-about.jpg"
 ---
 
-<Layout
+<BaseHtml
 	title="About Me"
 	description="Lorem ipsum dolor sit amet"
-	pubDate={new Date("2024-10-23")}
-	heroImage="/blog-placeholder-about.jpg"
 >
 	<p>
 		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
@@ -97,4 +97,4 @@ import Layout from "../layouts/BlogPost.astro";
 			></path>
 		</svg>
 	</a>
-</Layout>
+</BaseHtml>

@@ -1,0 +1,24 @@
+---
+import FormattedDate from "@/components/FormattedDate.astro";
+import { type BlogEntry } from "@/utils/data.util";
+
+interface Props {
+  posts: BlogEntry[];
+}
+const { posts } = Astro.props;
+---
+
+<ul>
+  {
+    posts.map((post) => {
+      // const { remarkPluginFrontmatter } = await post.render();
+      const { data, slug } = post;
+      return (
+        <li>
+          <FormattedDate className="inline-block w-32" date={data.pubDate} />
+          <a href={`/blog/${slug}`}>{data.title}</a>
+        </li>
+      );
+    })
+  }
+</ul>

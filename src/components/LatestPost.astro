@@ -1,15 +1,11 @@
 ---
-// import { type MarkdownInstance } from 'astro';
-// import Section from './Section.astro';
-import PostLink from './PostLinkWithImg.astro';
+// import PostLink from './PostLinkWithImg.astro';
 import { sortByPubDate } from '@/utils/data.util';
 import { getCollection } from 'astro:content';
 
 // interface Props {
 // 	posts: MarkdownInstance<any>[];
 // }
-// const { posts } = Astro.props;
-// const posts = await Astro.glob('../content/blog/*.md');
 const posts = await getCollection('blog');
 posts.sort(sortByPubDate);
 console.log(`================================= ${posts.length} =================================`);
@@ -26,7 +22,7 @@ const latestPosts = posts.slice(0, 3);
 		{
 			latestPosts.map(post => (
 				<div class="mb-4 basis-1 last:mr-0 md:mr-4 md:basis-1/3">
-					<PostLink post={post} />
+					{/* <PostLink post={post} /> */}
 				</div>
 			))
 		}

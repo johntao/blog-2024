@@ -1,51 +1,12 @@
 ---
-import PostLink from "@/components/PostLink.astro";
+import PostList from "@/components/PostList.astro";
 import BaseHtml from "@/layouts/BaseHtml.astro";
 import { sortByPubDate } from "@/utils/data.util";
 import { getCollection } from "astro:content";
-
-// type PostPath = {
-// 	slug: any;
-// 	data: {
-// 		heroImage: string | null | undefined;
-// 		title: unknown;
-// 		pubDate: Date;
-// 	};
-// };
 
 const posts = (await getCollection("blog")).sort(sortByPubDate);
 ---
 
 <BaseHtml>
-	<ul>
-		{
-			posts.map(post => {
-				// const { remarkPluginFrontmatter } = await post.render();
-				return <li><PostLink post={post} /></li>;
-			})
-		}
-	</ul>
+	<PostList posts={posts} />
 </BaseHtml>
-
-<style>
-	/* ul {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 2rem;
-		list-style-type: none;
-		margin: 0;
-		padding: 0;
-	}
-	ul li {
-		width: calc(50% - 1rem);
-	}
-	@media (max-width: 720px) {
-		ul {
-			gap: 0.5em;
-		}
-		ul li {
-			width: 100%;
-			text-align: center;
-		}
-	} */
-</style>

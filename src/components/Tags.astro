@@ -5,17 +5,13 @@ interface Props {
 }
 
 const { tags, withHref } = Astro.props;
+const className = "mx-1.5 px-2.5 py-1 rounded-md bg-stone-300 hover:bg-stone-400";
 ---
 
-<div class="flex flex-wrap">
-	{
-		tags.map((tag: string) => {
-			const element = (
-				<span class="mb-2 mr-2 rounded-xl bg-stone-600 px-3 py-1 text-xs font-bold uppercase text-white hover:bg-stone-500">
-					#{tag}
-				</span>
-			);
-			return withHref ? <a href={`/tag/${tag}`}>{element}</a> : element;
-		})
-	}
-</div>
+{
+	tags.map((tag: string) =>
+		withHref
+		? <a class:list={[className, 'no-underline']} href={`/tag/${tag}`}>#{tag}</a>
+		: <span class={className}>#{tag}</span>,
+	)
+}
