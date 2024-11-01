@@ -1,0 +1,14 @@
+---
+import Icons from "@/low-components/icons";
+
+interface Props {
+  name: keyof typeof Icons;
+  class?: string;
+  id?: string;
+  viewBox?: string;
+}
+const { id, name } = Astro.props;
+const icon = Icons[name];
+---
+
+<svg id={id} class={Astro.props.class} viewBox={icon.viewBox} set:html={icon.body} />

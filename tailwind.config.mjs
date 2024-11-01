@@ -17,6 +17,7 @@ export default {
 		extend: {
 			spacing: {
 				0.7: '0.2rem',
+				4.5: '1.15rem',
 				23: '5.8rem',
 			},
 			// typography: {
