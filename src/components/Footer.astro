@@ -1,11 +1,12 @@
 ---
+import styles from "@/styles";
 import Icon from "./Icon.astro";
 
 const today = new Date();
 const ankrCls = "underline hover:text-orange-600";
 ---
 
-<footer class="text-center px-4 py-0.7 bg-gray-200 text-[--gray-color]">
+<footer class=`text-center px-4 py-0.7 ${styles.UI_BAR_COLOR}`>
 	&copy; {today.getFullYear()}・
 	<a href="https://creativecommons.org/licenses/by-nc/4.0" class={ankrCls}>CC BY-NC 4.0</a>・
 	<a href="/rss.xml">

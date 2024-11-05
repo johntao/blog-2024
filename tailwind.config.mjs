@@ -1,13 +1,4 @@
-
-// const disabledCss = {
-// 	'code::before': false,
-// 	'code::after': false,
-// 	'blockquote p:first-of-type::before': false,
-// 	'blockquote p:last-of-type::after': false,
-// 	pre: false,
-// 	code: false,
-// 	'pre code': false
-// };
+const plugin = require('tailwindcss/plugin');
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -20,14 +11,9 @@ export default {
 				4.5: '1.15rem',
 				23: '5.8rem',
 			},
-			// typography: {
-			// 	DEFAULT: { css: disabledCss },
-			// 	sm: { css: disabledCss },
-			// 	lg: { css: disabledCss },
-			// 	xl: { css: disabledCss },
-			// 	'2xl': { css: disabledCss }
-			// }
 		}
 	},
-	plugins: [require('@tailwindcss/typography')]
+	plugins: [
+		require('@tailwindcss/typography'),
+	]
 };

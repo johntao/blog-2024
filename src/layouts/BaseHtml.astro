@@ -3,6 +3,7 @@ import BaseHead from "@/components/BaseHead.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "@/consts";
+import styles from "@/styles";
 
 interface BaseHtmlProps {
 	title?: string;
@@ -19,9 +20,14 @@ const {
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title={title ?? SITE_TITLE} description={description ?? SITE_DESCRIPTION} />
+		<BaseHead
+			title={title ?? SITE_TITLE}
+			description={description ?? SITE_DESCRIPTION}
+		/>
 	</head>
-	<body class="min-h-screen flex flex-col font-mono bg-stone-100 text-gray-950">
+	<body
+		class=`min-h-screen flex flex-col font-mono ${styles.CONTENT_AREA_COLOR}`
+	>
 		<Header />
 		<main class="flex-grow max-w-3xl mx-auto py-7">
 			<slot />
@@ -29,3 +35,16 @@ const {
 		<Footer />
 	</body>
 </html>
+<!-- <style is:global>
+	@tailwind base;
+	@tailwind components;
+	@tailwind utilities;
+	@layer components {
+		.content-area-color {
+			@apply bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300;
+		}
+		.ui-bar-color {
+			@apply bg-neutral-100 dark:bg-neutral-900 text-neutral-700 dark:text-neutral-300;
+		}
+	}
+</style> -->
