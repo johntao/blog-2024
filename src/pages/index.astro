@@ -1,25 +1,24 @@
 ---
-import FormattedDate from "@/components/FormattedDate.astro";
+import PostList from "@/components/PostList.astro";
 import BaseHtml from "@/layouts/BaseHtml.astro";
 import { sortByPubDate } from "@/utils/data.util";
 import { getCollection } from "astro:content";
 
 const posts = (await getCollection("blog")).sort(sortByPubDate);
+if (posts.length) {
+	let prevYear = posts[0].data.pubDate.getFullYear();
+	posts.forEach((el, idx, arr) => {
+		const curYear = el.data.pubDate.getFullYear();
+		if (curYear == prevYear) return;
+		const prev = arr[idx - 1];
+		prev.data.yearSep = prevYear;
+		prevYear = curYear;
+	});
+	const last = posts.at(-1)!;
+	last.data.yearSep = prevYear;
+}
 ---
 
 <BaseHtml>
-	<ul>
-		{
-			posts.map((post) => {
-				// const { remarkPluginFrontmatter } = await post.render();
-				const { data, slug } = post;
-				return (
-					<li>
-						<FormattedDate className="inline-block w-32" date={data.pubDate} />
-						<a href={`/blog/${slug}`}>{data.title}</a>
-					</li>
-				);
-			})
-		}
-	</ul>
+	<PostList posts={posts} />
 </BaseHtml>

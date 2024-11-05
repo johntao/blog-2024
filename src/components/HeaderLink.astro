@@ -3,7 +3,7 @@ import type { HTMLAttributes } from "astro/types";
 
 type Props = HTMLAttributes<"a">;
 
-const { href, class: className, ...props } = Astro.props;
+const { href, ...props } = Astro.props;
 
 const { pathname } = Astro.url;
 const subpath = pathname.match(/[^\/]+/g);
@@ -14,11 +14,13 @@ const isActive = href === pathname || href === "/" + subpath?.[0];
 	href={href}
 	class:list={[
 		"inline-block mx-1",
-		className,
+		Astro.props.class,
 		{
-			"underline": isActive,
 			"font-extrabold": isActive,
-			'no-underline': !isActive
+			'no-underline': isActive,
+			// 'text-orange-600': isActive,
+			// 'dark:text-blue-600': isActive,
+			'text-blue-600': isActive,
 		},
 	]}
 	{...props}

@@ -5,14 +5,18 @@ interface Props {
 }
 
 const { date, className } = Astro.props;
+const formatted = date.toLocaleDateString("en-CA");
+const iso = date.toISOString();
+/*
+<!-- old impl -->
+<time
+	datetime={date.toISOString()}
+	data-long={formatted}
+	data-short={formatted.slice(-5)}
+	class:list={[className, "before:content-[attr(data-short)]", "sm:before:content-[attr(data-long)]"]}
+/>
+*/
 ---
 
-<time datetime={date.toISOString()} class={className}>
-	{
-		date.toLocaleDateString('en-us', {
-			year: 'numeric',
-			month: 'short',
-			day: '2-digit',
-		})
-	}
-</time>
+<time datetime={iso} class:list={[className, "sm:hidden"]}>{formatted.slice(-5)}</time>
+<time datetime={iso} class:list={[className, "hidden sm:block"]}>{formatted}</time>

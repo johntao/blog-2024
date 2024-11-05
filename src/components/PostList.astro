@@ -1,6 +1,7 @@
 ---
 import FormattedDate from "@/components/FormattedDate.astro";
 import { type BlogEntry } from "@/utils/data.util";
+import Separator from "./Separator.astro";
 
 interface Props {
   posts: BlogEntry[];
@@ -13,11 +14,15 @@ const { posts } = Astro.props;
     posts.map((post) => {
       // const { remarkPluginFrontmatter } = await post.render();
       const { data, slug } = post;
+      // console.log(data.pubDate, data.yearSep);
       return (
-        <li>
-          <FormattedDate className="inline-block w-32" date={data.pubDate} />
-          <a href={`/blog/${slug}`}>{data.title}</a>
-        </li>
+        <>
+          <li class="flex">
+            <FormattedDate className="mr-3" date={data.pubDate} />
+            <a href={`/blog/${slug}`}>{data.title}</a>
+          </li>
+          {data.yearSep && <Separator text={data.yearSep} />}
+        </>
       );
     })
   }

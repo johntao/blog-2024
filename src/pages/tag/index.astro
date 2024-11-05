@@ -11,7 +11,6 @@ const allTags: Set<string> = new Set(allPosts.filter(q => q.frontmatter.tags).ma
 ---
 
 <BaseHtml>
-  <h1>Tags</h1>
   <div class="mx-auto w-full max-w-screen-md">
     <Tags tags={['no-tag', ...allTags]} withHref={true} />
   </div>

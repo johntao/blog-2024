@@ -3,16 +3,15 @@ import styles from "@/styles";
 import Icon from "./Icon.astro";
 
 const today = new Date();
-const ankrCls = "underline hover:text-orange-600";
 ---
 
-<footer class=`text-center px-4 py-0.7 ${styles.UI_BAR_COLOR}`>
+<footer class="text-center px-4 py-0.7 ui-bar-color">
 	&copy; {today.getFullYear()}・
-	<a href="https://creativecommons.org/licenses/by-nc/4.0" class={ankrCls}>CC BY-NC 4.0</a>・
+	<a href="https://creativecommons.org/licenses/by-nc/4.0">CC BY-NC 4.0</a>・
 	<a href="/rss.xml">
 		<Icon name="RSS" class="inline align-baseline size-4" />
 	</a>・
-	<!-- <a href="/imprint" class={ankrCls}>Imprint</a>・ -->
-	Powered by <a href="https://astro.build" class={ankrCls}>Astro</a>・
-	Made with <Icon name="Heart" class="inline align-sub text-red-500 size-4.5" /> by <a href="/about" class={ankrCls}>John Tao</a>
+	<!-- <a href="/imprint">Imprint</a>・ -->
+	Powered by <a href="https://astro.build">Astro</a>・
+	Made with <Icon name="Heart" class="inline align-sub text-red-500 size-4.5" /> by <a href="/about">John Tao</a>
 </footer>
