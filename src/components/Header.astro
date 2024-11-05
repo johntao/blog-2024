@@ -12,9 +12,47 @@ import Logo from "./logos/None.astro";
 			<HeaderLink href="/tag">Tag</HeaderLink>
 		</div>
 		<div>
-			<a href="https://github.com/johntao" target="_blank">
+			<!-- <a href="https://github.com/johntao" target="_blank">
 				<Icon class="size-6" name="Search" />
-			</a>
+			</a> -->
+			<div id="theme-switch" class="cursor-pointer">
+				<Icon name="Sun" class="size-6 hidden dark:block" />
+				<Icon name="Moon" class="size-6 dark:hidden" />
+			</div>
 		</div>
 	</nav>
 </header>
+
+<script is:inline>
+	{
+		const WHICH_THEME = "which_theme";
+		const switches = document.getElementById("theme-switch");
+		if (!switches.onclick) {
+			switches.onclick = () => {
+				document.documentElement.classList.toggle("dark");
+				const isDark = localStorage.getItem(WHICH_THEME) == "dark";
+				if (isDark) {
+					localStorage.setItem(WHICH_THEME, "light");
+					console.log("set light");
+				} else {
+					localStorage.setItem(WHICH_THEME, "dark");
+					console.log("set dark");
+				}
+			};
+			{
+				const storedTheme = localStorage && localStorage.getItem(WHICH_THEME);
+				const isPreferDarkMode =
+					!storedTheme &&
+					window.matchMedia("(prefers-color-scheme: dark)").matches;
+				const cls = document.querySelector("html")?.classList;
+				if (storedTheme == "dark" || isPreferDarkMode) {
+					localStorage.setItem(WHICH_THEME, "dark");
+					cls && cls.add("dark");
+				} else {
+					localStorage.setItem(WHICH_THEME, "light");
+					cls && cls.remove("dark");
+				}
+			}
+		}
+	}
+</script>

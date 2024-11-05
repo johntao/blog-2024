@@ -40,10 +40,10 @@ const colors = isDark
 	</rect>
 </svg>
 
-<script>
-	import { LOGO_ANI_OFF } from "@/consts";
+<script is:inline>
 	{
-		const svg = document.getElementById("top-left-logo")!;
+		const LOGO_ANI_OFF = "logo_ani_off";
+		const svg = document.getElementById("top-left-logo");
 		if (!svg.onclick) {
 			svg.onclick = () => {
 				const isLogoAniOff = !!localStorage.getItem(LOGO_ANI_OFF);
@@ -56,9 +56,11 @@ const colors = isDark
 		const render = () => {
 			const isLogoAniOff = !!localStorage.getItem(LOGO_ANI_OFF);
 			// console.log("render", isLogoAniOff);
-			const ani = svg.querySelector("animate")!;
-			ani.setAttribute("repeatCount", isLogoAniOff ? "0" : "indefinite");
-			ani.beginElement();
+			const ani = svg.querySelector("animate");
+			if (ani) {
+				ani.setAttribute("repeatCount", isLogoAniOff ? "1" : "indefinite");
+				ani.beginElement();
+			}
 		};
 		render();
 	}
