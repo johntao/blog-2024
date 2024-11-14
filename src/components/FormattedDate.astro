@@ -18,5 +18,5 @@ const iso = date.toISOString();
 */
 ---
 
-<time datetime={iso} class:list={[className, "sm:hidden"]}>{formatted.slice(-5)}</time>
-<time datetime={iso} class:list={[className, "hidden sm:block"]}>{formatted}</time>
+<time datetime={iso} class:list={["hidden sm:block", className]}>{formatted}</time>
+<time datetime={iso} class:list={["sm:hidden", className]}>{formatted.slice(-5)}</time>
