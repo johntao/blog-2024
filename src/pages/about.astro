@@ -1,16 +1,74 @@
 ---
 import Icon from "@/components/Icon.astro";
 import BaseHtml from "../layouts/BaseHtml.astro";
-// pubDate={new Date("2024-10-23")}
-// heroImage="/blog-placeholder-about.jpg"
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+
 ---
 
-<BaseHtml
-	title="About Me"
-	description="A "
->
-	<a href="https://github.com/johntao" target="_blank">
-		<span class="sr-only">Go to John Tao's GitHub repo</span>
-		<Icon name="GitHub" class="size-8" />
-	</a>
+<BaseHtml title="About Me" description="A piece of me" className={{ '.max-w-3xl': false, 'w-3/6': true}}>
+  <div class="grid grid-cols-3 gap-4">
+    <Card>
+      <CardHeader>
+        <CardTitle>Card 1</CardTitle>
+      </CardHeader>
+      <CardContent>Content 1</CardContent>
+    </Card>
+    <Card>
+      <CardHeader>
+        <CardTitle>Card 2</CardTitle>
+      </CardHeader>
+      <CardContent>Content 2</CardContent>
+    </Card>
+    <Card>
+      <CardHeader>
+        <CardTitle>Card 3</CardTitle>
+      </CardHeader>
+      <CardContent>Content 3</CardContent>
+    </Card>
+    <Card>
+      <CardHeader>
+        <CardTitle>Card 4</CardTitle>
+      </CardHeader>
+      <CardContent>Content 4</CardContent>
+    </Card>
+    <Card>
+      <CardHeader>
+        <CardTitle>Card 5</CardTitle>
+      </CardHeader>
+      <CardContent>Content 5</CardContent>
+    </Card>
+    <Card>
+      <CardHeader>
+        <CardTitle>Card 6</CardTitle>
+      </CardHeader>
+      <CardContent>Content 6</CardContent>
+    </Card>
+    <Card>
+      <CardHeader>
+        <CardTitle>Card 7</CardTitle>
+      </CardHeader>
+      <CardContent>Content 7</CardContent>
+    </Card>
+    <Card>
+      <CardHeader>
+        <CardTitle>Card 8</CardTitle>
+      </CardHeader>
+      <CardContent>Content 8</CardContent>
+    </Card>
+    <Card>
+      <CardHeader>
+        <CardTitle>Card 9</CardTitle>
+      </CardHeader>
+      <CardContent>Content 9</CardContent>
+    </Card>
+  </div>
+  <a href="https://github.com/johntao" target="_blank">
+    <span class="sr-only">Go to John Tao's GitHub repo</span>
+    <Icon name="GitHub" class="size-8" />
+  </a>
 </BaseHtml>
