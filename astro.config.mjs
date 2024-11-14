@@ -6,6 +6,7 @@ import sitemap from '@astrojs/sitemap';
 
 import tailwind from '@astrojs/tailwind';
 import { remarkReadingTime } from './src/utils/readingTime';
+import react from '@astrojs/react';
 // import rehypePrettyCode from 'rehype-pretty-code';
 // import vercelStatic from '@astrojs/vercel/static';
 // import react from '@astrojs/react';
@@ -32,19 +33,25 @@ import { remarkReadingTime } from './src/utils/readingTime';
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://johntao.one',
-	markdown: {
-		// Disable syntax built-in syntax hightlighting from astro
-		// syntaxHighlight: false,
-		// rehypePlugins: [[rehypePrettyCode, options]],
-		remarkPlugins: [remarkReadingTime]
-	},
-	integrations: [mdx(), tailwind(), sitemap()],
-	// integrations: [mdx(), tailwind(), sitemap(), react()],
-	// output: 'static',
-	// adapter: vercelStatic({
-	// 	webAnalytics: {
-	// 		enabled: true
-	// 	}
-	// })
+    site: 'https://johntao.one',
+    markdown: {
+        // Disable syntax built-in syntax hightlighting from astro
+        // syntaxHighlight: false,
+        // rehypePlugins: [[rehypePrettyCode, options]],
+        remarkPlugins: [remarkReadingTime]
+    },
+    integrations: [
+        mdx(),
+        tailwind({
+            applyBaseStyles: false,
+        }),
+        sitemap(),
+        react()
+    ],
+    // output: 'static',
+    // adapter: vercelStatic({
+    // 	webAnalytics: {
+    // 		enabled: true
+    // 	}
+    // })
 });

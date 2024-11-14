@@ -3,6 +3,7 @@ import BaseHead from "@/components/BaseHead.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "@/consts";
+import '@/styles/globals.css'
 import styles from "@/styles";
 
 interface BaseHtmlProps {
@@ -35,16 +36,3 @@ const {
 		<Footer />
 	</body>
 </html>
-<!-- <style is:global>
-	@tailwind base;
-	@tailwind components;
-	@tailwind utilities;
-	@layer components {
-		.content-area-color {
-			@apply bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300;
-		}
-		.ui-bar-color {
-			@apply bg-neutral-100 dark:bg-neutral-900 text-neutral-700 dark:text-neutral-300;
-		}
-	}
-</style> -->
