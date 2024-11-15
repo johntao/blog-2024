@@ -7,64 +7,134 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
 
 ---
 
-<BaseHtml title="About Me" description="A piece of me" className={{ '.max-w-3xl': false, 'w-3/6': true}}>
-  <div class="grid grid-cols-3 gap-4">
-    <Card>
-      <CardHeader>
-        <CardTitle>Card 1</CardTitle>
-      </CardHeader>
-      <CardContent>Content 1</CardContent>
+<BaseHtml title="About Me" description="A piece of me" className={{ 'max-w-3xl': false, 'min-w-fit': true }}>
+  <!-- <div class="grid gap-4 grid-cols-4"> -->
+    <div class="grid gap-4" style="grid-template: auto 1fr 1fr 1fr/ auto max-content max-content max-content">
+    <!-- First row -->
+    <div class=""></div>
+    <div class="text-center font-bold text-lg"><span class="text-black bg-yellow-300">Aspiring</span> Goals</div>
+    <div class="text-center font-bold text-lg"><span class="text-black bg-red-300">Core</span> Values</div>
+    <div class="text-center font-bold text-lg"><span class="text-black bg-blue-300">Supporting</span> Power</div>
+
+    <!-- Human row -->
+    <div class="font-bold text-lg text-right self-center">Human</div>
+    <Card className="p-4">
+      <ul class="pt-3">
+        <li>Keep building impactful software</li>
+        <li>Keep learning and teaching</li>
+        <li>Develop a personal knowledge base</li>
+      </ul>
     </Card>
-    <Card>
-      <CardHeader>
-        <CardTitle>Card 2</CardTitle>
-      </CardHeader>
-      <CardContent>Content 2</CardContent>
+    <Card className="p-4">
+			<ul class="pt-3">
+				<li>Minimalism</li>
+				<li>Eclecticism</li>
+				<li>Mohism & Taoism</li>
+			</ul>
     </Card>
-    <Card>
-      <CardHeader>
-        <CardTitle>Card 3</CardTitle>
+    <Card className="p-4">
+      <CardHeader className="text-center">
+        <CardTitle>Favorite Topics</CardTitle>
       </CardHeader>
-      <CardContent>Content 3</CardContent>
+      <CardContent className="grid grid-rows-3 grid-cols-3 justify-items-center grid-flow-col">
+        <Badge className="bg-yellow-300">Productivity</Badge>
+        <Badge className="bg-yellow-300">Taxonomy</Badge>
+        <Badge className="bg-yellow-300">Worldview</Badge>
+        <Badge className="bg-red-300">Movies</Badge>
+        <Badge className="bg-red-300">Games</Badge>
+        <Badge className="invisible"></Badge>
+        <Badge className="bg-blue-300">Anime</Badge>
+        <Badge className="bg-blue-300">Manga</Badge>
+        <Badge className="bg-blue-300">Music</Badge>
+      </CardContent>
     </Card>
-    <Card>
-      <CardHeader>
-        <CardTitle>Card 4</CardTitle>
-      </CardHeader>
-      <CardContent>Content 4</CardContent>
+
+    <!-- User row -->
+    <div class="font-bold text-lg text-right self-center">User</div>
+    <Card className="p-4">
+      <ul class="pt-3">
+        <li>Streamline note-taking process</li>
+        <li>Centralize and back up data sources</li>
+        <li>Integrate daily tools with more apps</li>
+      </ul>
     </Card>
-    <Card>
-      <CardHeader>
-        <CardTitle>Card 5</CardTitle>
+    <Card className="p-4">
+      <CardHeader className="text-center">
+        <CardTitle>Daily Tools</CardTitle>
       </CardHeader>
-      <CardContent>Content 5</CardContent>
+      <CardContent className="grid grid-rows-3 grid-cols-3 justify-items-center grid-flow-col">
+        <Badge className="bg-yellow-300">Heptabase</Badge>
+        <Badge className="invisible"></Badge>
+        <Badge className="invisible"></Badge>
+        <Badge className="bg-red-300">LogSeq</Badge>
+        <Badge className="bg-red-300">LibreOffice</Badge>
+        <Badge className="bg-red-300">Claude</Badge>
+        <Badge className="bg-blue-300">SurfingKeys</Badge>
+        <Badge className="bg-blue-300">Firefox</Badge>
+        <Badge className="bg-blue-300">macOS</Badge>
+      </CardContent>
     </Card>
-    <Card>
-      <CardHeader>
-        <CardTitle>Card 6</CardTitle>
+    <Card className="p-4">
+      <CardHeader className="text-center">
+        <CardTitle>News Feed</CardTitle>
       </CardHeader>
-      <CardContent>Content 6</CardContent>
+      <CardContent className="grid grid-rows-3 grid-cols-3 justify-items-center grid-flow-col">
+        <Badge className="bg-yellow-300">Brilliant</Badge>
+        <Badge className="bg-yellow-300">Books</Badge>
+        <Badge className="bg-yellow-300">Speak</Badge>
+        <Badge className="bg-red-300">Podcast</Badge>
+        <Badge className="bg-red-300">Brief AI</Badge>
+        <Badge className="invisible"></Badge>
+        <Badge className="bg-blue-300">Daily.Dev</Badge>
+        <Badge className="bg-blue-300">YouTube</Badge>
+        <Badge className="invisible"></Badge>
+      </CardContent>
     </Card>
-    <Card>
-      <CardHeader>
-        <CardTitle>Card 7</CardTitle>
-      </CardHeader>
-      <CardContent>Content 7</CardContent>
+
+    <!-- Developer row -->
+    <div class="font-bold text-lg text-right self-center">Developer</div>
+    <Card className="p-4">
+      <ul class="pt-3">
+        <li>Odoo ERP Deployment</li>
+        <li>UX Improvements for Search and Filtering</li>
+        <li>Generative AI Integration</li>
+      </ul>
     </Card>
-    <Card>
-      <CardHeader>
-        <CardTitle>Card 8</CardTitle>
+    <Card className="p-4">
+      <CardHeader className="text-center">
+        <CardTitle>Skillset</CardTitle>
       </CardHeader>
-      <CardContent>Content 8</CardContent>
+      <CardContent className="grid grid-rows-3 grid-cols-3 justify-items-center grid-flow-col">
+        <Badge className="bg-yellow-300">Odoo</Badge>
+        <Badge className="bg-yellow-300">UiPath</Badge>
+        <Badge className="bg-yellow-300">Astro</Badge>
+        <Badge className="bg-red-300">ASP.NET</Badge>
+        <Badge className="bg-red-300">Web Dev</Badge>
+        <Badge className="bg-red-300">SQL</Badge>
+        <Badge className="bg-blue-300">CI/CD</Badge>
+        <Badge className="bg-blue-300">Testing</Badge>
+        <Badge className="bg-blue-300">JAMStack</Badge>
+      </CardContent>
     </Card>
-    <Card>
-      <CardHeader>
-        <CardTitle>Card 9</CardTitle>
+    <Card className="p-4">
+      <CardHeader className="text-center">
+        <CardTitle>Dev Environment</CardTitle>
       </CardHeader>
-      <CardContent>Content 9</CardContent>
+      <CardContent className="grid grid-rows-3 grid-cols-3 justify-items-center grid-flow-col">
+        <Badge className="bg-yellow-300">Cursor</Badge>
+        <Badge className="bg-yellow-300">Rider</Badge>
+        <Badge className="bg-yellow-300">Oh My Zsh</Badge>
+        <Badge className="bg-red-300">VS Code</Badge>
+        <Badge className="bg-red-300">GitHub</Badge>
+        <Badge className="invisible"></Badge>
+        <Badge className="bg-blue-300">Zsh</Badge>
+        <Badge className="bg-blue-300">Vim</Badge>
+        <Badge className="invisible"></Badge>
+      </CardContent>
     </Card>
   </div>
   <a href="https://github.com/johntao" target="_blank">
