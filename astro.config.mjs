@@ -5,7 +5,7 @@ import sitemap from '@astrojs/sitemap';
 import tailwind from '@astrojs/tailwind';
 import { remarkReadingTime } from './src/utils/readingTime';
 import react from '@astrojs/react';
-// import starlight from '@astrojs/starlight';
+import starlight from '@astrojs/starlight';
 
 // https://astro.build/config
 export default defineConfig({
@@ -20,12 +20,13 @@ export default defineConfig({
         react({
             experimentalReactChildren: true,
         }),
-        // starlight({
-        //     title: 'The power of doc site',
-		// 	components: {
-		// 		Tabs: './src/overrides/PageSidebar.astro',
-		// 	},
-        // }),
+        starlight({
+            title: 'The power of doc site',
+            expressiveCode: false,
+			// components: {
+			// 	Tabs: './src/overrides/PageSidebar.astro',
+			// },
+        }),
         sitemap(),
         mdx(),
     ],
