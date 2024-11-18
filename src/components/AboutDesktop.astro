@@ -5,8 +5,6 @@ interface Props {
     bgRed: string;
     bgYellow: string;
     bgBlue: string;
-    p: string;
-    invisible: string;
     gridClass: string;
     firstRowText: string;
     firstRowTextAlt?: string;
@@ -14,7 +12,7 @@ interface Props {
     subGrid: string;
     subFlex: string;
     subGridP: string;
-    ul: string;
+    ulInterest: string;
     gridStyle: string;
   };
 }
@@ -54,7 +52,7 @@ const { className: cn } = Astro.props;
       <Badge className={cn.bgYellow}>Worldview</Badge>
     </div>
   </div>
-  <ul class={cn.ul}>
+  <ul class={cn.ulInterest}>
     <li>Keep building impactful software</li>
     <li>Keep learning and teaching</li>
     <li>Develop a personal knowledge base</li>
@@ -85,7 +83,7 @@ const { className: cn } = Astro.props;
       <Badge className={cn.bgYellow}>Speak</Badge>
     </div>
   </div>
-  <ul class={cn.ul}>
+  <ul class={cn.ulInterest}>
     <li>Streamline note-taking process</li>
     <li>Centralize and back up data sources</li>
     <li>Integrate daily tools with more apps</li>
@@ -119,7 +117,7 @@ const { className: cn } = Astro.props;
       <Badge className={cn.bgYellow}>Oh My Zsh</Badge>
     </div>
   </div>
-  <ul class={cn.ul}>
+  <ul class={cn.ulInterest}>
     <li>Odoo ERP Deployment</li>
     <li>UX Improvements for Search and Filtering</li>
     <li>Generative AI Integration</li>

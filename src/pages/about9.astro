@@ -3,7 +3,7 @@ import Icon from "@/components/Icon.astro";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabItem } from "@astrojs/starlight/components";
 import BaseHtml from "@/layouts/BaseHtml.astro";
-import AboutMe from "@/components/AboutV3.astro";
+import AboutDesktop from "@/components/AboutDesktop.astro";
 
 //Mobile+Desktop
 const className = {
@@ -22,8 +22,6 @@ const className = {
     bgRed: "text-black bg-red-400 dark:bg-red-300",
     bgYellow: "text-black bg-yellow-400 dark:bg-yellow-300",
     bgBlue: "text-black bg-blue-400 dark:bg-blue-300",
-    p: "text-center",
-    invisible: "invisible w-14",
     gridClass: "hidden sm:grid gap-2",
     firstRowText: "text-center font-bold text-lg text-black",
     firstRowTextAlt: "text-center font-bold text-lg text-black",
@@ -31,11 +29,11 @@ const className = {
     subGrid: "",
     subFlex: "flex flex-wrap justify-start gap-2",
     subGridP: "text-sm",
-    ul: "pt-3 self-center",
+    ulInterest: "pt-3 self-center",
     gridStyle: "grid-template: repeat(4, auto)/ auto 16rem 16rem auto",
   },
 };
-const cn = className.mobile;
+const mob = className.mobile;
 const desk = className.desktop;
 ---
 
@@ -48,41 +46,41 @@ const desk = className.desktop;
     <!-- 3x2 -->
     <Tabs>
       <TabItem label="Human">
-        <div class={cn.gridClass} style={cn.gridStyle}>
+        <div class={mob.gridClass} style={mob.gridStyle}>
           <!-- 2-1 -->
-          <div class:list={[cn.firstColText, cn.bgRed]}>Core</div>
+          <div class:list={[mob.firstColText, mob.bgRed]}>Core</div>
           <!-- 2-2 -->
           <div>
-            <p class={cn.subGridP}>Worldview</p>
-            <Badge className={cn.bgRed}>Minimalism</Badge>
-            <Badge className={cn.invisible}>&nbsp;</Badge>
-            <Badge className={cn.invisible}>&nbsp;</Badge><br />
-            <Badge className={cn.bgBlue}>Mohism</Badge>
-            <Badge className={cn.bgBlue}>Taoism</Badge>
-            <Badge className={cn.invisible}>&nbsp;</Badge><br />
-            <Badge className={cn.bgYellow}>Eclecticism</Badge>
-            <Badge className={cn.bgYellow}>Esstentialism</Badge>
-            <Badge className={cn.invisible}>&nbsp;</Badge>
+            <p class={mob.subGridP}>Worldview</p>
+            <Badge className={mob.bgRed}>Minimalism</Badge>
+            <Badge className={mob.invisible}>&nbsp;</Badge>
+            <Badge className={mob.invisible}>&nbsp;</Badge><br />
+            <Badge className={mob.bgBlue}>Mohism</Badge>
+            <Badge className={mob.bgBlue}>Taoism</Badge>
+            <Badge className={mob.invisible}>&nbsp;</Badge><br />
+            <Badge className={mob.bgYellow}>Eclecticism</Badge>
+            <Badge className={mob.bgYellow}>Esstentialism</Badge>
+            <Badge className={mob.invisible}>&nbsp;</Badge>
           </div>
           <!-- 3-1 -->
-          <div class:list={[cn.firstColText, cn.bgBlue]}>Support</div>
+          <div class:list={[mob.firstColText, mob.bgBlue]}>Support</div>
           <!-- 3-2 -->
           <div>
-            <p class={cn.subGridP}>Favorite Topics</p>
-            <Badge className={cn.bgRed}>Movies</Badge>
-            <Badge className={cn.bgRed}>Games</Badge>
-            <Badge className={cn.invisible}>&nbsp;</Badge><br />
-            <Badge className={cn.bgBlue}>Anime</Badge>
-            <Badge className={cn.bgBlue}>Manga</Badge>
-            <Badge className={cn.bgBlue}>Music</Badge><br />
-            <Badge className={cn.bgYellow}>Productivity</Badge>
-            <Badge className={cn.bgYellow}>Taxonomy</Badge>
-            <Badge className={cn.bgYellow}>Worldview</Badge>
+            <p class={mob.subGridP}>Favorite Topics</p>
+            <Badge className={mob.bgRed}>Movies</Badge>
+            <Badge className={mob.bgRed}>Games</Badge>
+            <Badge className={mob.invisible}>&nbsp;</Badge><br />
+            <Badge className={mob.bgBlue}>Anime</Badge>
+            <Badge className={mob.bgBlue}>Manga</Badge>
+            <Badge className={mob.bgBlue}>Music</Badge><br />
+            <Badge className={mob.bgYellow}>Productivity</Badge>
+            <Badge className={mob.bgYellow}>Taxonomy</Badge>
+            <Badge className={mob.bgYellow}>Worldview</Badge>
           </div>
           <!-- 4-1 -->
-          <div class:list={[cn.firstColText, cn.bgYellow]}>Interest</div>
+          <div class:list={[mob.firstColText, mob.bgYellow]}>Interest</div>
           <!-- 4-2 -->
-          <ul class={cn.ulInterest}>
+          <ul class={mob.ulInterest}>
             <li>Keep building impactful software</li>
             <li>Keep learning and teaching</li>
             <li>Develop a personal knowledge base</li>
@@ -90,41 +88,41 @@ const desk = className.desktop;
         </div>
       </TabItem>
       <TabItem label="User">
-        <div class={cn.gridClass} style={cn.gridStyle}>
+        <div class={mob.gridClass} style={mob.gridStyle}>
           <!-- 2-1 -->
-          <div class:list={[cn.firstColText, cn.bgRed]}>Core</div>
+          <div class:list={[mob.firstColText, mob.bgRed]}>Core</div>
           <!-- 2-3 -->
           <div>
-            <p class={cn.subGridP}>Daily Tools</p>
-            <Badge className={cn.bgRed}>LogSeq</Badge>
-            <Badge className={cn.bgRed}>LibreOffice</Badge>
-            <Badge className={cn.bgRed}>Claude</Badge><br />
-            <Badge className={cn.bgBlue}>SurfingKeys</Badge>
-            <Badge className={cn.bgBlue}>Firefox</Badge>
-            <Badge className={cn.bgBlue}>macOS</Badge><br />
-            <Badge className={cn.bgYellow}>Heptabase</Badge>
-            <Badge className={cn.invisible}>&nbsp;</Badge>
-            <Badge className={cn.invisible}>&nbsp;</Badge>
+            <p class={mob.subGridP}>Daily Tools</p>
+            <Badge className={mob.bgRed}>LogSeq</Badge>
+            <Badge className={mob.bgRed}>LibreOffice</Badge>
+            <Badge className={mob.bgRed}>Claude</Badge><br />
+            <Badge className={mob.bgBlue}>SurfingKeys</Badge>
+            <Badge className={mob.bgBlue}>Firefox</Badge>
+            <Badge className={mob.bgBlue}>macOS</Badge><br />
+            <Badge className={mob.bgYellow}>Heptabase</Badge>
+            <Badge className={mob.invisible}>&nbsp;</Badge>
+            <Badge className={mob.invisible}>&nbsp;</Badge>
           </div>
           <!-- 3-1 -->
-          <div class:list={[cn.firstColText, cn.bgBlue]}>Support</div>
+          <div class:list={[mob.firstColText, mob.bgBlue]}>Support</div>
           <!-- 3-3 -->
           <div>
-            <p class={cn.subGridP}>News Feed</p>
-            <Badge className={cn.bgRed}>Podcast</Badge>
-            <Badge className={cn.bgRed}>Brief&nbsp;AI</Badge>
-            <Badge className={cn.invisible}>&nbsp;</Badge><br />
-            <Badge className={cn.bgBlue}>Daily.Dev</Badge>
-            <Badge className={cn.bgBlue}>YouTube</Badge>
-            <Badge className={cn.invisible}>&nbsp;</Badge><br />
-            <Badge className={cn.bgYellow}>Brilliant</Badge>
-            <Badge className={cn.bgYellow}>Books</Badge>
-            <Badge className={cn.bgYellow}>Speak</Badge>
+            <p class={mob.subGridP}>News Feed</p>
+            <Badge className={mob.bgRed}>Podcast</Badge>
+            <Badge className={mob.bgRed}>Brief&nbsp;AI</Badge>
+            <Badge className={mob.invisible}>&nbsp;</Badge><br />
+            <Badge className={mob.bgBlue}>Daily.Dev</Badge>
+            <Badge className={mob.bgBlue}>YouTube</Badge>
+            <Badge className={mob.invisible}>&nbsp;</Badge><br />
+            <Badge className={mob.bgYellow}>Brilliant</Badge>
+            <Badge className={mob.bgYellow}>Books</Badge>
+            <Badge className={mob.bgYellow}>Speak</Badge>
           </div>
           <!-- 4-1 -->
-          <div class:list={[cn.firstColText, cn.bgYellow]}>Interest</div>
+          <div class:list={[mob.firstColText, mob.bgYellow]}>Interest</div>
           <!-- 4-3 -->
-          <ul class={cn.ulInterest}>
+          <ul class={mob.ulInterest}>
             <li>Streamline note-taking process</li>
             <li>Centralize and back up data sources</li>
             <li>Integrate daily tools with more apps</li>
@@ -132,41 +130,41 @@ const desk = className.desktop;
         </div>
       </TabItem>
       <TabItem label="Developer">
-        <div class={cn.gridClass} style={cn.gridStyle}>
+        <div class={mob.gridClass} style={mob.gridStyle}>
           <!-- 2-1 -->
-          <div class:list={[cn.firstColText, cn.bgRed]}>Core</div>
+          <div class:list={[mob.firstColText, mob.bgRed]}>Core</div>
           <!-- 2-4 -->
           <div>
-            <p class={cn.subGridP}>Skillset</p>
-            <Badge className={cn.bgRed}>ASP.NET</Badge>
-            <Badge className={cn.bgRed}>Web Dev</Badge>
-            <Badge className={cn.bgRed}>SQL</Badge><br />
-            <Badge className={cn.bgBlue}>CI/CD</Badge>
-            <Badge className={cn.bgBlue}>Testing</Badge>
-            <Badge className={cn.bgBlue}>JAMStack</Badge><br />
-            <Badge className={cn.bgYellow}>Odoo</Badge>
-            <Badge className={cn.bgYellow}>UiPath</Badge>
-            <Badge className={cn.bgYellow}>Astro</Badge>
+            <p class={mob.subGridP}>Skillset</p>
+            <Badge className={mob.bgRed}>ASP.NET</Badge>
+            <Badge className={mob.bgRed}>Web Dev</Badge>
+            <Badge className={mob.bgRed}>SQL</Badge><br />
+            <Badge className={mob.bgBlue}>CI/CD</Badge>
+            <Badge className={mob.bgBlue}>Testing</Badge>
+            <Badge className={mob.bgBlue}>JAMStack</Badge><br />
+            <Badge className={mob.bgYellow}>Odoo</Badge>
+            <Badge className={mob.bgYellow}>UiPath</Badge>
+            <Badge className={mob.bgYellow}>Astro</Badge>
           </div>
           <!-- 3-1 -->
-          <div class:list={[cn.firstColText, cn.bgBlue]}>Support</div>
+          <div class:list={[mob.firstColText, mob.bgBlue]}>Support</div>
           <!-- 3-4 -->
           <div>
-            <p class={cn.subGridP}>Dev Environment</p>
-            <Badge className={cn.bgRed}>VS Code</Badge>
-            <Badge className={cn.bgRed}>GitHub</Badge>
-            <Badge className={cn.invisible}>&nbsp;</Badge><br />
-            <Badge className={cn.bgBlue}>Zsh</Badge>
-            <Badge className={cn.bgBlue}>Vim</Badge>
-            <Badge className={cn.invisible}>&nbsp;</Badge><br />
-            <Badge className={cn.bgYellow}>Cursor</Badge>
-            <Badge className={cn.bgYellow}>Rider</Badge>
-            <Badge className={cn.bgYellow}>Oh My Zsh</Badge>
+            <p class={mob.subGridP}>Dev Environment</p>
+            <Badge className={mob.bgRed}>VS Code</Badge>
+            <Badge className={mob.bgRed}>GitHub</Badge>
+            <Badge className={mob.invisible}>&nbsp;</Badge><br />
+            <Badge className={mob.bgBlue}>Zsh</Badge>
+            <Badge className={mob.bgBlue}>Vim</Badge>
+            <Badge className={mob.invisible}>&nbsp;</Badge><br />
+            <Badge className={mob.bgYellow}>Cursor</Badge>
+            <Badge className={mob.bgYellow}>Rider</Badge>
+            <Badge className={mob.bgYellow}>Oh My Zsh</Badge>
           </div>
           <!-- 4-1 -->
-          <div class:list={[cn.firstColText, cn.bgYellow]}>Interest</div>
+          <div class:list={[mob.firstColText, mob.bgYellow]}>Interest</div>
           <!-- 4-4 -->
-          <ul class={cn.ulInterest}>
+          <ul class={mob.ulInterest}>
             <li>Odoo ERP Deployment</li>
             <li>Advanced Search and Filtering Functions</li>
             <li>Generative AI Integration</li>
@@ -175,7 +173,7 @@ const desk = className.desktop;
       </TabItem>
     </Tabs>
   </div>
-  <AboutMe className={desk} />
+  <AboutDesktop className={desk} />
   <a href="https://github.com/johntao" target="_blank" class="flex justify-center my-12">
     <span class="sr-only">Go to John Tao's GitHub repo</span>
     <Icon name="GitHub" class="size-8" />
