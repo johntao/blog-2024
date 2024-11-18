@@ -1,5 +1,6 @@
 ---
 import { Badge } from "@/components/ui/badge";
+import { Test1 } from "@/components/ui/tabs";
 import BaseHtml from "@/layouts/BaseHtml.astro";
 
 //Transpose!
@@ -30,6 +31,7 @@ const cn = className;
   description="A piece of me"
   className={{ "max-w-3xl": false, "min-w-fit": true }}
 >
+  <Test1 client:idle />
   <!-- 4x4 grid (r x c) -->
   <div
     class={cn.gridClass}

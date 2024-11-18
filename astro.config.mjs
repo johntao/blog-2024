@@ -18,6 +18,8 @@ export default defineConfig({
             applyBaseStyles: false,
         }),
         sitemap(),
-        react()
+        react({
+            experimentalReactChildren: true,
+        })
     ],
 });
