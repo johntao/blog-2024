@@ -1,0 +1,181 @@
+---
+import { Badge } from "@/components/ui/badge";
+import { Tabs, TabItem } from "@astrojs/starlight/components";
+import BaseHtml from "@/layouts/BaseHtml.astro";
+import AboutMe from "@/components/AboutV3.astro";
+
+//Mobile+Desktop
+const className = {
+  mobile: {
+    bgRed: "bg-red-300 text-primary-foreground",
+    bgYellow: "bg-yellow-300 text-primary-foreground",
+    bgBlue: "bg-blue-300 text-primary-foreground",
+    invisible: "invisible",
+    gridClass: "grid gap-2",
+    firstColText: "text-xs text-center self-stretch writing-vertical text-primary-foreground",
+    ulInterest: "pt-3 self-center",
+    subGridP: "text-sm",
+    gridStyle: "grid-template: repeat(3, auto)/ min-content 25rem",
+  },
+  desktop: {
+    bgRed: "bg-red-300",
+    bgYellow: "bg-yellow-300",
+    bgBlue: "bg-blue-300",
+    textRed: "text-red-300",
+    textYellow: "text-yellow-300",
+    textBlue: "text-blue-300",
+    p: "text-center",
+    invisible: "invisible w-14",
+    gridClass: "hidden sm:grid gap-2",
+    firstRowText: "text-center font-bold text-lg text-black",
+    firstRowTextAlt: "text-center font-bold text-lg text-black",
+    firstColText: "font-bold text-lg text-right self-center",
+    subGrid: "",
+    subFlex: "flex flex-wrap justify-start",
+    subGridP: "text-sm",
+    ul: "pt-3 self-center",
+    gridStyle: "grid-template: repeat(4, auto)/ auto 23ch 24ch auto",
+  },
+};
+const cn = className.mobile;
+const desk = className.desktop;
+---
+
+<BaseHtml
+  title="About Me"
+  description="A piece of me"
+  className={{ "max-w-3xl": false, "min-w-fit": true }}
+>
+  <div class="sm:hidden">
+    <!-- 3x2 -->
+    <Tabs>
+      <TabItem label="Human">
+        <div class={cn.gridClass} style={cn.gridStyle}>
+          <!-- 2-1 -->
+          <div class:list={[cn.firstColText, cn.bgRed]}>Core</div>
+          <!-- 2-2 -->
+          <div>
+            <p class={cn.subGridP}>Worldview</p>
+            <Badge className={cn.bgRed}>Minimalism</Badge>
+            <Badge className={cn.invisible}>&nbsp;</Badge>
+            <Badge className={cn.invisible}>&nbsp;</Badge><br />
+            <Badge className={cn.bgBlue}>Mohism</Badge>
+            <Badge className={cn.bgBlue}>Taoism</Badge>
+            <Badge className={cn.invisible}>&nbsp;</Badge><br />
+            <Badge className={cn.bgYellow}>Eclecticism</Badge>
+            <Badge className={cn.bgYellow}>Esstentialism</Badge>
+            <Badge className={cn.invisible}>&nbsp;</Badge>
+          </div>
+          <!-- 3-1 -->
+          <div class:list={[cn.firstColText, cn.bgBlue]}>Support</div>
+          <!-- 3-2 -->
+          <div>
+            <p class={cn.subGridP}>Favorite Topics</p>
+            <Badge className={cn.bgRed}>Movies</Badge>
+            <Badge className={cn.bgRed}>Games</Badge>
+            <Badge className={cn.invisible}>&nbsp;</Badge><br />
+            <Badge className={cn.bgBlue}>Anime</Badge>
+            <Badge className={cn.bgBlue}>Manga</Badge>
+            <Badge className={cn.bgBlue}>Music</Badge><br />
+            <Badge className={cn.bgYellow}>Productivity</Badge>
+            <Badge className={cn.bgYellow}>Taxonomy</Badge>
+            <Badge className={cn.bgYellow}>Worldview</Badge>
+          </div>
+          <!-- 4-1 -->
+          <div class:list={[cn.firstColText, cn.bgYellow]}>Interest</div>
+          <!-- 4-2 -->
+          <ul class={cn.ulInterest}>
+            <li>Keep building impactful software</li>
+            <li>Keep learning and teaching</li>
+            <li>Develop a personal knowledge base</li>
+          </ul>
+        </div>
+      </TabItem>
+      <TabItem label="User">
+        <div class={cn.gridClass} style={cn.gridStyle}>
+          <!-- 2-1 -->
+          <div class:list={[cn.firstColText, cn.bgRed]}>Core</div>
+          <!-- 2-3 -->
+          <div>
+            <p class={cn.subGridP}>Daily Tools</p>
+            <Badge className={cn.bgRed}>LogSeq</Badge>
+            <Badge className={cn.bgRed}>LibreOffice</Badge>
+            <Badge className={cn.bgRed}>Claude</Badge><br />
+            <Badge className={cn.bgBlue}>SurfingKeys</Badge>
+            <Badge className={cn.bgBlue}>Firefox</Badge>
+            <Badge className={cn.bgBlue}>macOS</Badge><br />
+            <Badge className={cn.bgYellow}>Heptabase</Badge>
+            <Badge className={cn.invisible}>&nbsp;</Badge>
+            <Badge className={cn.invisible}>&nbsp;</Badge>
+          </div>
+          <!-- 3-1 -->
+          <div class:list={[cn.firstColText, cn.bgBlue]}>Support</div>
+          <!-- 3-3 -->
+          <div>
+            <p class={cn.subGridP}>News Feed</p>
+            <Badge className={cn.bgRed}>Podcast</Badge>
+            <Badge className={cn.bgRed}>Brief&nbsp;AI</Badge>
+            <Badge className={cn.invisible}>&nbsp;</Badge><br />
+            <Badge className={cn.bgBlue}>Daily.Dev</Badge>
+            <Badge className={cn.bgBlue}>YouTube</Badge>
+            <Badge className={cn.invisible}>&nbsp;</Badge><br />
+            <Badge className={cn.bgYellow}>Brilliant</Badge>
+            <Badge className={cn.bgYellow}>Books</Badge>
+            <Badge className={cn.bgYellow}>Speak</Badge>
+          </div>
+          <!-- 4-1 -->
+          <div class:list={[cn.firstColText, cn.bgYellow]}>Interest</div>
+          <!-- 4-3 -->
+          <ul class={cn.ulInterest}>
+            <li>Streamline note-taking process</li>
+            <li>Centralize and back up data sources</li>
+            <li>Integrate daily tools with more apps</li>
+          </ul>
+        </div>
+      </TabItem>
+      <TabItem label="Developer">
+        <div class={cn.gridClass} style={cn.gridStyle}>
+          <!-- 2-1 -->
+          <div class:list={[cn.firstColText, cn.bgRed]}>Core</div>
+          <!-- 2-4 -->
+          <div>
+            <p class={cn.subGridP}>Skillset</p>
+            <Badge className={cn.bgRed}>ASP.NET</Badge>
+            <Badge className={cn.bgRed}>Web Dev</Badge>
+            <Badge className={cn.bgRed}>SQL</Badge><br />
+            <Badge className={cn.bgBlue}>CI/CD</Badge>
+            <Badge className={cn.bgBlue}>Testing</Badge>
+            <Badge className={cn.bgBlue}>JAMStack</Badge><br />
+            <Badge className={cn.bgYellow}>Odoo</Badge>
+            <Badge className={cn.bgYellow}>UiPath</Badge>
+            <Badge className={cn.bgYellow}>Astro</Badge>
+          </div>
+          <!-- 3-1 -->
+          <div class:list={[cn.firstColText, cn.bgBlue]}>Support</div>
+          <!-- 3-4 -->
+          <div>
+            <p class={cn.subGridP}>Dev Environment</p>
+            <Badge className={cn.bgRed}>VS Code</Badge>
+            <Badge className={cn.bgRed}>GitHub</Badge>
+            <Badge className={cn.invisible}>&nbsp;</Badge><br />
+            <Badge className={cn.bgBlue}>Zsh</Badge>
+            <Badge className={cn.bgBlue}>Vim</Badge>
+            <Badge className={cn.invisible}>&nbsp;</Badge><br />
+            <Badge className={cn.bgYellow}>Cursor</Badge>
+            <Badge className={cn.bgYellow}>Rider</Badge>
+            <Badge className={cn.bgYellow}>Oh My Zsh</Badge>
+          </div>
+          <!-- 4-1 -->
+          <div class:list={[cn.firstColText, cn.bgYellow]}>Interest</div>
+          <!-- 4-4 -->
+          <ul class={cn.ulInterest}>
+            <li>Odoo ERP Deployment</li>
+            <li>Advanced Search and Filtering Functions</li>
+            <li>Generative AI Integration</li>
+          </ul>
+        </div>
+      </TabItem>
+    </Tabs>
+  </div>
+  <AboutMe className={desk} />
+</BaseHtml>
