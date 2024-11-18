@@ -5,6 +5,7 @@ import sitemap from '@astrojs/sitemap';
 import tailwind from '@astrojs/tailwind';
 import { remarkReadingTime } from './src/utils/readingTime';
 import react from '@astrojs/react';
+// import starlight from '@astrojs/starlight';
 
 // https://astro.build/config
 export default defineConfig({
@@ -13,13 +14,16 @@ export default defineConfig({
         remarkPlugins: [remarkReadingTime]
     },
     integrations: [
-        mdx(),
         tailwind({
             applyBaseStyles: false,
         }),
-        sitemap(),
         react({
             experimentalReactChildren: true,
-        })
+        }),
+        // starlight({
+        //     title: 'The power of doc site',
+        // }),
+        sitemap(),
+        mdx(),
     ],
 });
