@@ -1,0 +1,17 @@
+---
+import type { Props } from "@astrojs/starlight/props";
+import { Tabs as Default } from "@astrojs/starlight/components";
+
+// const pageTitle = Astro.props.entry.data.title;
+// Set the text of the first item in the table of contents to the page title
+// Astro.props.toc.items[0].text = pageTitle;
+---
+
+<Default {...Astro.props}>
+  <slot />
+  <style>
+    .tablist-wrapper > ul:nth-child(1) {
+      justify-content: center;
+    }
+  </style>
+</Default>

@@ -1,20 +1,23 @@
 ---
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabItem } from "@astrojs/starlight/components";
+// import Tabs from "@/components/sl/Tabs.astro";
 import BaseHtml from "@/layouts/BaseHtml.astro";
 
-//Transpose!
+//Transpose, Move Subtitle
 const className = {
-  bgRed: "bg-red-300",
-  bgYellow: "bg-yellow-300",
-  bgBlue: "bg-blue-300",
+  bgRed: "bg-red-300 text-black",
+  bgYellow: "bg-yellow-300 text-black",
+  bgBlue: "bg-blue-300 text-black",
   textRed: "text-red-300",
   textYellow: "text-yellow-300",
   textBlue: "text-blue-300",
   p: "text-center",
   invisible: "invisible",
   gridClass: "grid gap-2",
-  firstColText: "text-xs text-center self-stretch writing-vertical text-black",
+  firstColText: "text-xs text-right self-center",
+  // firstColTextAlt: "font-bold text-lg text-right self-center text-black",
+  // subGrid: "grid grid-cols-subgrid grid-rows-subgrid justify-items-center grid-flow-col",
   subGrid: "",
   subGridP: "text-sm",
   ul: "pt-3 self-center",
@@ -33,10 +36,12 @@ const cn = className;
     <TabItem label="Human">
       <div class={cn.gridClass} style={cn.gridStyle}>
         <!-- 2-1 -->
-        <div class:list={[cn.firstColText, cn.bgRed]}>Core</div>
+        <div class:list={[cn.bgRed]}>
+          Worldview
+          <div class={cn.firstColText}>Core</div>
+        </div>
         <!-- 2-2 -->
         <div class={cn.subGrid}>
-          <p class={cn.subGridP}>Worldview</p>
           <Badge className={cn.bgRed}>Minimalism</Badge>
           <Badge className={cn.invisible}>&nbsp;</Badge>
           <Badge className={cn.invisible}>&nbsp;</Badge><br />
@@ -48,10 +53,12 @@ const cn = className;
           <Badge className={cn.invisible}>&nbsp;</Badge>
         </div>
         <!-- 3-1 -->
-        <div class:list={[cn.firstColText, cn.bgBlue]}>Support</div>
+        <div class:list={[cn.bgBlue]}>
+          Favorite Topics
+          <div class={cn.firstColText}>Support</div>
+        </div>
         <!-- 3-2 -->
         <div class={cn.subGrid}>
-          <p class={cn.subGridP}>Favorite Topics</p>
           <Badge className={cn.bgRed}>Movies</Badge>
           <Badge className={cn.bgRed}>Games</Badge>
           <Badge className={cn.invisible}>&nbsp;</Badge><br />
@@ -63,7 +70,9 @@ const cn = className;
           <Badge className={cn.bgYellow}>Worldview</Badge>
         </div>
         <!-- 4-1 -->
-        <div class:list={[cn.firstColText, cn.bgYellow]}>Interest</div>
+        <div class:list={[cn.bgYellow]}>
+          <div class={cn.firstColText}>Interest</div>
+        </div>
         <!-- 4-2 -->
         <ul class={cn.ul}>
           <li>Keep building impactful software</li>
@@ -75,10 +84,12 @@ const cn = className;
     <TabItem label="User">
       <div class={cn.gridClass} style={cn.gridStyle}>
         <!-- 2-1 -->
-        <div class:list={[cn.firstColText, cn.bgRed]}>Core</div>
+        <div class:list={[cn.bgRed]}>
+          Daily Tools
+          <div class={cn.firstColText}>Core</div>
+        </div>
         <!-- 2-3 -->
         <div class={cn.subGrid}>
-          <p class={cn.subGridP}>Daily Tools</p>
           <Badge className={cn.bgRed}>LogSeq</Badge>
           <Badge className={cn.bgRed}>LibreOffice</Badge>
           <Badge className={cn.bgRed}>Claude</Badge><br />
@@ -90,10 +101,12 @@ const cn = className;
           <Badge className={cn.invisible}>&nbsp;</Badge>
         </div>
         <!-- 3-1 -->
-        <div class:list={[cn.firstColText, cn.bgBlue]}>Support</div>
+        <div class:list={[cn.bgBlue]}>
+          News Feed
+          <div class={cn.firstColText}>Support</div>
+        </div>
         <!-- 3-3 -->
         <div class={cn.subGrid}>
-          <p class={cn.subGridP}>News Feed</p>
           <Badge className={cn.bgRed}>Podcast</Badge>
           <Badge className={cn.bgRed}>Brief&nbsp;AI</Badge>
           <Badge className={cn.invisible}>&nbsp;</Badge><br />
@@ -105,7 +118,9 @@ const cn = className;
           <Badge className={cn.bgYellow}>Speak</Badge>
         </div>
         <!-- 4-1 -->
-        <div class:list={[cn.firstColText, cn.bgYellow]}>Interest</div>
+        <div class:list={[cn.bgYellow]}>
+          <div class={cn.firstColText}>Interest</div>
+        </div>
         <!-- 4-3 -->
         <ul class={cn.ul}>
           <li>Streamline note-taking process</li>
@@ -117,10 +132,12 @@ const cn = className;
     <TabItem label="Developer">
       <div class={cn.gridClass} style={cn.gridStyle}>
         <!-- 2-1 -->
-        <div class:list={[cn.firstColText, cn.bgRed]}>Core</div>
+        <div class:list={[cn.bgRed]}>
+          Skillset
+          <div class={cn.firstColText}>Core</div>
+        </div>
         <!-- 2-4 -->
         <ul class={cn.subGrid}>
-          <p class={cn.subGridP}>Skillset</p>
           <Badge className={cn.bgRed}>ASP.NET</Badge>
           <Badge className={cn.bgRed}>Web Dev</Badge>
           <Badge className={cn.bgRed}>SQL</Badge><br />
@@ -132,10 +149,12 @@ const cn = className;
           <Badge className={cn.bgYellow}>Astro</Badge>
         </ul>
         <!-- 3-1 -->
-        <div class:list={[cn.firstColText, cn.bgBlue]}>Support</div>
+        <div class:list={[cn.bgBlue]}>
+          Dev Environment
+          <div class={cn.firstColText}>Support</div>
+        </div>
         <!-- 3-4 -->
         <ul class={cn.subGrid}>
-          <p class={cn.subGridP}>Dev Environment</p>
           <Badge className={cn.bgRed}>VS Code</Badge>
           <Badge className={cn.bgRed}>GitHub</Badge>
           <Badge className={cn.invisible}>&nbsp;</Badge><br />
@@ -147,11 +166,13 @@ const cn = className;
           <Badge className={cn.bgYellow}>Oh My Zsh</Badge>
         </ul>
         <!-- 4-1 -->
-        <div class:list={[cn.firstColText, cn.bgYellow]}>Interest</div>
+        <div class:list={[cn.bgYellow]}>
+          <div class={cn.firstColText}>Interest</div>
+        </div>
         <!-- 4-4 -->
         <ul class={cn.ul}>
           <li>Odoo ERP Deployment</li>
-          <li>Advanced Search and Filtering Functions</li>
+          <li>UX Improvements for Search and Filtering</li>
           <li>Generative AI Integration</li>
         </ul>
       </div>

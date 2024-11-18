@@ -22,6 +22,9 @@ export default defineConfig({
         }),
         // starlight({
         //     title: 'The power of doc site',
+		// 	components: {
+		// 		Tabs: './src/overrides/PageSidebar.astro',
+		// 	},
         // }),
         sitemap(),
         mdx(),

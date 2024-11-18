@@ -75,6 +75,9 @@ export default {
 				'.jt1-border-color': {
 					'@apply border-neutral-700 dark:border-neutral-300': {}
 				},
+				".writing-vertical": {
+          "writing-mode": "vertical-rl",
+        },
 			})
 			addComponents({
 				'.ui-bar-color': {

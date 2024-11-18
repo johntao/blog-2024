@@ -64,3 +64,6 @@
     @apply bg-background text-foreground;
   }
 }
+.tablist-wrapper > ul:nth-child(1) {
+  justify-content: center;
+}
