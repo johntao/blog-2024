@@ -1,4 +1,5 @@
 ---
+import Icon from "@/components/Icon.astro";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabItem } from "@astrojs/starlight/components";
 import BaseHtml from "@/layouts/BaseHtml.astro";
@@ -7,23 +8,20 @@ import AboutMe from "@/components/AboutV3.astro";
 //Mobile+Desktop
 const className = {
   mobile: {
-    bgRed: "bg-red-300 text-primary-foreground",
-    bgYellow: "bg-yellow-300 text-primary-foreground",
-    bgBlue: "bg-blue-300 text-primary-foreground",
+    bgRed: "text-black bg-red-400 dark:bg-red-300",
+    bgYellow: "text-black bg-yellow-400 dark:bg-yellow-300",
+    bgBlue: "text-black bg-blue-400 dark:bg-blue-300",
     invisible: "invisible",
     gridClass: "grid gap-2",
-    firstColText: "text-xs text-center self-stretch writing-vertical text-primary-foreground",
+    firstColText: "text-xs text-center self-stretch writing-vertical text-black",
     ulInterest: "pt-3 self-center",
     subGridP: "text-sm",
     gridStyle: "grid-template: repeat(3, auto)/ min-content 25rem",
   },
   desktop: {
-    bgRed: "bg-red-300",
-    bgYellow: "bg-yellow-300",
-    bgBlue: "bg-blue-300",
-    textRed: "text-red-300",
-    textYellow: "text-yellow-300",
-    textBlue: "text-blue-300",
+    bgRed: "text-black bg-red-400 dark:bg-red-300",
+    bgYellow: "text-black bg-yellow-400 dark:bg-yellow-300",
+    bgBlue: "text-black bg-blue-400 dark:bg-blue-300",
     p: "text-center",
     invisible: "invisible w-14",
     gridClass: "hidden sm:grid gap-2",
@@ -31,10 +29,10 @@ const className = {
     firstRowTextAlt: "text-center font-bold text-lg text-black",
     firstColText: "font-bold text-lg text-right self-center",
     subGrid: "",
-    subFlex: "flex flex-wrap justify-start",
+    subFlex: "flex flex-wrap justify-start gap-2",
     subGridP: "text-sm",
     ul: "pt-3 self-center",
-    gridStyle: "grid-template: repeat(4, auto)/ auto 23ch 24ch auto",
+    gridStyle: "grid-template: repeat(4, auto)/ auto 16rem 16rem auto",
   },
 };
 const cn = className.mobile;
@@ -178,4 +176,8 @@ const desk = className.desktop;
     </Tabs>
   </div>
   <AboutMe className={desk} />
+  <a href="https://github.com/johntao" target="_blank" class="flex justify-center my-12">
+    <span class="sr-only">Go to John Tao's GitHub repo</span>
+    <Icon name="GitHub" class="size-8" />
+  </a>
 </BaseHtml>

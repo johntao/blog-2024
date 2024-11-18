@@ -5,9 +5,6 @@ interface Props {
     bgRed: string;
     bgYellow: string;
     bgBlue: string;
-    textRed: string;
-    textYellow: string;
-    textBlue: string;
     p: string;
     invisible: string;
     gridClass: string;
@@ -37,7 +34,7 @@ const { className: cn } = Astro.props;
   <div class={cn.subGrid}>
     <p class={cn.subGridP}>Worldview</p>
     <div class={cn.subFlex}>
-      <Badge className={cn.bgRed}>Minimalism</Badge>
+      <Badge className={`${cn.bgRed}`}>Minimalism</Badge>
       <Badge className={cn.bgBlue}>Mohism</Badge>
       <Badge className={cn.bgBlue}>Taoism</Badge>
       <Badge className={cn.bgYellow}>Eclecticism</Badge>
