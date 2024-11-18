@@ -1,0 +1,137 @@
+---
+import BaseHtml from "../layouts/BaseHtml.astro";
+import { Badge } from "@/components/ui/badge";
+interface Props {
+  className: {
+    bgRed: string;
+    bgYellow: string;
+    bgBlue: string;
+    textRed: string;
+    textYellow: string;
+    textBlue: string;
+    p: string;
+    invisible: string;
+    gridClass: string;
+    firstRowText: string;
+    firstRowTextAlt?: string;
+    firstColText: string;
+    subGrid: string;
+    subFlex: string;
+    subGridP: string;
+    ul: string;
+    gridStyle: string;
+  };
+}
+const { className: cn } = Astro.props;
+---
+
+<BaseHtml
+  title="About Me"
+  description="A piece of me"
+  className={{ "max-w-3xl": false, "min-w-fit": true }}
+>
+  <div class={cn.gridClass} style={cn.gridStyle}>
+    <!-- First row -->
+    <div class=""></div>
+    <div class:list={[cn.firstRowText, cn.bgRed]}>Core&nbsp;Values</div>
+    <div class:list={[cn.firstRowText, cn.bgBlue]}>Support&nbsp;Powers</div>
+    <div class:list={[cn.firstRowTextAlt ?? cn.firstRowText, cn.bgYellow]}>
+      Aspirations
+    </div>
+    <!-- Human row -->
+    <div class={cn.firstColText}>Human</div>
+    <div class={cn.subGrid}>
+      <p class={cn.subGridP}>Worldview</p>
+      <div class={cn.subFlex}>
+        <Badge className={cn.bgRed}>Minimalism</Badge>
+        <Badge className={cn.bgBlue}>Mohism</Badge>
+        <Badge className={cn.bgBlue}>Taoism</Badge>
+        <Badge className={cn.bgYellow}>Eclecticism</Badge>
+        <Badge className={cn.bgYellow}>Esstentialism</Badge>
+      </div>
+    </div>
+    <div class={cn.subGrid}>
+      <p class={cn.subGridP}>Favorite Topics</p>
+      <div class={cn.subFlex}>
+        <Badge className={cn.bgRed}>Movies</Badge>
+        <Badge className={cn.bgRed}>Games</Badge>
+        <Badge className={cn.bgBlue}>Anime</Badge>
+        <Badge className={cn.bgBlue}>Manga</Badge>
+        <Badge className={cn.bgBlue}>Music</Badge>
+        <Badge className={cn.bgYellow}>Productivity</Badge>
+        <Badge className={cn.bgYellow}>Taxonomy</Badge>
+        <Badge className={cn.bgYellow}>Worldview</Badge>
+      </div>
+    </div>
+    <ul class={cn.ul}>
+      <li>Keep building impactful software</li>
+      <li>Keep learning and teaching</li>
+      <li>Develop a personal knowledge base</li>
+    </ul>
+    <!-- User row -->
+    <div class={cn.firstColText}>User</div>
+    <div class={cn.subGrid}>
+      <p class={cn.subGridP}>Daily Tools</p>
+      <div class={cn.subFlex}>
+        <Badge className={cn.bgRed}>LogSeq</Badge>
+        <Badge className={cn.bgRed}>LibreOffice</Badge>
+        <Badge className={cn.bgRed}>Claude</Badge>
+        <Badge className={cn.bgBlue}>SurfingKeys</Badge>
+        <Badge className={cn.bgBlue}>Firefox</Badge>
+        <Badge className={cn.bgBlue}>macOS</Badge>
+        <Badge className={cn.bgYellow}>Heptabase</Badge>
+      </div>
+    </div>
+    <div class={cn.subGrid}>
+      <p class={cn.subGridP}>News Feed</p>
+      <div class={cn.subFlex}>
+        <Badge className={cn.bgRed}>Podcast</Badge>
+        <Badge className={cn.bgRed}>Brief&nbsp;AI</Badge>
+        <Badge className={cn.bgBlue}>Daily.Dev</Badge>
+        <Badge className={cn.bgBlue}>YouTube</Badge>
+        <Badge className={cn.bgYellow}>Brilliant</Badge>
+        <Badge className={cn.bgYellow}>Books</Badge>
+        <Badge className={cn.bgYellow}>Speak</Badge>
+      </div>
+    </div>
+    <ul class={cn.ul}>
+      <li>Streamline note-taking process</li>
+      <li>Centralize and back up data sources</li>
+      <li>Integrate daily tools with more apps</li>
+    </ul>
+    <!-- Developer row -->
+    <div class={cn.firstColText}>Developer</div>
+    <div class={cn.subGrid}>
+      <p class={cn.subGridP}>Skillset</p>
+      <div class={cn.subFlex}>
+        <Badge className={cn.bgRed}>ASP.NET</Badge>
+        <Badge className={cn.bgRed}>Web Dev</Badge>
+        <Badge className={cn.bgRed}>SQL</Badge>
+        <Badge className={cn.bgBlue}>CI/CD</Badge>
+        <Badge className={cn.bgBlue}>Testing</Badge>
+        <Badge className={cn.bgBlue}>JAMStack</Badge>
+        <Badge className={cn.bgYellow}>Odoo</Badge>
+        <Badge className={cn.bgYellow}>UiPath</Badge>
+        <Badge className={cn.bgYellow}>Astro</Badge>
+      </div>
+    </div>
+    <div class={cn.subGrid}>
+      <p class={cn.subGridP}>Dev Environment</p>
+      <div class={cn.subFlex}>
+        <Badge className={cn.bgRed}>VS Code</Badge>
+        <Badge className={`${cn.bgRed} mr-16`}>GitHub</Badge>
+        <Badge className={cn.bgBlue}>Zsh</Badge>
+        <Badge className={cn.bgBlue}>Vim</Badge>
+        <Badge className={cn.bgBlue}>Docker</Badge>
+        <Badge className={cn.bgYellow}>Cursor</Badge>
+        <Badge className={cn.bgYellow}>Rider</Badge>
+        <Badge className={cn.bgYellow}>Oh My Zsh</Badge>
+      </div>
+    </div>
+    <ul class={cn.ul}>
+      <li>Odoo ERP Deployment</li>
+      <li>UX Improvements for Search and Filtering</li>
+      <li>Generative AI Integration</li>
+    </ul>
+  </div>
+</BaseHtml>

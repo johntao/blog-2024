@@ -1,0 +1,161 @@
+---
+import { Badge } from "@/components/ui/badge";
+import BaseHtml from "@/layouts/BaseHtml.astro";
+
+//Transpose!
+const className = {
+  bgRed: "bg-red-300",
+  bgYellow: "bg-yellow-300",
+  bgBlue: "bg-blue-300",
+  textRed: "text-red-300",
+  textYellow: "text-yellow-300",
+  textBlue: "text-blue-300",
+  p: "text-center",
+  invisible: "invisible",
+  gridClass: "grid gap-2",
+  firstRowText: "text-center font-bold text-lg",
+  firstColText: "font-bold text-lg text-right self-center text-black",
+  firstColTextAlt: "font-bold text-lg text-right self-center text-black",
+  // subGrid: "grid grid-cols-subgrid grid-rows-subgrid justify-items-center grid-flow-col",
+  subGrid: "",
+  subGridP: "text-sm",
+  ul: "pt-3 self-center",
+  gridStyle: "grid-template: repeat(4, auto)/ min-content repeat(3, auto)",
+};
+const cn = className;
+---
+
+<BaseHtml
+  title="About Me"
+  description="A piece of me"
+  className={{ "max-w-3xl": false, "min-w-fit": true }}
+>
+  <!-- 4x4 grid (r x c) -->
+  <div
+    class={cn.gridClass}
+    style={cn.gridStyle}
+  >
+    <!-- 1-1 -->
+    <div class=""></div>
+    <!-- 1-2 -->
+    <div class={cn.firstRowText}>
+      Human
+    </div>
+    <!-- 1-3 -->
+    <div class={cn.firstRowText}>
+      User
+    </div>
+    <!-- 1-4 -->
+    <div class={cn.firstRowText}>
+      Developer
+    </div>
+    <!-- 2-1 -->
+    <div class:list={[cn.firstColText, cn.bgRed]}>
+      Core Values
+    </div>
+    <!-- 2-2 -->
+    <div class={cn.subGrid}>
+      <p class={cn.subGridP}>Worldview</p>
+      <Badge className={cn.bgRed}>Minimalism</Badge>
+      <Badge className={cn.invisible}>&nbsp;</Badge>
+      <Badge className={cn.invisible}>&nbsp;</Badge><br>
+      <Badge className={cn.bgBlue}>Mohism</Badge>
+      <Badge className={cn.bgBlue}>Taoism</Badge>
+      <Badge className={cn.invisible}>&nbsp;</Badge><br>
+      <Badge className={cn.bgYellow}>Eclecticism</Badge>
+      <Badge className={cn.bgYellow}>Esstentialism</Badge>
+      <Badge className={cn.invisible}>&nbsp;</Badge>
+    </div>
+    <!-- 2-3 -->
+    <div class={cn.subGrid}>
+      <p class={cn.subGridP}>Daily Tools</p>
+      <Badge className={cn.bgRed}>LogSeq</Badge>
+      <Badge className={cn.bgRed}>LibreOffice</Badge>
+      <Badge className={cn.bgRed}>Claude</Badge><br>
+      <Badge className={cn.bgBlue}>SurfingKeys</Badge>
+      <Badge className={cn.bgBlue}>Firefox</Badge>
+      <Badge className={cn.bgBlue}>macOS</Badge><br>
+      <Badge className={cn.bgYellow}>Heptabase</Badge>
+      <Badge className={cn.invisible}>&nbsp;</Badge>
+      <Badge className={cn.invisible}>&nbsp;</Badge>
+    </div>
+    <!-- 2-4 -->
+    <ul class={cn.subGrid}>
+      <p class={cn.subGridP}>Skillset</p>
+      <Badge className={cn.bgRed}>ASP.NET</Badge>
+      <Badge className={cn.bgRed}>Web Dev</Badge>
+      <Badge className={cn.bgRed}>SQL</Badge><br>
+      <Badge className={cn.bgBlue}>CI/CD</Badge>
+      <Badge className={cn.bgBlue}>Testing</Badge>
+      <Badge className={cn.bgBlue}>JAMStack</Badge><br>
+      <Badge className={cn.bgYellow}>Odoo</Badge>
+      <Badge className={cn.bgYellow}>UiPath</Badge>
+      <Badge className={cn.bgYellow}>Astro</Badge>
+    </ul>
+    <!-- 3-1 -->
+    <div class:list={[cn.firstColText, cn.bgBlue]}>
+      Support Powers
+    </div>
+    <!-- 3-2 -->
+    <div class={cn.subGrid}>
+      <p class={cn.subGridP}>Favorite Topics</p>
+      <Badge className={cn.bgRed}>Movies</Badge>
+      <Badge className={cn.bgRed}>Games</Badge>
+      <Badge className={cn.invisible}>&nbsp;</Badge><br>
+      <Badge className={cn.bgBlue}>Anime</Badge>
+      <Badge className={cn.bgBlue}>Manga</Badge>
+      <Badge className={cn.bgBlue}>Music</Badge><br>
+      <Badge className={cn.bgYellow}>Productivity</Badge>
+      <Badge className={cn.bgYellow}>Taxonomy</Badge>
+      <Badge className={cn.bgYellow}>Worldview</Badge>
+    </div>
+    <!-- 3-3 -->
+    <div class={cn.subGrid}>
+      <p class={cn.subGridP}>News Feed</p>
+      <Badge className={cn.bgRed}>Podcast</Badge>
+      <Badge className={cn.bgRed}>Brief&nbsp;AI</Badge>
+      <Badge className={cn.invisible}>&nbsp;</Badge><br>
+      <Badge className={cn.bgBlue}>Daily.Dev</Badge>
+      <Badge className={cn.bgBlue}>YouTube</Badge>
+      <Badge className={cn.invisible}>&nbsp;</Badge><br>
+      <Badge className={cn.bgYellow}>Brilliant</Badge>
+      <Badge className={cn.bgYellow}>Books</Badge>
+      <Badge className={cn.bgYellow}>Speak</Badge>
+    </div>
+    <!-- 3-4 -->
+    <ul class={cn.subGrid}>
+      <p class={cn.subGridP}>Dev Environment</p>
+      <Badge className={cn.bgRed}>VS Code</Badge>
+      <Badge className={cn.bgRed}>GitHub</Badge>
+      <Badge className={cn.invisible}>&nbsp;</Badge><br>
+      <Badge className={cn.bgBlue}>Zsh</Badge>
+      <Badge className={cn.bgBlue}>Vim</Badge>
+      <Badge className={cn.invisible}>&nbsp;</Badge><br>
+      <Badge className={cn.bgYellow}>Cursor</Badge>
+      <Badge className={cn.bgYellow}>Rider</Badge>
+      <Badge className={cn.bgYellow}>Oh My Zsh</Badge>
+    </ul>
+    <!-- 4-1 -->
+    <div class:list={[cn.firstColTextAlt, cn.bgYellow]}>
+      Aspirations
+    </div>
+    <!-- 4-2 -->
+    <ul class={cn.ul}>
+      <li>Keep building impactful software</li>
+      <li>Keep learning and teaching</li>
+      <li>Develop a personal knowledge base</li>
+    </ul>
+    <!-- 4-3 -->
+    <ul class={cn.ul}>
+      <li>Streamline note-taking process</li>
+      <li>Centralize and back up data sources</li>
+      <li>Integrate daily tools with more apps</li>
+    </ul>
+    <!-- 4-4 -->
+    <ul class={cn.ul}>
+      <li>Odoo ERP Deployment</li>
+      <li>UX Improvements for Search and Filtering</li>
+      <li>Generative AI Integration</li>
+    </ul>
+  </div>
+</BaseHtml>

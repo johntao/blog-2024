@@ -1,0 +1,23 @@
+---
+import AboutMe from "@/components/AboutV1.astro";
+
+//Subgrid x Column Direction x Subgrid
+const className = {
+  bgRed: "bg-red-300",
+  bgYellow: "bg-yellow-300",
+  bgBlue: "bg-blue-300",
+  textRed: "text-red-300",
+  textYellow: "text-yellow-300",
+  textBlue: "text-blue-300",
+  p: "text-center",
+  invisible: "invisible",
+  gridClass: "grid gap-2",
+  firstRowText: "text-center font-bold text-lg text-black col-span-3",
+  firstColText: "font-bold text-lg text-right self-center row-span-3",
+  subGrid: "grid col-span-3 row-span-3 grid-cols-subgrid grid-rows-subgrid justify-items-center grid-flow-col",
+  ul: "pt-3 col-span-3 row-span-3",
+  gridStyle: "grid-template: repeat(10, 1fr)/ repeat(10, 1fr)",
+};
+---
+
+<AboutMe className={className} />

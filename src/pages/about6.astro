@@ -1,0 +1,26 @@
+---
+import AboutMe from "@/components/AboutV3.astro";
+
+//Row direction, Flexbox
+const className = {
+  bgRed: "bg-red-300",
+  bgYellow: "bg-yellow-300",
+  bgBlue: "bg-blue-300",
+  textRed: "text-red-300",
+  textYellow: "text-yellow-300",
+  textBlue: "text-blue-300",
+  p: "text-center",
+  invisible: "invisible w-14",
+  gridClass: "grid gap-2",
+  firstRowText: "text-center font-bold text-lg text-black",
+  firstRowTextAlt: "text-center font-bold text-lg text-black",
+  firstColText: "font-bold text-lg text-right self-center",
+  subGrid: "",
+  subFlex: "flex flex-wrap justify-start",
+  subGridP: "text-sm",
+  ul: "pt-3 self-center",
+  gridStyle: "grid-template: repeat(4, auto)/ auto 23ch 24ch auto",
+};
+---
+
+<AboutMe className={className} />
