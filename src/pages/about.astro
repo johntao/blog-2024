@@ -16,7 +16,7 @@ const className = {
     firstColText: "text-xs text-center self-stretch writing-vertical text-black",
     ulInterest: "pt-3 self-center",
     subGridP: "text-sm",
-    gridStyle: "grid-template: repeat(3, auto)/ min-content 25rem",
+    gridStyle: "grid-template: repeat(3, auto)/ min-content auto",
   },
   desktop: {
     bgRed: "text-black bg-red-400 dark:bg-red-300",
@@ -30,7 +30,7 @@ const className = {
     subFlex: "flex flex-wrap justify-start gap-2",
     subGridP: "text-sm",
     ulInterest: "pt-3 self-center",
-    gridStyle: "grid-template: repeat(4, auto)/ auto 16rem 16rem auto",
+    gridStyle: "grid-template: repeat(4, auto)/ min-content 2fr 2fr 3fr; max-width: 966px",
   },
 };
 const mob = className.mobile;
@@ -162,11 +162,11 @@ const desk = className.desktop;
             <Badge className={mob.bgYellow}>Oh My Zsh</Badge>
           </div>
           <!-- 4-1 -->
-          <div class:list={[mob.firstColText, mob.bgYellow]}>Interest</div>
+          <div class:list={[mob.firstColText, mob.bgYellow]}>Interecst</div>
           <!-- 4-4 -->
           <ul class={mob.ulInterest}>
             <li>Odoo ERP Deployment</li>
-            <li>Advanced Search and Filtering Functions</li>
+            <li>Advanced Search and Filtering Feature</li>
             <li>Generative AI Integration</li>
           </ul>
         </div>
