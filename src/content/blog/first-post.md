@@ -5,31 +5,44 @@ pubDate: 'Nov 21 2024'
 heroImage: '/blog-placeholder-3.jpg'
 ---
 
-Greetings Web! Here comes the second blog of mine built with Jamstack. The [previous one](...) is sort of archived.  
-The major difference is that:
-| : Comparison         : | : Now     : | : Then                : |
-| ---------------------- | ----------- | ----------------------- |
-| Blog Post Language     | English     | Traditional Chinese     |
-| Blog Post Topics       | Various     | How I built my blog     |
-| SSG                    | Astro       | Next.Js                 |
-| Host                   | Cloudflare  | Vercel                  |
-| Styling                | TailwindCSS | Blog Template Starter   |
+Greetings, Web! This is my second blog built with Jamstack. While my [previous blog](...) is now archived, this new iteration represents a fresh start with some key changes:
 
-For blogging aspect, I think the reason for start blogging and stop blogging is probably the same.  
-The only difference is that when I started the previous one, it was pre-GPT era.  
-With GPT-boost, I am comfortable written in pure English, plus, I've already practicing English writing for 2yrs+ 🤓  
-For technical aspect, the frontend ecosystem has normally extended my decidophobia to new degree (i.e. Next.js > Svelte > Solid > Lit > WebC > HTMX > Alpine... 😵‍💫)  
-Everyone can have their reasons to choose or not to choose at this point.  
-Here's some reasons for me to choose Astro:
-- Fast by default, focus on content delivering, suit for applications as simple as blogging
-- Island architecture, able to integrate with major frameworks such as React, Vue, Angular if needed (effectively cure my decidophobia)
-- Well documented, have a dedicated framework 'Starlight' for building a documentation site
-- [Healthy plugin systems](https://astro.build/integrations/) allowing developers to integrate their site with popular toolchain
-- lastly but not least, they have cool looking CLI XDD
+| Aspect               | Current Blog | Previous Blog           |
+|---------------------|--------------|------------------------|
+| Language            | English      | Traditional Chinese     |
+| Topics              | Various      | Blog Development Focus  |
+| SSG Framework       | Astro        | Next.js                |
+| Hosting Platform    | Cloudflare   | Vercel                 |
+| Styling Solution    | TailwindCSS  | Template-based         |
 
-## Aspirations
+## Why Another Blog?
 
-For blogging aspect, I would like to share topics that I'm interested with such as frontend development, Odoo and ERP, generative-AI on personal productivity, and knowledge management.  
-For technical aspect, I would progreesively enhance the website with more features like searching, filtering, and table of content.  
-I'm enjoying making these contents, and hope you'll find something interesting.  
-Stay tune. Let's see how far can I go this time 🚀
+The motivations for starting and stopping a blog often remain the same. However, two major factors influenced this restart:
+
+1. **Language Confidence**: Unlike my previous blog in the pre-GPT era, I'm now comfortable writing in English after 2+ years of practice. The emergence of AI tools has also helped boost my confidence in English writing 🤓
+
+2. **Technical Evolution**: The frontend ecosystem has expanded significantly, sometimes intensifying my decision paralysis (Next.js → Svelte → Solid → Lit → WebC → HTMX → Alpine... 😵‍💫). While everyone has their reasons for choosing specific technologies, here's why I chose Astro:
+
+- **Performance-First**: Built for optimal content delivery, perfect for blogging
+- **Flexible Architecture**: Uses island architecture, allowing seamless integration with major frameworks like React, Vue, and Angular (effectively curing my decision paralysis)
+- **Strong Documentation**: Including Starlight, a dedicated documentation framework
+- **Rich Ecosystem**: Offers [extensive plugin support](https://astro.build/integrations/) for popular toolchain integration
+- **Developer Experience**: Features an engaging CLI with personality (⌐■_■)
+
+## Future Plans
+
+### Content
+I plan to share insights about:
+- Frontend development
+- Odoo and ERP systems
+- Generative AI for personal productivity
+- Knowledge management
+
+### Technical Improvements
+The site will gradually evolve with features like:
+- Search functionality
+- Content filtering
+- Table of contents
+- And more!
+
+I'm excited about creating this content and hope you'll find value in it. Let's see how far this journey takes us! 🚀
