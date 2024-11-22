@@ -15,7 +15,7 @@ Greetings, Web! This is my second blog built with Jamstack. While my [previous b
 | Hosting Platform    | Cloudflare   | Vercel                 |
 | Styling Solution    | TailwindCSS  | Template-based         |
 
-## Why Another Blog?
+### Why Another Blog?
 
 The motivations for starting and stopping a blog often remain the same. However, two major factors influenced this restart:
 
@@ -27,18 +27,18 @@ The motivations for starting and stopping a blog often remain the same. However,
 - **Flexible Architecture**: Uses island architecture, allowing seamless integration with major frameworks like React, Vue, and Angular (effectively curing my decision paralysis 😌)
 - **Strong Documentation**: Including Starlight, a dedicated documentation framework
 - **Rich Ecosystem**: Offers [extensive plugin support](https://astro.build/integrations/) for popular toolchain integration
-- **Developer Experience**: Cool looking CLI with personality (⌐■_■)
+- **Dev Experience**: Cool looking CLI with personality (⌐■_■)
 
-## Future Plans
+### Future Plans
 
-### Content
+#### Content
 I would like to share topics that I'm interested in:
 - Frontend development
 - Odoo and ERP systems
 - Generative AI for personal productivity
 - Knowledge management
 
-### Technical Improvements
+#### Technical Improvements
 The site will gradually evolve with features like:
 - Search functionality
 - Content filtering
