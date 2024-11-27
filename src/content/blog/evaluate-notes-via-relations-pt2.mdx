@@ -1,0 +1,181 @@
+---
+title: 'Understanding Page and Block Relations in LogSeq (Part 2)'
+description: ''
+pubDate: 'Nov 27 2024'
+tags: ["logseq", "knowledge-management", "note-taking", "clojure"]
+---
+
+We've explored the foundational concepts of page and block relationships in LogSeq in [Part 1](/blog/evaluate-notes-via-relations-pt1).  
+In this continuation, we delve deeper into the concrete implementation of these connections using advanced queries in LogSeq.
+
+### First-Degree Relations
+
+I will now demonstrate how to query first-degree relations in LogSeq using Clojure syntax.  
+For simplicity, we'll focus on query predicates only, excluding the actual query body.
+
+#### Block-to-Block Relations (Type A)
+1. **Linear Relations**: Direct connections through hierarchy
+```clojure
+;;Is 'Block A' lineal related to 'Block B' as ancestor-descendant
+[?descendant :block/parent ?parent]
+[?parent :block/parent ?ancestor]
+```
+2. **Content References**: When one block mentions another within its content
+```clojure
+;;Is 'Block A' mention 'Block B' in content
+[?a :block/refs ?b]
+```
+
+#### Block-to-Page Relations (Type B)
+1. **Containment**: A block's direct relationship with its containing page
+```clojure
+;;Is 'Block A' lineal related to 'Page B'
+[?block :block/page ?page]
+[?page :block/name ?pageName]
+```
+2. **Metadata References**: When a block references a page in its metadata
+```clojure
+;;Is 'Block A' mention 'Page B' in metadata
+[?page :block/name ?pageName]
+(property ?block :tags ?pageName)
+```
+3. **Content References**: When a block mentions a page within its content
+```clojure
+;;Is 'Block A' mention 'Page B' in content
+[?block :block/refs ?page]
+[(missing? $ ?page :block/page)]
+```
+
+#### Page-to-Page Relations (Type C)
+1. **Linear Relations**: Direct hierarchical connections between pages
+```clojure
+;;Is 'Page A' lineal related to 'Page B' as ancestor-descendant
+[?descendant :block/namespace ?parent]
+[?parent :block/namespace ?ancestor]
+```
+2. **Metadata References**: When one page references another in its metadata
+```clojure
+;;Is 'Page A' mention 'Page B' in metadata
+[?a :block/tags ?b]
+```
+
+### Second-Degree Relations
+
+Since there are 29 unique pathways for second-degree relations, I will not cover all the queries here.  
+Only a few examples will be provided to illustrate how we can compose more complex queries via the building blocks of first-degree relations.
+
+#### Type A → Type A
+
+##### Example 1-1
+combine method A.1 and A.2  
+predicate: is 'Block A' lineal related to 'Block B' as ancestor-descendant AND 'Block A' mention 'Block C' in content  
+conclusion: 'Block B' is related to 'Block C'
+```clojure
+[?descendant :block/parent ?parent]
+[?parent :block/parent ?ancestor]
+[?ancestor :block/refs ?blockC]
+```
+
+#### Type A → Type B
+
+##### Example 2-1
+combine method A.1 and B.3  
+predicate: is 'Block A' lineal related to 'Block B' as parent-child and 'Block A' mention 'Page C' in content  
+thus, 'Block B' is related to 'Page C'
+```clojure
+[?child :block/parent ?parent]
+[?parent :block/refs ?page]
+[(missing? $ ?page :block/page)]
+```
+
+##### Example 2-2
+combine method A.2 and B.1  
+predicate: is 'Block A' lineal related to 'Page B' and 'Block A' mention 'Block C' in content  
+conclusion: 'Page B' is related to 'Block C'
+
+```clojure
+[?blockA :block/page ?page]
+[?page :block/name ?pageName]
+[?blockA :block/refs ?blockC]
+```
+
+#### Type B → Type B
+
+##### Example 3-1
+combine method B.3 and B.2  
+predicate: is 'Block A' mention 'Page B' in content and 'Block A' mention 'Page C' in metadata  
+conclusion: 'Page B' is related to 'Page C'
+```clojure
+[?block :block/path-refs ?pageB]
+[(missing? $ ?pageB :block/page)]
+[?pageC :block/name ?pageName]
+(property ?block :tags ?pageName)
+```
+
+##### Example 3-2
+ombine method B.3 and B.3  
+redicate: is 'Block A' mention 'Page B' in content and 'Block A' mention 'Page C' in content  
+onclusion: 'Page B' is related to 'Page C'
+```clojure
+[?block :block/refs ?pageA]
+[?block :block/refs ?pageB]
+[(missing? $ ?pageA :block/page)]
+```
+
+#### Type B → Type C
+
+##### Example 4-1
+combine method B.1 and C.2  
+predicate: is 'Block A' lineal related to 'Page B' and 'Page B' mention 'Page C' in metadata  
+conclusion: 'Block A' is related to 'Page C'
+```clojure
+[?block :block/page ?pageB]
+[?pageB :block/name ?pageName]
+[?pageB :block/tags ?pageC]
+```
+
+#### Type C → Type C
+
+##### Example 5-1
+combine method C.2 and C.2  
+predicate: is 'Page A' mention 'Page B' in metadata and 'Page B' mention 'Page C' in metadata  
+conclusion: 'Page A' is related to 'Page C'
+
+```clojure
+[?a :block/tags ?b]
+[?b :block/tags ?c]
+```
+
+##### Example 5-2
+combine method C.1 and C.2  
+predicate: is 'Page A' lineal related to 'Page B' as ancestor-descendant and 'Page A' mention 'Page C' in metadata  
+conclusion: 'Page B' is related to 'Page C'
+
+Note: alias is only used when the page is using an alias
+
+```clojure
+[?descendant :block/namespace ?parent]
+[?parent :block/namespace ?ancestor]
+[?ancestor :block/alias ?actualPage]
+[?actualPage :block/tags ?pageC]
+```
+
+#### Verdict
+
+I've covered 8 out of 29 possible pathways for second-degree relations.  
+The remaining pathways can be derived by combining different predicates from first-degree relations.  
+A few warnings to keep in mind:
+- additional alias predicate is required when the page is using an alias
+- (property ?block :tags ?pageName) this predicate macro does not support upper case letters in the page name
+- it is possible to declare user-defined rules to simplify the query
+- deep nested hierarchies may require additional predicates (e.g., :block/parent :block/parent :block/parent or :block/namespace :block/namespace :block/namespace)
+	- don't know if it is possible to make a recursive predicate in LogSeq
+- although the order of the predicates is not significant, we still need to consider the logical meaningness of the query
+	- for example, in Example 5-2, it is not logical to relate 'Page A' to tags belong to 'Page B', that say, ancestors should not relate to metadata of descendant
+
+### Future Development
+
+To make these relationships more practical and actionable, we plan to:
+
+1. Develop a weighting system for different relation types
+2. Create evaluation metrics for pages based on specific criteria
