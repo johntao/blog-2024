@@ -6,6 +6,7 @@ import tailwind from '@astrojs/tailwind';
 import { remarkReadingTime } from './src/utils/readingTime';
 import react from '@astrojs/react';
 import starlight from '@astrojs/starlight';
+import { astroExpressiveCode } from '@astrojs/starlight/expressive-code';
 
 // https://astro.build/config
 export default defineConfig({
@@ -27,11 +28,22 @@ export default defineConfig({
         starlight({
             title: 'The power of doc site',
             expressiveCode: true,
-			// components: {
-			// 	Tabs: './src/overrides/PageSidebar.astro',
-			// },
+            // components: {
+            // 	Tabs: './src/overrides/PageSidebar.astro',
+            // },
         }),
         sitemap(),
+        astroExpressiveCode({
+            // You can set configuration options here
+            themes: ['github-dark'],
+            // styleOverrides: {
+            //     // You can also override styles
+            //     borderRadius: '0.5rem',
+            //     frames: {
+            //         shadowColor: '#124',
+            //     },
+            // },
+        }),
         mdx(),
     ],
 });
