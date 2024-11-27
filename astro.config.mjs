@@ -22,7 +22,7 @@ export default defineConfig({
         }),
         starlight({
             title: 'The power of doc site',
-            expressiveCode: false,
+            expressiveCode: true,
 			// components: {
 			// 	Tabs: './src/overrides/PageSidebar.astro',
 			// },
