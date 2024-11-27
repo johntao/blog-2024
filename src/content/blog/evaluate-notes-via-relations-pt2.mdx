@@ -28,7 +28,7 @@ First-degree relations represent direct connections between elements in LogSeq. 
 ;; For deeper nesting, additional :block/parent predicates would be needed
 ```
 
-2. **Content References**: ;; Find blocks that reference other blocks in their content
+2. **Content References**: Find blocks that reference other blocks in their content
 ```clojure
 [?a :block/refs ?b]
 ```
@@ -68,118 +68,128 @@ First-degree relations represent direct connections between elements in LogSeq. 
 [?a :block/tags ?b]
 ```
 
-### Second-Degree Relations
+### Second-Degree Relations Deep Dive
 
-Second-degree relations combine two first-degree relations to establish indirect connections. While there are 29 possible combinations, we'll explore some common patterns that demonstrate how to compose more complex queries.
+Second-degree relations combine two first-degree relations to reveal indirect connections in your knowledge graph. Let's explore the various patterns and their implementations.
 
-#### Type A → Type A
+#### Block → Block → Block (Type A → A)
 
-##### Example 1-1
-combine method A.1 and A.2  
-predicate: is 'Block A' lineal related to 'Block B' as ancestor-descendant AND 'Block A' mention 'Block C' in content  
-conclusion: 'Block B' is related to 'Block C'
+##### e.g. 1-1 Ancestor-Descendant Block to Block References
+
+Description: Find referenced block (Block C) that are mentioned by ancestor block (Block A) of a given descendant block (Block B)  
+Used First-Degree Methods: A.1, A.2  
+Predicate: is 'Block A' lineal related to 'Block B' as ancestor-descendant AND 'Block A' mention 'Block C' in content  
+Conclusion: 'Block B' is related to 'Block C'
 ```clojure
-[?descendant :block/parent ?parent]
-[?parent :block/parent ?ancestor]
-[?ancestor :block/refs ?blockC]
+[?descendant :block/parent ?parent]    ;; Block B is a descendant
+[?parent :block/parent ?ancestor]      ;; Block A is the ancestor
+[?ancestor :block/refs ?blockC]        ;; Block A references Block C
 ```
 
-#### Type A → Type B
+#### Block → Block → Page (Type A → B)
 
-##### Example 2-1
-combine method A.1 and B.3  
-predicate: is 'Block A' lineal related to 'Block B' as parent-child and 'Block A' mention 'Page C' in content  
-thus, 'Block B' is related to 'Page C'
+##### e.g. 2-1 Parent-Child Block to Page References
+Description: Find pages (Page C) referenced by parent blocks (Block A) of a given block (Block B)  
+Used First-Degree Methods: A.1, B.3  
+Predicate: is 'Block A' lineal related to 'Block B' as parent-child AND 'Block A' mention 'Page C' in content  
+Conclusion: 'Block B' is related to 'Page C'
 ```clojure
-[?child :block/parent ?parent]
-[?parent :block/refs ?page]
-[(missing? $ ?page :block/page)]
+[?child :block/parent ?parent]         ;; Block B is child of Block A
+[?parent :block/refs ?page]            ;; Block A references Page C
+[(missing? $ ?page :block/page)]       ;; Confirm it's a page reference
 ```
 
-##### Example 2-2
-combine method A.2 and B.1  
-predicate: is 'Block A' lineal related to 'Page B' and 'Block A' mention 'Block C' in content  
-conclusion: 'Page B' is related to 'Block C'
-
+##### e.g. 2-2 Block References Across Pages
+Description: Find block (Block C) referenced by block (Block A) on a specific page (Page B)  
+Used First-Degree Methods: A.2, B.1  
+Predicate: is 'Block A' lineal related to 'Page B' AND 'Block A' mention 'Block C' in content  
+Conclusion: 'Page B' is related to 'Block C'
 ```clojure
-[?blockA :block/page ?page]
-[?page :block/name ?pageName]
-[?blockA :block/refs ?blockC]
+[?blockA :block/page ?page]            ;; Block A is on Page B
+[?page :block/name ?pageName]          ;; Get the page name
+[?blockA :block/refs ?blockC]          ;; Block A references Block C
 ```
 
-#### Type B → Type B
+#### Block → Page → Page (Type B → B)
 
-##### Example 3-1
-combine method B.3 and B.2  
-predicate: is 'Block A' mention 'Page B' in content and 'Block A' mention 'Page C' in metadata  
-conclusion: 'Page B' is related to 'Page C'
+##### e.g. 3-1 Discovering co-referenced pages (different source)
+Description: Find relationships between pages referenced in content (Page B) and metadata (Page C) of a block (Block A)  
+Used First-Degree Methods: B.3, B.2  
+Predicate: is 'Block A' mention 'Page B' in content AND 'Block A' mention 'Page C' in metadata  
+Conclusion: 'Page B' is related to 'Page C'  
 ```clojure
-[?block :block/path-refs ?pageB]
-[(missing? $ ?pageB :block/page)]
-[?pageC :block/name ?pageName]
-(property ?block :tags ?pageName)
+[?block :block/path-refs ?pageB]       ;; Block A references Page B in content
+[(missing? $ ?pageB :block/page)]      ;; Confirm Page B is a page
+[?pageC :block/name ?pageName]         ;; Get Page C's name
+(property ?block :tags ?pageName)      ;; Block A tags Page C in metadata
 ```
 
-##### Example 3-2
-ombine method B.3 and B.3  
-redicate: is 'Block A' mention 'Page B' in content and 'Block A' mention 'Page C' in content  
-onclusion: 'Page B' is related to 'Page C'
+##### e.g. 3-2 Discovering co-referenced pages (same source)
+Description: Find pairs of pages (Page B, Page C) referenced together in the same block  
+Used First-Degree Methods: B.3, B.3  
+Pedicate: is 'Block A' mention 'Page B' in content AND 'Block A' mention 'Page C' in content  
+Conclusion: 'Page B' is related to 'Page C'
 ```clojure
-[?block :block/refs ?pageA]
-[?block :block/refs ?pageB]
-[(missing? $ ?pageA :block/page)]
+[?block :block/refs ?pageA]            ;; Block references first page
+[?block :block/refs ?pageB]            ;; Same block references second page
+[(missing? $ ?pageA :block/page)]      ;; Confirm they're page references
 ```
 
-#### Type B → Type C
+#### Block → Page → Page Type C (Type B → C)
 
-##### Example 4-1
-combine method B.1 and C.2  
-predicate: is 'Block A' lineal related to 'Page B' and 'Page B' mention 'Page C' in metadata  
-conclusion: 'Block A' is related to 'Page C'
+##### e.g. 4-1 Finding topic connections through page metadata
+Description: Find pages (Page C) tagged by pages (Page B) containing specific blocks (Block A)  
+Used First-Degree Methods: B.1, C.2  
+Pedicate: is 'Block A' lineal related to 'Page B' AND 'Page B' mention 'Page C' in metadata  
+Conclusion: 'Block A' is related to 'Page C'
 ```clojure
-[?block :block/page ?pageB]
-[?pageB :block/name ?pageName]
-[?pageB :block/tags ?pageC]
+[?block :block/page ?pageB]            ;; Block A is on Page B
+[?pageB :block/name ?pageName]         ;; Get Page B's name
+[?pageB :block/tags ?pageC]            ;; Page B tags Page C
 ```
 
-#### Type C → Type C
+#### Page → Page → Page (Type C → C)
 
-##### Example 5-1
-combine method C.2 and C.2  
-predicate: is 'Page A' mention 'Page B' in metadata and 'Page B' mention 'Page C' in metadata  
-conclusion: 'Page A' is related to 'Page C'
+##### e.g. 5-1 Metadata Chains
+Description: Discovering indirect topic relationships  
+Used First-Degree Methods: C.2, C.2  
+Pedicate: is 'Page A' mention 'Page B' in metadata AND 'Page B' mention 'Page C' in metadata  
+Conclusion: 'Page A' is related to 'Page C'
 
 ```clojure
-[?a :block/tags ?b]
-[?b :block/tags ?c]
+;; Pattern 1: Metadata Chains
+[?a :block/tags ?b]                    ;; Page A tags Page B
+[?b :block/tags ?c]                    ;; Page B tags Page C
+```
+##### e.g. 5-2 Finding topic relationships across namespace hierarchies
+Description: Find pages (Page C) tagged by ancestor pages (Page A) of a page (Page B)  
+Used First-Degree Methods: C.1, C.2  
+Pedicate: is 'Page A' lineal related to 'Page B' as ancestor-descendant AND 'Page A' mention 'Page C' in metadata  
+Conclusion: 'Page B' is related to 'Page C'
+```clojure
+[?descendant :block/namespace ?parent]  ;; match parent namespace from descendant (Page B)
+[?parent :block/namespace ?ancestor]    ;; match parent to ancestor (page A)
+[?ancestor :block/alias ?actualPage]    ;; Handle page aliases
+[?actualPage :block/tags ?pageC]        ;; Ancestor (page A) has tags (Page C)
 ```
 
-##### Example 5-2
-combine method C.1 and C.2  
-predicate: is 'Page A' lineal related to 'Page B' as ancestor-descendant and 'Page A' mention 'Page C' in metadata  
-conclusion: 'Page B' is related to 'Page C'
+### Important Implementation Notes
 
-Note: alias is only used when the page is using an alias
-
+1. **Alias Handling**
 ```clojure
-[?descendant :block/namespace ?parent]
-[?parent :block/namespace ?ancestor]
-[?ancestor :block/alias ?actualPage]
-[?actualPage :block/tags ?pageC]
-```
-
-### Important Considerations
-
-When working with these queries, keep in mind:
-
-1. **Alias Handling**: When pages use aliases, include additional predicates:
-```clojure
+;; Always include alias handling for pages that use aliases
 [?page :block/alias ?actualPage]
 ```
 
-2. **Hierarchy Depth**: Deep hierarchies require additional predicates. Currently, LogSeq doesn't support recursive predicates, so you'll need to explicitly specify each level.
+2. **Hierarchy Depth**
+- Deep hierarchies require explicit parent predicates
+- Add additional `:block/parent` or `:block/namespace` predicates as needed
+- TODO: check if LogSeq support recursive predicates to simplify deep hierarchies
 
-3. **Logical Consistency**: While predicate order doesn't affect query execution, maintaining logical relationship flow still matters. For example, ancestor pages shouldn't typically related to descendant metadata.
+3. **Logical Flow Considerations**
+- While predicate order doesn't affect query execution, maintain logical relationship patterns
+- Example: Prefer querying ancestor metadata rather than descendant metadata when establishing relationships
+- Consider the semantic meaning of relationships when combining different types
 
 ### Future Development Roadmap
 
