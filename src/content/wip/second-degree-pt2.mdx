@@ -1,0 +1,155 @@
+---
+title: 'Understanding Page and Block Relations in LogSeq (Part 3)'
+description: ''
+pubDate: 'Nov 27 2024'
+tags: ["logseq", "knowledge-management", "note-taking", "clojure", "intermediate"]
+---
+
+#### Type A --> Type B (7 total)
+
+#### Basic
+
+```mermaid
+---
+title: A-1 Lineal Relation
+---
+graph LR;
+  1P1[Parent]-->1C1[Child];
+  2A1[Ancestor]-->2D1[Descendant];
+```
+
+```mermaid
+---
+title: A-2 Content Reference
+---
+flowchart LR
+  subgraph 1B[Block 1]
+    1Bb[#block-2]
+  end
+  1B~~~1B2([&Block 2])
+```
+
+```mermaid
+---
+title: B-1 Lineal Relation, Page Contains Block
+---
+graph LR
+  subgraph 1P[Page 1]
+    1Pb[Block 1]
+  end
+```
+
+```mermaid
+---
+title: B-2 Content Reference
+---
+flowchart LR
+  subgraph 1B[Block 1]
+    1Bp[#page-1]
+  end
+  1B~~~2P([&Page 1])
+```
+
+
+#### Case "A-1 LR x B-1 LR" (0 total)
+
+NA
+
+#### Case "A-1 LR x B-2 CR" (2 total)
+
+```mermaid
+flowchart TD
+  subgraph C1[Case 1]
+  direction LR
+    subgraph 1B["Block 1 (parent)"]
+      1Bp[#page-1]
+    end
+    1B-->1B2["Block 2 (child)"]
+    1B2~~~1P([Page 1])
+    style 1B2 stroke:#F00,stroke-width:4px
+    style 1P stroke:#F00,stroke-width:4px
+  end
+  subgraph C2[Case 2]
+    subgraph 2B["Block 1 (child)"]
+      2Bp[#page-1]
+    end
+    2B2["Block 2 (parent)"]-->2B
+    2B~~~2P([Page 1])
+    style 2B2 stroke:#F00,stroke-width:4px
+    style 2P stroke:#F00,stroke-width:4px
+  direction LR
+  end
+  C1~~~C2
+```
+
+#### Case "A-2 CR x B-1 LR" (2 total)
+
+```mermaid
+flowchart LR
+  subgraph 1P[Page 1]
+    subgraph 1Pb[Block 1]
+      1Pbb[#block-2]
+    end
+  end
+  1P~~~1B2([Block 2])
+  style 1B2 stroke:#F00,stroke-width:4px
+  style 1P stroke:#F00,stroke-width:4px
+```
+
+```mermaid
+flowchart LR
+  subgraph 1B[Block 1]
+    1Bb[#block-2]
+  end
+  subgraph 1P[Page 2]
+    1Pb[*Block 2]
+  end
+  1B~~~1P([Block 2])
+  style 1B stroke:#F00,stroke-width:4px
+  style 1P stroke:#F00,stroke-width:4px
+```
+
+#### Case "A-2 CR x B-2 CR" (3 total)
+
+```mermaid
+flowchart TD
+  subgraph C1[Case 1]
+  direction LR
+    subgraph 1B[Block 1]
+      1Bb[#block-2]
+      1Bp[#page-1]
+    end
+    1B~~~1P([Block 2])
+    1P~~~1P2([Page 1])
+    style 1Bb stroke:#F00,stroke-width:4px
+    style 1Bp stroke:#F00,stroke-width:4px
+  end
+  subgraph C2[Case 2]
+  direction LR
+    subgraph 2B[Block 1]
+      2Bb[#block-2]
+    end
+    subgraph 2B2[*Block 2]
+      2B2p[#page-2]
+    end
+    2B~~~2B2
+    2B2~~~2P([Page 2])
+    style 2B stroke:#F00,stroke-width:4px
+    style 2B2p stroke:#F00,stroke-width:4px
+  end
+  subgraph C3[Case 3]
+  direction LR
+    subgraph 3B[Block 1]
+      3Bp[#page-2]
+    end
+    subgraph 3P[*Page 2]
+      3Pb[#block-2]
+    end
+    3B~~~3P
+    3P~~~3B2([Block 2])
+    style 3B stroke:#F00,stroke-width:4px
+    style 3Pb stroke:#F00,stroke-width:4px
+  end
+  C1~~~C2
+  C2~~~C3
+```

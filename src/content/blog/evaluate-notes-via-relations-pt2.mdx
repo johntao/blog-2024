@@ -41,15 +41,7 @@ First-degree relations represent direct connections between elements in LogSeq. 
 [?page :block/name ?pageName]
 ```
 
-2. **Metadata References**: Find blocks that reference pages in their metadata
-```clojure
-[?page :block/name ?pageName]
-(property ?block :tags ?pageName)
-
-;; Note: This predicate is case-sensitive and doesn't support uppercase letters
-```
-
-3. **Content References**: Find blocks that reference pages in their content
+2. **Content References**: Find blocks that reference pages in their content
 ```clojure
 [?block :block/refs ?page]
 [(missing? $ ?page :block/page)]
@@ -112,19 +104,7 @@ Conclusion: 'Page B' is related to 'Block C'
 
 #### Block → Page → Page (Type B → B)
 
-##### e.g. 3-1 Discovering co-referenced pages (different source)
-Description: Find relationships between pages referenced in content (Page B) and metadata (Page C) of a block (Block A)  
-Used First-Degree Methods: B.3, B.2  
-Predicate: is 'Block A' mention 'Page B' in content AND 'Block A' mention 'Page C' in metadata  
-Conclusion: 'Page B' is related to 'Page C'  
-```clojure
-[?block :block/path-refs ?pageB]       ;; Block A references Page B in content
-[(missing? $ ?pageB :block/page)]      ;; Confirm Page B is a page
-[?pageC :block/name ?pageName]         ;; Get Page C's name
-(property ?block :tags ?pageName)      ;; Block A tags Page C in metadata
-```
-
-##### e.g. 3-2 Discovering co-referenced pages (same source)
+##### e.g. 3-1 Discovering co-referenced pages
 Description: Find pairs of pages (Page B, Page C) referenced together in the same block  
 Used First-Degree Methods: B.3, B.3  
 Pedicate: is 'Block A' mention 'Page B' in content AND 'Block A' mention 'Page C' in content  

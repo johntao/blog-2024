@@ -1,0 +1,167 @@
+---
+title: 'Understanding Page and Block Relations in LogSeq (Part 3)'
+description: ''
+pubDate: 'Nov 27 2024'
+tags: ["logseq", "knowledge-management", "note-taking", "clojure", "intermediate"]
+---
+
+In [Part 2](/blog/evaluate-notes-via-relations-pt2), we explored how to query the basic relation types using advanced queries in LogSeq. This continuation delves into weighting these different types of relations.
+
+### Better Primitives
+
+- P_UP
+  - P_UP
+  - P_DB
+  - P_MP
+- P_DP
+  - P_DP
+  - P_DB
+  - P_MP
+- P_DB
+  - B_CP
+  - B_CB
+  - B_UB
+  - B_DB
+- P_MP
+  - P_UP
+  - P_DP
+  - P_DB
+  - P_MP
+- B_CP
+  - P_UP
+  - P_DP
+  - P_DB
+  - P_MP
+- B_CB
+  - B_CP
+  - B_CB
+  - B_UB
+  - B_DB
+  - B_UP
+- B_UB
+  - B_CP
+  - B_CB
+  - B_UB
+  - B_UP
+- B_DB
+  - B_CP
+  - B_CB
+  - B_DB
+  - B_UP
+- B_UP
+  - P_UP
+  - P_DP
+  - P_MP
+
+=========================
+
+    - P_UP
+    - P_DP
+    - P_DB
+    - P_MP
+    - B_CP
+    - B_CB
+    - B_UB
+    - B_DB
+    - B_UP
+
+```mermaid
+graph TD
+    Page --LR--> P_UP["`Page (Up)
+    - P_DP`"]
+    Page --LR--> P_DP["`Page (Down)
+    - P_UP`"]
+    Page --LR--> P_DB["`Block
+    - B_UP`"]
+    Page --MR--> P_MP[Page]
+```
+
+```mermaid
+graph TD
+    Block --CR--> B_CP[Page]
+    Block --CR--> B_CB[Block]
+    Block --LR--> B_UB["`Block (Up)
+    - B_DB`"]
+    Block --LR--> B_DB["`Block (Down)
+    - B_UB`"]
+    Block --LR--> B_UP["`Page (Up)
+    - P_DB`"]
+```
+
+
+### First-Degree Relations
+
+First-degree relations represent direct connections between elements in LogSeq.  This type of relation is usually more significant than second-degree relation.
+
+#### Block-to-Block Relations (Type A)
+
+Blocks doesn't come with a referable tag by default. Hence, relations based on blocks are usually implicit.  
+It is still possible to generate a UUID as a referable tag which is less accessible or readable than a referable page by nature.
+
+```mermaid
+---
+title: A-1 Lineal Relation
+---
+graph LR;
+  1P1[Parent]-->1C1[Child];
+  2A1[Ancestor]-->2D1[Descendant];
+```
+
+```mermaid
+---
+title: A-2 Content Reference
+---
+flowchart LR
+  subgraph 1B[Block 1]
+    1Bb[#block-2]
+  end
+  1B~~~1B2([&Block 2])
+```
+
+
+#### Block-to-Page Relations (Type B)
+
+
+```mermaid
+---
+title: B-1 Lineal Relation, Page Contains Block
+---
+graph LR
+  subgraph 1P[Page 1]
+    1Pb[Block 1]
+  end
+```
+
+```mermaid
+---
+title: B-2 Content Reference
+---
+flowchart LR
+  subgraph 1B[Block 1]
+    1Bp[#page-1]
+  end
+  1B~~~2P([&Page 1])
+```
+
+#### Page-to-Page Relations (Type C)
+
+
+```mermaid
+---
+title: Lineal Relation
+---
+graph LR;
+   1P[Parent]-->1C[Child];
+   2A[Ancestor]-->2D[Descendant];
+```
+
+```mermaid
+---
+title: Meta Reference
+---
+flowchart LR
+    subgraph 1P[Page 1]
+        1Pp[tags:: page-2]
+    end
+    1P~~~1P2([&Page 2])
+```

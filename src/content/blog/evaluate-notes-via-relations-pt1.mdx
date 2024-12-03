@@ -32,8 +32,9 @@ Note: Metadata references between blocks are rarely used in practice, so we excl
 
 #### Block-to-Page Relations (Type B)
 1. **Containment**: A block's direct relationship with its containing page
-2. **Metadata References**: When a block references a page in its metadata
-3. **Content References**: When a block mentions a page within its content
+2. **Content References**: When a block mentions a page within its content
+
+Note: Metadata references for pages are excluded for simplicity and consistency.
 
 #### Page-to-Page Relations (Type C)
 1. **Linear Relations**: Direct hierarchical connections between pages
@@ -45,7 +46,7 @@ Note: Content references for pages are excluded since page entities cannot hold 
 
 Each type of relationship has a specific number of possible routes:
 - Type A (Block-to-Block): 2 routes
-- Type B (Block-to-Page): 3 routes
+- Type B (Block-to-Page): 2 routes
 - Type C (Page-to-Page): 2 routes
 
 These form the building blocks for more complex relationships.
@@ -98,13 +99,7 @@ We can simplify these relationships through several steps:
 The total number of possible unique pathways can be calculated based on the available routes for each relationship type:
 
 ```plaintext
-Type A → Type A: 2 × 2 = 4 pathways
-Type A → Type B: 2 × 3 = 6 pathways
-Type B → Type B: 3 × 3 = 9 pathways
-Type B → Type C: 3 × 2 = 6 pathways
-Type C → Type C: 2 × 2 = 4 pathways
-
-Total: 4 + 6 + 9 + 6 + 4 = 29 unique pathways
+Total: 2 × 2 × 5  = 20 unique pathways
 ```
 
 This analysis helps us understand the rich interconnectedness possible within a LogSeq knowledge base.

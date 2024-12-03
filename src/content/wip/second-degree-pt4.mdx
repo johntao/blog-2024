@@ -1,0 +1,152 @@
+---
+title: 'Understanding Page and Block Relations in LogSeq (Part 3)'
+description: ''
+pubDate: 'Nov 27 2024'
+tags: ["logseq", "knowledge-management", "note-taking", "clojure", "intermediate"]
+---
+
+#### Type B --> Type C (7 total)
+
+#### Basic
+
+```mermaid
+---
+title: B-1 Lineal Relation, Page Contains Block
+---
+graph LR
+  subgraph 1P[Page 1]
+    1Pb[Block 1]
+  end
+```
+
+```mermaid
+---
+title: B-2 Content Reference
+---
+flowchart LR
+  subgraph 1B[Block 1]
+    1Bp[#page-1]
+  end
+  1B~~~2P([&Page 1])
+```
+
+```mermaid
+---
+title: Lineal Relation
+---
+graph LR;
+   1P[Parent]-->1C[Child];
+   2A[Ancestor]-->2D[Descendant];
+```
+
+```mermaid
+---
+title: Meta Reference
+---
+flowchart LR
+  subgraph 1P[Page 1]
+    1Pp[tags:: page-2]
+  end
+  1P~~~1P2([&Page 2])
+```
+
+#### Case "B-1 LR x C-1 LR" (2 total)
+
+```mermaid
+flowchart TD
+  subgraph C1[Case 1]
+  direction LR
+    subgraph 1P["Page 1 (parent)"]
+      1Pb[Block 1]
+    end
+    1P-->1P2["Page 2 (child)"]
+    style 1Pb stroke:#F00,stroke-width:4px
+    style 1P2 stroke:#F00,stroke-width:4px
+  end
+  subgraph C2[Case 2]
+  direction LR
+    subgraph 2P["Page 1 (child)"]
+      2Pb[Block 1]
+    end
+    2P2["Page 2 (parent)"]-->2P
+    style 2Pb stroke:#F00,stroke-width:4px
+    style 2P2 stroke:#F00,stroke-width:4px
+  end
+  C1~~~C2
+```
+
+#### Case "B-2 CR x C-1 LR" (2 total)
+
+```mermaid
+---
+title: B-2 Content Reference
+---
+flowchart TD
+  subgraph C1[Case 1]
+  direction LR
+    subgraph 1B[Block 1]
+      1Bp[#page-1]
+    end
+    1B~~~1P(["Page 1 (parent)"])
+    1P-->1P2(["Page 2 (child)"])
+    style 1B stroke:#F00,stroke-width:4px
+    style 1P2 stroke:#F00,stroke-width:4px
+  end
+  subgraph C2[Case 2]
+  direction LR
+    subgraph 2B[Block 1]
+      2Bp[#page-1]
+    end
+    2B~~~2P2(["Page 2 (parent)"])
+    2P2-->2P(["Page 1 (child)"])
+    style 2B stroke:#F00,stroke-width:4px
+    style 2P2 stroke:#F00,stroke-width:4px
+  end
+  C1~~~C2
+```
+
+#### Case "B-1 LR x C-2 MR" (2 total)
+
+```mermaid
+flowchart TD
+  subgraph C1[Case 1]
+  direction LR
+    subgraph 1P[Page 1]
+      1Pp[tags:: page-2]
+      1Pb[Block 1]
+    end
+    1P~~~1P2([&Page 2])
+    style 1P2 stroke:#F00,stroke-width:4px
+    style 1Pb stroke:#F00,stroke-width:4px
+  end
+  subgraph C2[Case 2]
+  direction LR
+    subgraph 2P[Page 1]
+      2Pp[tags:: page-2]
+    end
+    subgraph 2P2[*Page 2]
+      2Pb[Block 1]
+    end
+    2P~~~2P2
+    style 2P stroke:#F00,stroke-width:4px
+    style 2Pb stroke:#F00,stroke-width:4px
+  end
+  C1~~~C2
+```
+
+
+#### Case "B-2 CR x C-2 MR" (1 total)
+
+```mermaid
+flowchart LR
+  subgraph 1B[Block 1]
+    1Bp[#page-1]
+  end
+  subgraph 1P[*Page 1]
+    1Pb[tags:: page-2]
+  end
+  1B~~~1P
+  1P~~~1P2([Page 2])
+  style 1B stroke:#F00,stroke-width:4px
+  style 1P2 stroke:#F00,stroke-width:4px
+```
