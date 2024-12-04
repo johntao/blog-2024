@@ -1,0 +1,190 @@
+---
+title: 'Understanding Page and Block Relations in LogSeq (Part 3)'
+description: ''
+pubDate: 'Dec 3 2024'
+tags: ["logseq", "knowledge-management", "note-taking", "correlation", "evaluation"]
+---
+
+In [Part 2](/blog/evaluate-notes-via-relations-pt2), we explored how to query the basic relation types using advanced queries in LogSeq. This continuation delves into weighting these different types of relations.
+
+### Important Notes
+
+During the development of the weighting system, I found out a few defects of previous relationship listing. I tried to use new notation and mermaid diagrams to cover all the cases, however, it is a time-consuming process.  
+I've decided to skip those parts and focus on the main content. Stay tuned for the updated version of part1 and part2 plus new notations and diagrams.
+
+### First-Degree Relations
+
+First-degree relations represent direct connections between elements in LogSeq. I'll use new notation to represent these relationships.  
+Notation: `{node} {relation}`  
+Node: 'P' for page, 'B' for block  
+Relation: indicate the type of the relation, the second letter of the relation type indicates the type of the destination element.  
+e.g. `P MP` means a page has a ref of another page in metadata
+Here's the list of first-degree relations:
+- P MP: Page has a ref of another page in metadata
+- P UP: Page belong to a parent page
+- P DP: Page has a child page
+- P PB: Page has a block
+- B CP: Block has a ref of a page in content
+- B CB: Block has a ref of another block in content
+- B UB: Block belong to a parent block
+- B DB: Block has a child block
+- B BP: Block belong to a page
+
+### Second-Degree Relations
+
+Second-degree relations represent indirect connections between elements in LogSeq. These connections are derived from combining two first-degree relations.  
+Notation: `{link type}{node} {1st relation} {2nd relation}`  
+Link Type: indicate the type of the link, either serial '~' or parallel '='  
+p.s. a parallel link means the order of the relations is interchangeable, while a serial link means the order is significant.  
+
+e.g. `=P MP MP` means a page has two page-refs in metadata and they are related to each other.  
+Here's the list of second-degree relations:
+- OIR: Order Interchangeable Refs
+   - `=P MP MP`
+   - `=B CP CP`
+   - `=B CP CB`
+   - `=B CB CB`
+- DBE: Dereference a block then extend
+   - `~B CB BP`
+   - `~B CB CP`
+   - `~B CB CB`
+   - `~B CB UB`
+   - `~B CB DB`
+- BDP: Start from block, dereference a page then extend
+   - `~B CP BP`
+   - `~B CP MP`
+   - `~B CP DP`
+   - `~B CP PB`
+- PDP: Start from page, dereference a page then extend
+   - `~P MP UP`
+   - `~P MP DP`
+   - `~P MP MP`
+   - `~P MP PB`
+- 1BB: A block lineal relation + a block ref
+   - `~P PB CB`
+   - `=B CB DB`
+   - `=B CB UB`
+- 1BP: A block lineal relation + a page ref
+   - `~P PB CP`
+   - `=B CP DB`
+   - `=B CP UB`
+- 1PP: A page lineal relation + a page ref
+   - `~P UP MP`
+   - `=P UP MP`
+   - `=P PB MP`
+- 2LD1: Two lineal relations of same node-type with depth of 1 (in the shape of V)
+   - `=P DP DP`
+   - `=B DB DB`
+- 2LD2: Two lineal relations of same node-type with depth of 2 (in the shape of 1)
+   - `~P UP UP`
+   - `~B UB UB`
+- 2LPB: Two lineal relations of different node-type
+   - `~P DP PB`
+   - `~P UP PB`
+
+### Weight and Evaluation
+
+The weight of a relation is determined by the following factors:
+- Primary
+   - value range from 1 to 3
+   - higher usage frequency (quantitative)
+      - based on my personal case
+   - less dereference (qualitative)
+- Secondary
+   - value range from 1 to 5
+   - higher specificity (quantitative)
+      - specificity is determined by the maintenance cost of the relation
+   - higher lineal relation (qualitative)
+      - a parent relation is more specific than a child relation
+
+Here's the result:
+|no|item|group|primary|secondary|eval|rank|
+|---|---|---|---|---|---|---|
+|1|=P MP MP|OIR|3|4|108|1|
+|2|=B CP CP|OIR|2|3|24|5|
+|3|=B CP CB|OIR|2|2|16|10|
+|4|=B CB CB|OIR|2|1|8|13|
+|5|~B CB BP|DBE|1|5|5|17|
+|6|~B CB CP|DBE|1|4|4|18|
+|7|~B CB CB|DBE|1|3|3|20|
+|8|~B CB UB|DBE|1|2|2|22|
+|9|~B CB DB|DBE|1|1|1|27|
+|10|~B CP BP|BDP|1|4|4|19|
+|11|~B CP MP|BDP|1|3|3|21|
+|12|~B CP DP|BDP|1|2|2|23|
+|13|~B CP PB|BDP|1|1|1|28|
+|14|~P MP UP|PDP|2|4|32|3|
+|15|~P MP DP|PDP|2|3|24|6|
+|16|~P MP MP|PDP|2|2|16|11|
+|17|~P MP PB|PDP|2|1|8|14|
+|18|~P PB CB|1BB|2|3|24|7|
+|19|=B CB DB|1BB|1|2|2|24|
+|20|=B CB UB|1BB|1|1|1|29|
+|21|~P PB CP|1BP|2|3|24|8|
+|22|=B CP DB|1BP|1|2|2|25|
+|23|=B CP UB|1BP|1|1|1|30|
+|24|~P UP MP|1PP|2|3|24|9|
+|25|=P UP MP|1PP|2|2|16|12|
+|26|=P PB MP|1PP|1|1|1|31|
+|27|=P DP DP|2LD1|3|1|27|4|
+|28|=B DB DB|2LD1|2|1|8|15|
+|29|~P UP UP|2LD2|3|2|54|2|
+|30|~B UB UB|2LD2|2|1|8|16|
+|31|~P DP PB|2LPB|1|2|2|26|
+|32|~P UP PB|2LPB|1|1|1|32|
+
+Sorted by rank:
+
+|no|item|group|primary|secondary|eval|rank|
+|---|---|---|---|---|---|---|
+|1|=P MP MP|OIR|3|4|108|1|
+|29|~P UP UP|2LD2|3|2|54|2|
+|14|~P MP UP|PDP|2|4|32|3|
+|27|=P DP DP|2LD1|3|1|27|4|
+|2|=B CP CP|OIR|2|3|24|5|
+|15|~P MP DP|PDP|2|3|24|6|
+|18|~P PB CB|1BB|2|3|24|7|
+|21|~P PB CP|1BP|2|3|24|8|
+|24|~P UP MP|1PP|2|3|24|9|
+|3|=B CP CB|OIR|2|2|16|10|
+|16|~P MP MP|PDP|2|2|16|11|
+|25|=P UP MP|1PP|2|2|16|12|
+|4|=B CB CB|OIR|2|1|8|13|
+|17|~P MP PB|PDP|2|1|8|14|
+|28|=B DB DB|2LD1|2|1|8|15|
+|30|~B UB UB|2LD2|2|1|8|16|
+|5|~B CB BP|DBE|1|5|5|17|
+|6|~B CB CP|DBE|1|4|4|18|
+|10|~B CP BP|BDP|1|4|4|19|
+|7|~B CB CB|DBE|1|3|3|20|
+|11|~B CP MP|BDP|1|3|3|21|
+|8|~B CB UB|DBE|1|2|2|22|
+|12|~B CP DP|BDP|1|2|2|23|
+|19|=B CB DB|1BB|1|2|2|24|
+|22|=B CP DB|1BP|1|2|2|25|
+|31|~P DP PB|2LPB|1|2|2|26|
+|9|~B CB DB|DBE|1|1|1|27|
+|13|~B CP PB|BDP|1|1|1|28|
+|20|=B CB UB|1BB|1|1|1|29|
+|23|=B CP UB|1BP|1|1|1|30|
+|26|=P PB MP|1PP|1|1|1|31|
+|32|~P UP PB|2LPB|1|1|1|32|
+
+### Conclusion
+
+With this evaluation in mind, we're now having a baseline to determine the correlation of second-degree relationship which help discover indirectly related topics more efficiently.  
+Also, this is the very first attempt to describe a complex relation with a unified succinct notation. A concise notation is the bedrock to conduct more researches efficiently in the future.  
+Lastly, we can now build metrics of a topic that has a better coverage on indirect relations.
+
+### Footnotes
+
+It is the very first time I tried to conduct this type of research.  
+The first challenge is to set up a good notation to describe relation types.  
+I realized the concepts of "serial and parallel", geometric equivalent based on direction attributes.  
+Although the notation is concise, we still need to bear in mind for geometric variants of a certain relation type.  
+The second challenge is to design reasonable factors to evaluate each relations.  
+I try not to dive into the abyss in the process, hence, I mix some quntitative facts with subjective point of views.  
+First group similar relations together, then, evaluate the secondary factor in the scope of group with value range from 1 to 5.  
+Finally evaluate the primary factor in global scope with value range 1 to 3.  
+The final score is calcuate with a formula (i.e. `primary^3 * secondary^1`) that could mitigate edge case such that a case of (primary: 1, secondary: 5) would not surpass (primary: 2, secondary: 1).  
+Hopefully, I could have more academic references in the next research, also consolidate the quantitative portions with formal data references.
