@@ -2,43 +2,46 @@
 title: 'Understanding Page and Block Relations in LogSeq (Part 3)'
 description: ''
 pubDate: 'Dec 3 2024'
-tags: ["logseq", "knowledge-management", "note-taking", "correlation", "evaluation"]
+tags: []
 ---
 
-In [Part 2](/blog/evaluate-notes-via-relations-pt2), we explored how to query the basic relation types using advanced queries in LogSeq. This continuation delves into weighting these different types of relations.
+In [Part 2](/blog/evaluate-notes-via-relations-pt2), we explored how to query basic relation types using advanced queries in LogSeq. This continuation delves into weighting these different types of relations.
 
 ### Important Notes
 
-During the development of the weighting system, I found out a few defects of previous relationship listing. I tried to use new notation and mermaid diagrams to cover all the cases, however, it is a time-consuming process.  
-I've decided to skip those parts and focus on the main content. Stay tuned for the updated version of part1 and part2 plus new notations and diagrams.
+During the development of the weighting system, I discovered several defects in the previous relationship listings. While I attempted to use new notation and Mermaid diagrams to cover all cases, this proved to be time-consuming. I've decided to focus on the main content for now, with updates to Parts 1 and 2, including new notations and diagrams, coming in the future.
 
 ### First-Degree Relations
 
-First-degree relations represent direct connections between elements in LogSeq. I'll use new notation to represent these relationships.  
-Notation: `{node} {relation}`  
-Node: 'P' for page, 'B' for block  
-Relation: indicate the type of the relation, the second letter of the relation type indicates the type of the destination element.  
-e.g. `P MP` means a page has a ref of another page in metadata
-Here's the list of first-degree relations:
-- P MP: Page has a ref of another page in metadata
-- P UP: Page belong to a parent page
+First-degree relations represent direct connections between elements in LogSeq. The new notation system is structured as follows:
+
+**Notation Format:** `{node} {relation}`  
+- **Node:** 'P' for page, 'B' for block
+- **Relation:** Indicates the relation type, where the second letter indicates the destination element type
+- **Example:** `P MP` means a page has a reference to another page in metadata
+
+First-degree relations include:
+- P MP: Page references another page in metadata
+- P UP: Page belongs to a parent page
 - P DP: Page has a child page
 - P PB: Page has a block
-- B CP: Block has a ref of a page in content
-- B CB: Block has a ref of another block in content
-- B UB: Block belong to a parent block
+- B CP: Block references a page in content
+- B CB: Block references another block in content
+- B UB: Block belongs to a parent block
 - B DB: Block has a child block
-- B BP: Block belong to a page
+- B BP: Block belongs to a page
 
 ### Second-Degree Relations
 
-Second-degree relations represent indirect connections between elements in LogSeq. These connections are derived from combining two first-degree relations.  
-Notation: `{link type}{node} {1st relation} {2nd relation}`  
-Link Type: indicate the type of the link, either serial '~' or parallel '='  
-p.s. a parallel link means the order of the relations is interchangeable, while a serial link means the order is significant.  
+Second-degree relations represent indirect connections derived from combining two first-degree relations.
 
-e.g. `=P MP MP` means a page has two page-refs in metadata and they are related to each other.  
-Here's the list of second-degree relations:
+**Notation Format:** `{link type}{node} {1st relation} {2nd relation}`
+- **Link Type:** 
+  - '~' for serial (order-dependent)
+  - '=' for parallel (order-independent)
+- **Example:** `=P MP MP` represents a page with two interrelated page references in metadata
+
+Second-degree relations include:
 - OIR: Order Interchangeable Refs
    - `=P MP MP`
    - `=B CP CP`
@@ -82,22 +85,22 @@ Here's the list of second-degree relations:
    - `~P DP PB`
    - `~P UP PB`
 
-### Weight and Evaluation
+### Methodology and Research Notes
 
-The weight of a relation is determined by the following factors:
-- Primary
-   - value range from 1 to 3
-   - higher usage frequency (quantitative)
-      - based on my personal case
-   - less dereference (qualitative)
-- Secondary
-   - value range from 1 to 5
-   - higher specificity (quantitative)
-      - specificity is determined by the maintenance cost of the relation
-   - higher lineal relation (qualitative)
-      - a parent relation is more specific than a child relation
+The evaluation methodology combines quantitative and qualitative factors:
 
-Here's the result:
+1. **Primary Factors** (Scale 1-3):
+   - Usage frequency (quantitative, based on personal usage data)
+   - Dereference complexity (qualitative, the less the better)
+
+2. **Secondary Factors** (Scale 1-5):
+   - Relation specificity (quantitative, based on maintenance cost)
+   - Lineal relation (qualitative, prefer parent relation type)
+
+The final evaluation score uses the formula: `primary^3 * secondary^1` to appropriately weight the factors while preventing edge cases where high secondary scores might overshadow primary importance.
+
+### Evaluation Result
+
 |no|item|group|primary|secondary|eval|rank|
 |---|---|---|---|---|---|---|
 |1|=P MP MP|OIR|3|4|108|1|
