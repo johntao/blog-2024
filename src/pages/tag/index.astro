@@ -1,17 +1,14 @@
 ---
-// import { AppConfig } from '@/utils/AppConfig';
 import Tags from '@/components/Tags.astro';
 import BaseHtml from '@/layouts/BaseHtml.astro';
+import { getCollection } from "astro:content";
 
-// const { title } = AppConfig;
-// const { description } = AppConfig;
-
-const allPosts = await Astro.glob('../../content/blog/*.md');
-const allTags: Set<string> = new Set(allPosts.filter(q => q.frontmatter.tags).map((post) => post.frontmatter.tags).flat());
+const posts = (await getCollection("blog"));
+const allTags: Set<string> = new Set(posts.filter(q => q.data.tags).map((q) => q.data.tags!).flat());
 ---
 
 <BaseHtml>
-  <div class="mx-auto w-full max-w-screen-md">
+  <div class="mx-auto flex flex-wrap max-w-screen-md">
     <Tags tags={['no-tag', ...allTags]} withHref={true} />
   </div>
 </BaseHtml>
