@@ -6,6 +6,7 @@ import tailwind from '@astrojs/tailwind';
 import { remarkReadingTime } from './src/utils/readingTime';
 import react from '@astrojs/react';
 import starlight from '@astrojs/starlight';
+// import rehypeMermaid from 'rehype-mermaid';
 import { astroExpressiveCode } from '@astrojs/starlight/expressive-code';
 
 // https://astro.build/config
@@ -44,6 +45,14 @@ export default defineConfig({
             //     },
             // },
         }),
-        mdx(),
+        mdx({
+            // rehypePlugins: [rehypeMermaid],
+            // syntaxHighlight: 'shiki',
+            // shikiConfig: { theme: 'dracula' },
+            // remarkPlugins: [remarkToc],
+            // rehypePlugins: [rehypePresetMinify],
+            // remarkRehype: { footnoteLabel: 'Footnotes' },
+            // gfm: false,
+        }),
     ],
 });

@@ -1,8 +1,8 @@
 ---
 title: 'Understanding Page and Block Relations in LogSeq (Part 3)'
-description: ''
+description: 'A deep dive into weighting different types of relations in LogSeq, introducing a novel notation system for describing complex relationships between pages and blocks, and establishing an evaluation framework for relationship significance.'
 pubDate: 'Dec 3 2024'
-tags: []
+tags: ['logseq', 'knowledge-management', 'data-relationships', 'methodology', 'research']
 ---
 
 In [Part 2](/blog/evaluate-notes-via-relations-pt2), we explored how to query basic relation types using advanced queries in LogSeq. This continuation delves into weighting these different types of relations.
@@ -22,14 +22,81 @@ First-degree relations represent direct connections between elements in LogSeq. 
 
 First-degree relations include:
 - P MP: Page references another page in metadata
+  <details>
+   ```mermaid
+   flowchart LR
+      subgraph 1P[Page 1]
+         1Pp[tags:: page-2]
+      end
+      1P~~~1P2([&Page 2])
+   ```
+  </details>
 - P UP: Page belongs to a parent page
+   <details>
+   ```mermaid
+   graph LR;
+      1P["Page 2 (parent)"]-->1C["Page 1 (child)"];
+   ```
+   </details>
 - P DP: Page has a child page
+   <details>
+   ```mermaid
+   graph LR;
+      1P["Page 1 (parent)"]-->1C["Page 2 (child)"];
+   ```
+   </details>
 - P PB: Page has a block
+   <details>
+   ```mermaid
+   graph LR
+   subgraph 1P[Page 1]
+      1Pb[Block 1]
+   end
+   ```
+   </details>
 - B CP: Block references a page in content
+   <details>
+   ```mermaid
+   flowchart LR
+   subgraph 1B[Block 1]
+      1Bp[#page-1]
+   end
+   1B~~~2P([&Page 1])
+   ```
+   </details>
 - B CB: Block references another block in content
+   <details>
+   ```mermaid
+   flowchart LR
+   subgraph 1B[Block 1]
+      1Bb[#block-2]
+   end
+   1B~~~1B2([&Block 2])
+   ```
+   </details>
 - B UB: Block belongs to a parent block
+   <details>
+   ```mermaid
+   graph LR;
+   1P["Block 2 (parent)"]-->1C["Block 1 (child)"];
+   ```
+   </details>
 - B DB: Block has a child block
+   <details>
+   ```mermaid
+   graph LR;
+   1P["Block 1 (parent)"]-->1C["Block 2 (child)"];
+   ```
+   </details>
 - B BP: Block belongs to a page
+   <details>
+   ```mermaid
+   graph LR
+   subgraph 1P[Page 1]
+      1Pb[Block 1]
+   end
+   ```
+   </details>
 
 ### Second-Degree Relations
 
@@ -41,7 +108,7 @@ Second-degree relations represent indirect connections derived from combining tw
   - '=' for parallel (order-independent)
 - **Example:** `=P MP MP` represents a page with two interrelated page references in metadata
 
-Second-degree relations include:
+Categories of second-degree relations:
 - OIR: Order Interchangeable Refs
    - `=P MP MP`
    - `=B CP CP`
@@ -75,10 +142,10 @@ Second-degree relations include:
    - `~P UP MP`
    - `=P UP MP`
    - `=P PB MP`
-- 2LD1: Two lineal relations of same node-type with depth of 1 (in the shape of V)
+- 2LD1: Two lineal relations of same node-type with depth of 1
    - `=P DP DP`
    - `=B DB DB`
-- 2LD2: Two lineal relations of same node-type with depth of 2 (in the shape of 1)
+- 2LD2: Two lineal relations of same node-type with depth of 2
    - `~P UP UP`
    - `~B UB UB`
 - 2LPB: Two lineal relations of different node-type
@@ -175,19 +242,40 @@ Sorted by rank:
 
 ### Conclusion
 
-With this evaluation in mind, we're now having a baseline to determine the correlation of second-degree relationship which help discover indirectly related topics more efficiently.  
-Also, this is the very first attempt to describe a complex relation with a unified succinct notation. A concise notation is the bedrock to conduct more researches efficiently in the future.  
-Lastly, we can now build metrics of a topic that has a better coverage on indirect relations.
+This research establishes a foundational framework for evaluating second-degree relationships in LogSeq, offering several key contributions:
 
-### Footnotes
+1. A quantitative baseline for determining correlations between second-degree relationships, enabling more efficient discovery of indirectly related topics
+2. A unified, succinct notation system for describing complex relationships between pages and blocks, providing a solid foundation for future research
+3. A novel approach to relationship metrics that considers both direct and indirect connections, allowing for more comprehensive topic analysis
 
-It is the very first time I tried to conduct this type of research.  
-The first challenge is to set up a good notation to describe relation types.  
-I realized the concepts of "serial and parallel", geometric equivalent based on direction attributes.  
-Although the notation is concise, we still need to bear in mind for geometric variants of a certain relation type.  
-The second challenge is to design reasonable factors to evaluate each relations.  
-I try not to dive into the abyss in the process, hence, I mix some quntitative facts with subjective point of views.  
-First group similar relations together, then, evaluate the secondary factor in the scope of group with value range from 1 to 5.  
-Finally evaluate the primary factor in global scope with value range 1 to 3.  
-The final score is calcuate with a formula (i.e. `primary^3 * secondary^1`) that could mitigate edge case such that a case of (primary: 1, secondary: 5) would not surpass (primary: 2, secondary: 1).  
-Hopefully, I could have more academic references in the next research, also consolidate the quantitative portions with formal data references.
+These advances open new possibilities for knowledge graph analysis and relationship-based content organization in LogSeq and similar tools.
+
+### Research Notes and Methodology Insights
+
+This initial research effort presented several interesting challenges and learning opportunities:
+
+**Notation Development**
+- The development of a concise notation system emerged as a crucial first step
+- The concepts of "serial" and "parallel" relationships proved valuable, providing geometric equivalents based on directional attributes
+- While the notation is efficient, future work should address additional geometric variants of relationship types
+
+**Evaluation Framework Design**
+The evaluation methodology was developed through a systematic approach:
+
+1. Relationship Grouping
+   - Similar relations were clustered to establish coherent categories
+   - Secondary factors were evaluated within group contexts (scale 1-5)
+   - Primary factors were assessed globally (scale 1-3)
+
+2. Scoring System
+   - Implemented the formula `primary^3 * secondary^1`
+   - This approach successfully prevents edge cases where high secondary scores (e.g., 1 primary, 5 secondary) might inappropriately outweigh more significant relationships (e.g., 2 primary, 1 secondary)
+   - Balances quantitative data with qualitative insights
+
+**Future Research Directions**
+- Incorporate additional academic references to strengthen the theoretical foundation
+- Expand quantitative analysis with formal data collection and validation
+- Explore automated tools for relationship analysis based on this framework
+- Develop standardized metrics for relationship evaluation across different knowledge management systems
+
+This research represents a first step toward a more rigorous understanding of knowledge graph relationships, with significant potential for expansion and refinement in future work.
