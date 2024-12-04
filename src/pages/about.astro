@@ -60,7 +60,7 @@ const desk = className.desktop;
             <Badge className={mob.invisible}>&nbsp;</Badge><br />
             <Badge className={mob.bgYellow}>Eclecticism</Badge>
             <Badge className={mob.bgYellow}>Esstentialism</Badge>
-            <Badge className={mob.invisible}>&nbsp;</Badge>
+            <Badge className={mob.bgYellow}>Existentialism</Badge>
           </div>
           <!-- 3-1 -->
           <div class:list={[mob.firstColText, mob.bgBlue]}>Support</div>
@@ -174,8 +174,14 @@ const desk = className.desktop;
     </Tabs>
   </div>
   <AboutDesktop className={desk} />
-  <a href="https://github.com/johntao" target="_blank" class="flex justify-center my-12">
-    <span class="sr-only">Go to John Tao's GitHub repo</span>
-    <Icon name="GitHub" class="size-8" />
-  </a>
+  <div class="flex justify-center my-12">
+    <a href="https://github.com/johntao" title="John Tao's GitHub repo" target="_blank">
+      <span class="sr-only">Go to John Tao's GitHub repo</span>
+      <Icon name="GitHub" class="size-8" />
+    </a>
+    <!-- <a href="https://s1521121119.github.io/" title="Friendly Friend Page" target="_blank">
+      <span class="sr-only">Friendly Friend Page</span>
+      文
+    </a> -->
+  </div>
 </BaseHtml>

@@ -110,47 +110,67 @@ Second-degree relations represent indirect connections derived from combining tw
 
 Categories of second-degree relations:
 - OIR: Order Interchangeable Refs
+   <details>
    - `=P MP MP`
    - `=B CP CP`
    - `=B CP CB`
    - `=B CB CB`
+   </details>
 - DBE: Dereference a block then extend
+   <details>
    - `~B CB BP`
    - `~B CB CP`
    - `~B CB CB`
    - `~B CB UB`
    - `~B CB DB`
+   </details>
 - BDP: Start from block, dereference a page then extend
+   <details>
    - `~B CP BP`
    - `~B CP MP`
    - `~B CP DP`
    - `~B CP PB`
+   </details>
 - PDP: Start from page, dereference a page then extend
+   <details>
    - `~P MP UP`
    - `~P MP DP`
    - `~P MP MP`
    - `~P MP PB`
+   </details>
 - 1BB: A block lineal relation + a block ref
+   <details>
    - `~P PB CB`
    - `=B CB DB`
    - `=B CB UB`
+   </details>
 - 1BP: A block lineal relation + a page ref
+   <details>
    - `~P PB CP`
    - `=B CP DB`
    - `=B CP UB`
+   </details>
 - 1PP: A page lineal relation + a page ref
+   <details>
    - `~P UP MP`
    - `=P UP MP`
    - `=P PB MP`
+   </details>
 - 2LD1: Two lineal relations of same node-type with depth of 1
+   <details>
    - `=P DP DP`
    - `=B DB DB`
+   </details>
 - 2LD2: Two lineal relations of same node-type with depth of 2
+   <details>
    - `~P UP UP`
    - `~B UB UB`
+   </details>
 - 2LPB: Two lineal relations of different node-type
+   <details>
    - `~P DP PB`
    - `~P UP PB`
+   </details>
 
 ### Methodology and Research Notes
 
@@ -168,6 +188,7 @@ The final evaluation score uses the formula: `primary^3 * secondary^1` to approp
 
 ### Evaluation Result
 
+<details>
 |no|item|group|primary|secondary|eval|rank|
 |---|---|---|---|---|---|---|
 |1|=P MP MP|OIR|3|4|108|1|
@@ -202,9 +223,11 @@ The final evaluation score uses the formula: `primary^3 * secondary^1` to approp
 |30|~B UB UB|2LD2|2|1|8|16|
 |31|~P DP PB|2LPB|1|2|2|26|
 |32|~P UP PB|2LPB|1|1|1|32|
+</details>
 
-Sorted by rank:
+#### Sorted by rank
 
+<details>
 |no|item|group|primary|secondary|eval|rank|
 |---|---|---|---|---|---|---|
 |1|=P MP MP|OIR|3|4|108|1|
@@ -239,6 +262,7 @@ Sorted by rank:
 |23|=B CP UB|1BP|1|1|1|30|
 |26|=P PB MP|1PP|1|1|1|31|
 |32|~P UP PB|2LPB|1|1|1|32|
+</details>
 
 ### Conclusion
 
