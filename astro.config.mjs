@@ -3,18 +3,26 @@ import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import tailwind from '@astrojs/tailwind';
 // import { passthroughImageService, } from 'astro/config';
-// import { remarkReadingTime } from './src/utils/readingTime';
 // import react from '@astrojs/react';
 // import mdx from '@astrojs/mdx';
 // import sitemap from '@astrojs/sitemap';
 // import { astroExpressiveCode } from '@astrojs/starlight/expressive-code';
+import { remarkReadingTime } from './src/utils/readingTime';
+// import remarkToc from 'remark-toc';
+// import { rehypeAccessibleEmojis } from 'rehype-accessible-emojis';
 
-// https://astro.build/config
 export default defineConfig({
 	// site: 'https://johntao.one',
 	// markdown: {
 	// 	remarkPlugins: [remarkReadingTime]
 	// },
+  markdown: {
+    remarkPlugins: [
+			// [remarkToc, { heading: 'toc', maxDepth: 3 } ],
+			remarkReadingTime
+		],
+    // rehypePlugins: [rehypeAccessibleEmojis],
+  },
 	// image: {
 	// 	service: passthroughImageService(),
 	// },
