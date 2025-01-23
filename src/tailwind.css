@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+Add additional Tailwind styles to this file, for example with @layer:
+https://tailwindcss.com/docs/adding-custom-styles#using-css-and-layer
+*/
+
+:root {
+  --sl-content-width: 64rem;
+  --sl-nav-height: 2.5rem;
+  /* --sl-text-5xl: 3.5rem; */
+}
+
+site-search > button:first-of-type {
+  height: 2rem;
+}
+
+.jt-intro * {
+  margin: 0 !important;
+}
