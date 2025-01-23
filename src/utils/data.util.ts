@@ -1,7 +1,7 @@
 import type { CollectionEntry } from "astro:content";
 // import type { MarkdownInstance } from 'astro';
 
-export type BlogEntry = CollectionEntry<"blog">;
+export type BlogEntry = CollectionEntry<"logseq">;
 // export type BlogUnion = BlogEntry | MarkdownInstance<Record<string, any>>;
 
 // export function isBlogEntry(ufo: BlogUnion): ufo is BlogEntry {

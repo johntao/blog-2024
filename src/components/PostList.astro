@@ -5,8 +5,9 @@ import Separator from "./Separator.astro";
 
 interface Props {
   posts: BlogEntry[];
+  folder: string;
 }
-const { posts } = Astro.props;
+const { posts, folder } = Astro.props;
 ---
 
 <ul>
@@ -19,7 +20,7 @@ const { posts } = Astro.props;
         <>
           <li class="flex">
             <FormattedDate className="mr-3" date={data.pubDate} />
-            <a href={`/blog/${slug}`}>{data.title}</a>
+            <a href={`/${folder}/${slug}`}>{data.title}</a>
           </li>
           {data.yearSep && <Separator text={data.yearSep} />}
         </>

@@ -1,0 +1,16 @@
+---
+import PostList from "@/components/PostList.astro";
+import { sortByPubDate } from "@/utils/data.util";
+import { getCollection } from "astro:content";
+import StarlightPage from "@astrojs/starlight/components/StarlightPage.astro";
+
+const Folder = "logseq";
+
+const posts = (await getCollection(Folder)).sort(sortByPubDate);
+---
+
+<StarlightPage
+  frontmatter={{ title: "Orion2" }}
+>
+	<PostList folder={Folder} posts={posts} />
+</StarlightPage>

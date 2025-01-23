@@ -32,11 +32,11 @@ export default defineConfig({
 				github: 'https://github.com/johntao',
 			},
 			sidebar: [
-				{ label: "LogSeq", link: "/geek/logseq" },
-				{ label: "Web", link: "/dev/web" },
-				{ label: "Tooling", link: "/dev/tooling" },
-				{ label: "General", link: "/dev/general" },
-				{ label: "Odoo", link: "/dev/odoo" },
+				{ label: "LogSeq", link: "/logseq" },
+				{ label: "Web", link: "/web" },
+				{ label: "Tooling", link: "/tooling" },
+				{ label: "General", link: "/general" },
+				{ label: "Odoo", link: "/odoo" },
 				{ label: 'Example Guide', slug: 'guides/example' },
 				{
 					label: 'Reference',
