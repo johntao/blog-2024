@@ -1,10 +1,10 @@
 ---
 import FormattedDate from "@/components/FormattedDate.astro";
-import { type BlogEntry } from "@/utils/data.util";
+import { type AnyEntry, isBlogEntry } from "@/utils/data.util";
 import Separator from "./Separator.astro";
 
 interface Props {
-  posts: BlogEntry[];
+  posts: AnyEntry[];
   folder: string;
 }
 const { posts, folder } = Astro.props;
@@ -14,13 +14,13 @@ const { posts, folder } = Astro.props;
   {
     posts.map((post) => {
       // const { remarkPluginFrontmatter } = await post.render();
-      const { data, slug } = post;
-      // console.log(data.pubDate, data.yearSep);
+      const { data } = post;
+      let path = isBlogEntry(post) ? `/${folder}/${post.slug}` : post.id;
       return (
         <>
           <li class="flex">
-            <FormattedDate className="mr-3" date={data.pubDate} />
-            <a href={`/${folder}/${slug}`}>{data.title}</a>
+            {data.pubDate && <FormattedDate className="mr-3" date={data.pubDate} />}
+            <a href={path}>{data.title}</a>
           </li>
           {data.yearSep && <Separator text={data.yearSep} />}
         </>

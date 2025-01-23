@@ -5,7 +5,9 @@ import StarlightPage from "@astrojs/starlight/components/StarlightPage.astro";
 import Tags from "@/components/Tags.astro";
 
 export async function getStaticPaths() {
-	const posts = await getCollection("logseq");
+	const posts = await getCollection("docs");
+	debugger;
+	console.log('=====================', posts);
 	return posts.map((post, index) => {
 		const prevPost = posts[index - 1];
 		const nextPost = posts[index + 1];
@@ -16,13 +18,13 @@ export async function getStaticPaths() {
 			? { link: nextPost.slug, label: nextPost.data.title }
 			: undefined;
 		return {
-			params: { slug: post.slug },
+			params: { slug: post. },
 			props: post,
 		};
 	});
 }
 
-type Props = CollectionEntry<"logseq">;
+type Props = CollectionEntry<"docs">;
 const post = Astro.props;
 const {
 	data: {
@@ -33,9 +35,10 @@ const {
 		tags,
 		next,
 		prev,
+		heroImage,
 	},
 } = post;
-const rendered = await post.render();
+const rendered = await post.();
 const { Content, headings, remarkPluginFrontmatter } = rendered;
 // console.log('=====================', remarkPluginFrontmatter);
 ---
@@ -47,7 +50,7 @@ const { Content, headings, remarkPluginFrontmatter } = rendered;
 </BaseHtml> -->
 <StarlightPage
 	headings={headings}
-	frontmatter={{ title, description, next, prev, pubDate }}
+	frontmatter={{ title, description, next, prev }}
 >
 	<article class="prose max-w-3xl dark:prose-invert mx-auto">
 		<header class="text-center">

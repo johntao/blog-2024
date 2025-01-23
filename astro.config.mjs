@@ -16,13 +16,13 @@ export default defineConfig({
 	// markdown: {
 	// 	remarkPlugins: [remarkReadingTime]
 	// },
-  markdown: {
-    remarkPlugins: [
+	markdown: {
+		remarkPlugins: [
 			// [remarkToc, { heading: 'toc', maxDepth: 3 } ],
 			remarkReadingTime
 		],
-    // rehypePlugins: [rehypeAccessibleEmojis],
-  },
+		// rehypePlugins: [rehypeAccessibleEmojis],
+	},
 	// image: {
 	// 	service: passthroughImageService(),
 	// },
@@ -40,11 +40,26 @@ export default defineConfig({
 				github: 'https://github.com/johntao',
 			},
 			sidebar: [
-				{ label: "LogSeq", link: "/logseq" },
-				{ label: "Web", link: "/web" },
-				{ label: "Tooling", link: "/tooling" },
-				{ label: "General", link: "/general" },
-				{ label: "Odoo", link: "/odoo" },
+				{
+					label: "Geek", items: [
+						{ label: "LogSeq", link: "/logseq" },
+					]
+				},
+				{
+					label: "Dev", items: [
+						{ label: "General", link: "/general" },
+						// { label: "Web", link: "/web" },
+						// { label: "Tooling", link: "/tooling" },
+						// { label: "Odoo", link: "/odoo" },
+					]
+				},
+				{
+					label: "Life", items: [
+						{ label: "General", link: "/life" },
+						// { label: "Health", link: "/health" },
+						// { label: "Finance", link: "/finance" },
+					]
+				},
 				{ label: 'Example Guide', slug: 'guides/example' },
 				{
 					label: 'Reference',

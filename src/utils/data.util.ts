@@ -2,6 +2,9 @@ import type { CollectionEntry } from "astro:content";
 // import type { MarkdownInstance } from 'astro';
 
 export type BlogEntry = CollectionEntry<"logseq">;
+export type DocEntry = CollectionEntry<"docs">;
+export type AnyEntry = BlogEntry | DocEntry;
+
 // export type BlogUnion = BlogEntry | MarkdownInstance<Record<string, any>>;
 
 // export function isBlogEntry(ufo: BlogUnion): ufo is BlogEntry {
@@ -20,8 +23,17 @@ export type BlogEntry = CollectionEntry<"logseq">;
 //   return pb.valueOf() - pa.valueOf();
 // }
 
+export function isBlogEntry(post: any): post is BlogEntry {
+  return (post as BlogEntry).slug !== undefined;
+}
+
+export function isDocEntry(post: any): post is DocEntry {
+  return post.slug === undefined;
+}
+
 export function sortByPubDate(a: BlogEntry, b: BlogEntry): number {
   const pa = a.data.pubDate;
   const pb = b.data.pubDate;
+  if (!pa || !pb) return 0;
   return pb.valueOf() - pa.valueOf();
 }
