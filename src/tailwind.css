@@ -10,7 +10,26 @@ https://tailwindcss.com/docs/adding-custom-styles#using-css-and-layer
 :root {
   --sl-content-width: 64rem;
   --sl-nav-height: 2.5rem;
-  /* --sl-text-5xl: 3.5rem; */
+  --sl-text-lg: 1rem;
+  --sl-text-xl: 1.125rem;
+  --sl-text-2xl: 1.25rem;
+  --sl-text-3xl: 1.5rem;
+  --sl-text-4xl: 1.75rem;
+  --sl-text-5xl: 2rem;
+}
+
+div.content-panel:has(.sl-container > #_top) {
+  padding-block: 0.5rem;
+}
+
+.sl-markdown-content
+	:not(h1, h2, h3, h4, h5, h6)
+	+ :is(h1, h2, h3, h4, h5, h6):not(:where(.not-content *)) {
+	margin-top: 0.5em;
+}
+
+h1#_top {
+  margin-top: 0.5rem;
 }
 
 site-search > button:first-of-type {

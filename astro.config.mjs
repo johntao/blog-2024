@@ -26,7 +26,7 @@ export default defineConfig({
 		// 		experimentalReactChildren: true,
 		// }),
 		starlight({
-			title: '~/JT>',
+			title: '\\JT>',
 			// expressiveCode: true,
 			social: {
 				github: 'https://github.com/johntao',
