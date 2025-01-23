@@ -1,6 +1,6 @@
 import colors from 'tailwindcss/colors';
 import starlightPlugin from '@astrojs/starlight-tailwind';
-const plugin = require('tailwindcss/plugin');
+// const plugin = require('tailwindcss/plugin');
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -67,7 +67,7 @@ export default {
 	},
 	plugins: [
 		require('@tailwindcss/typography'),
-		require("tailwindcss-animate"),
+		// require("tailwindcss-animate"),
 		starlightPlugin(),
 		// plugin(function ({ addBase, addComponents, addUtilities }) {
 		// 	addBase({
