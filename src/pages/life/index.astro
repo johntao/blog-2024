@@ -1,17 +1,23 @@
 ---
 import PostList from "@/components/PostList.astro";
-import { sortByPubDate, isBlogEntry } from "@/utils/data.util";
+import { sortByPubDate } from "@/utils/data.util";
 import { getCollection } from "astro:content";
 import StarlightPage from "@astrojs/starlight/components/StarlightPage.astro";
 
 const Folder = "docs";
 
-// @ts-ignore TS2345
-const posts = (await getCollection(Folder)).filter(q => q.data.pubDate).sort(sortByPubDate);
+const posts = (await getCollection(Folder))
+  .filter((q) => q.data.pubDate && q.id.includes("life"))
+  // @ts-ignore TS2345
+  .sort(sortByPubDate);
 ---
 
 <StarlightPage
-  frontmatter={{ title: "Orion2", description: "Orion2" }}
+  frontmatter={{
+    title: "Category: Life in General",
+    description: "Life in general, no specific topic.",
+    tableOfContents: false,
+  }}
 >
-	<PostList folder={Folder} posts={posts} />
+  <PostList folder={Folder} posts={posts} />
 </StarlightPage>

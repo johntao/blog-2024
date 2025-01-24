@@ -4,15 +4,18 @@ import { sortByPubDate } from "@/utils/data.util";
 import { getCollection } from "astro:content";
 import StarlightPage from "@astrojs/starlight/components/StarlightPage.astro";
 
-const Folder = "logseq";
+const Folder = "docs";
 
-const posts = (await getCollection(Folder)).sort(sortByPubDate);
+const posts = (await getCollection(Folder))
+  .filter((q) => q.data.pubDate && q.id.includes("dev"))
+  // @ts-ignore TS2345
+  .sort(sortByPubDate);
 ---
 
 <StarlightPage
   frontmatter={{
-    title: "Category: LogSeq",
-    description: "Posts related to LogSeq.",
+    title: "Category: Software Development in General",
+    description: "Software development in general, no specific topic.",
     tableOfContents: false,
   }}
 >
