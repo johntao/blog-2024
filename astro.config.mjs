@@ -40,9 +40,7 @@ export default defineConfig({
 				github: 'https://github.com/johntao',
 			},
 			sidebar: [
-				{
-					label: "All Posts", link: "/all"
-				},
+				{ label: "All Posts", link: "/posts" },
 				{
 					label: "Geek", items: [
 						{ label: "LogSeq", link: "/logseq" },
@@ -63,6 +61,7 @@ export default defineConfig({
 						// { label: "Finance", link: "/finance" },
 					]
 				},
+				{ label: "All Tags", link: "/tags" },
 			],
 			customCss: [
 				'./src/tailwind.css',
