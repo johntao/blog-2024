@@ -41,6 +41,9 @@ export default defineConfig({
 			},
 			sidebar: [
 				{
+					label: "All Posts", link: "/all"
+				},
+				{
 					label: "Geek", items: [
 						{ label: "LogSeq", link: "/logseq" },
 					]

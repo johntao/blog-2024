@@ -7,17 +7,17 @@ tags: ["logseq", "knowledge-management", "note-taking", "clojure", "advanced"]
 
 In [Part 1](/blog/evaluate-notes-via-relations-pt1), we explored the fundamental concepts of page and block relationships in LogSeq. This continuation delves deeper into implementing these connections through advanced queries, providing practical examples for both simple and complex relationship patterns.
 
-### Quick Recap
+## Quick Recap
 Before we dive into advanced queries, let's briefly recall the three primary types of relationships in LogSeq:
 - Type A: Block-to-Block relations
 - Type B: Block-to-Page relations
 - Type C: Page-to-Page relations
 
-### First-Degree Relations
+## First-Degree Relations
 
 First-degree relations represent direct connections between elements in LogSeq. We'll examine each type using Clojure query syntax, focusing on the predicates that define these relationships.
 
-#### Block-to-Block Relations (Type A)
+### Block-to-Block Relations (Type A)
 
 1. **Linear Relations**: Find blocks with ancestor-descendant relationships
 ```clojure
@@ -33,7 +33,7 @@ First-degree relations represent direct connections between elements in LogSeq. 
 [?a :block/refs ?b]
 ```
 
-#### Block-to-Page Relations (Type B)
+### Block-to-Page Relations (Type B)
 
 1. **Containment Relations**: Find blocks contained within specific pages
 ```clojure
@@ -47,7 +47,7 @@ First-degree relations represent direct connections between elements in LogSeq. 
 [(missing? $ ?page :block/page)]
 ```
 
-#### Page-to-Page Relations (Type C)
+### Page-to-Page Relations (Type C)
 
 1. **Linear Relations**: Find pages with namespace relationships
 ```clojure
@@ -60,13 +60,13 @@ First-degree relations represent direct connections between elements in LogSeq. 
 [?a :block/tags ?b]
 ```
 
-### Second-Degree Relations Deep Dive
+## Second-Degree Relations Deep Dive
 
 Second-degree relations combine two first-degree relations to reveal indirect connections in your knowledge graph. Let's explore the various patterns and their implementations.
 
-#### Block → Block → Block (Type A → A)
+### Block → Block → Block (Type A → A)
 
-##### e.g. 1-1 Ancestor-Descendant Block to Block References
+#### e.g. 1-1 Ancestor-Descendant Block to Block References
 
 Description: Find referenced block (Block C) that are mentioned by ancestor block (Block A) of a given descendant block (Block B)  
 Used First-Degree Methods: A.1, A.2  
@@ -78,9 +78,9 @@ Conclusion: 'Block B' is related to 'Block C'
 [?ancestor :block/refs ?blockC]        ;; Block A references Block C
 ```
 
-#### Block → Block → Page (Type A → B)
+### Block → Block → Page (Type A → B)
 
-##### e.g. 2-1 Parent-Child Block to Page References
+#### e.g. 2-1 Parent-Child Block to Page References
 Description: Find pages (Page C) referenced by parent blocks (Block A) of a given block (Block B)  
 Used First-Degree Methods: A.1, B.3  
 Predicate: is 'Block A' lineal related to 'Block B' as parent-child AND 'Block A' mention 'Page C' in content  
@@ -91,7 +91,7 @@ Conclusion: 'Block B' is related to 'Page C'
 [(missing? $ ?page :block/page)]       ;; Confirm it's a page reference
 ```
 
-##### e.g. 2-2 Block References Across Pages
+#### e.g. 2-2 Block References Across Pages
 Description: Find block (Block C) referenced by block (Block A) on a specific page (Page B)  
 Used First-Degree Methods: A.2, B.1  
 Predicate: is 'Block A' lineal related to 'Page B' AND 'Block A' mention 'Block C' in content  
@@ -102,9 +102,9 @@ Conclusion: 'Page B' is related to 'Block C'
 [?blockA :block/refs ?blockC]          ;; Block A references Block C
 ```
 
-#### Block → Page → Page (Type B → B)
+### Block → Page → Page (Type B → B)
 
-##### e.g. 3-1 Discovering co-referenced pages
+#### e.g. 3-1 Discovering co-referenced pages
 Description: Find pairs of pages (Page B, Page C) referenced together in the same block  
 Used First-Degree Methods: B.3, B.3  
 Pedicate: is 'Block A' mention 'Page B' in content AND 'Block A' mention 'Page C' in content  
@@ -115,9 +115,9 @@ Conclusion: 'Page B' is related to 'Page C'
 [(missing? $ ?pageA :block/page)]      ;; Confirm they're page references
 ```
 
-#### Block → Page → Page Type C (Type B → C)
+### Block → Page → Page Type C (Type B → C)
 
-##### e.g. 4-1 Finding topic connections through page metadata
+#### e.g. 4-1 Finding topic connections through page metadata
 Description: Find pages (Page C) tagged by pages (Page B) containing specific blocks (Block A)  
 Used First-Degree Methods: B.1, C.2  
 Pedicate: is 'Block A' lineal related to 'Page B' AND 'Page B' mention 'Page C' in metadata  
@@ -128,9 +128,9 @@ Conclusion: 'Block A' is related to 'Page C'
 [?pageB :block/tags ?pageC]            ;; Page B tags Page C
 ```
 
-#### Page → Page → Page (Type C → C)
+### Page → Page → Page (Type C → C)
 
-##### e.g. 5-1 Metadata Chains
+#### e.g. 5-1 Metadata Chains
 Description: Discovering indirect topic relationships  
 Used First-Degree Methods: C.2, C.2  
 Pedicate: is 'Page A' mention 'Page B' in metadata AND 'Page B' mention 'Page C' in metadata  
@@ -141,7 +141,7 @@ Conclusion: 'Page A' is related to 'Page C'
 [?a :block/tags ?b]                    ;; Page A tags Page B
 [?b :block/tags ?c]                    ;; Page B tags Page C
 ```
-##### e.g. 5-2 Finding topic relationships across namespace hierarchies
+#### e.g. 5-2 Finding topic relationships across namespace hierarchies
 Description: Find pages (Page C) tagged by ancestor pages (Page A) of a page (Page B)  
 Used First-Degree Methods: C.1, C.2  
 Pedicate: is 'Page A' lineal related to 'Page B' as ancestor-descendant AND 'Page A' mention 'Page C' in metadata  
@@ -153,7 +153,7 @@ Conclusion: 'Page B' is related to 'Page C'
 [?actualPage :block/tags ?pageC]        ;; Ancestor (page A) has tags (Page C)
 ```
 
-### Important Implementation Notes
+## Important Implementation Notes
 
 1. **Alias Handling**
 ```clojure
@@ -171,7 +171,7 @@ Conclusion: 'Page B' is related to 'Page C'
 - Example: Prefer querying ancestor metadata rather than descendant metadata when establishing relationships
 - Consider the semantic meaning of relationships when combining different types
 
-### Future Development Roadmap
+## Future Development Roadmap
 
 To make these relationships more actionable, we're planning several enhancements:
 

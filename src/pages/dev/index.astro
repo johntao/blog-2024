@@ -4,9 +4,7 @@ import { sortByPubDate } from "@/utils/data.util";
 import { getCollection } from "astro:content";
 import StarlightPage from "@astrojs/starlight/components/StarlightPage.astro";
 
-const Folder = "docs";
-
-const posts = (await getCollection(Folder))
+const posts = (await getCollection('docs'))
   .filter((q) => q.data.pubDate && q.id.includes("dev"))
   // @ts-ignore TS2345
   .sort(sortByPubDate);
@@ -19,5 +17,5 @@ const posts = (await getCollection(Folder))
     tableOfContents: false,
   }}
 >
-  <PostList folder={Folder} posts={posts} />
+  <PostList posts={posts} />
 </StarlightPage>
