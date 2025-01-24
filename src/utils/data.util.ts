@@ -5,12 +5,6 @@ export type BlogEntry = CollectionEntry<"logseq">;
 export type DocEntry = CollectionEntry<"docs">;
 export type AnyEntry = BlogEntry | DocEntry;
 
-// export type BlogUnion = BlogEntry | MarkdownInstance<Record<string, any>>;
-
-// export function isBlogEntry(ufo: BlogUnion): ufo is BlogEntry {
-//   return (ufo as BlogEntry).data !== undefined;
-// }
-
 // export function sortByPubDate(a: BlogUnion, b: BlogUnion): number {
 //   let pa: Date, pb: Date;
 //   if (isBlogEntry(a)) {

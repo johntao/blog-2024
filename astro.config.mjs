@@ -47,7 +47,7 @@ export default defineConfig({
 				},
 				{
 					label: "Dev", items: [
-						{ label: "General", link: "/general" },
+						{ label: "General", link: "/dev" },
 						// { label: "Web", link: "/web" },
 						// { label: "Tooling", link: "/tooling" },
 						// { label: "Odoo", link: "/odoo" },
@@ -59,11 +59,6 @@ export default defineConfig({
 						// { label: "Health", link: "/health" },
 						// { label: "Finance", link: "/finance" },
 					]
-				},
-				{ label: 'Example Guide', slug: 'guides/example' },
-				{
-					label: 'Reference',
-					autogenerate: { directory: 'reference' },
 				},
 			],
 			customCss: [

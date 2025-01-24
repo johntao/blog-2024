@@ -15,7 +15,7 @@ const { posts, folder } = Astro.props;
     posts.map((post) => {
       // const { remarkPluginFrontmatter } = await post.render();
       const { data } = post;
-      let path = isBlogEntry(post) ? `/${folder}/${post.slug}` : post.id;
+      let path = isBlogEntry(post) ? `${folder}/${post.slug}` : post.id;
       return (
         <>
           <li class="flex">
