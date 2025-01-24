@@ -1,14 +1,27 @@
 ---
+import StarlightPage from "@astrojs/starlight/components/StarlightPage.astro";
 import Tags from '@/components/Tags.astro';
-import BaseHtml from '@/layouts/BaseHtml.astro';
 import { getCollection } from "astro:content";
+import { sortByPubDate, type AnyEntry } from "@/utils/data.util";
 
-const posts = (await getCollection("blog"));
+const coll1: AnyEntry[] = await getCollection('docs');
+const coll2: AnyEntry[] = await getCollection('logseq');
+const posts = coll1.concat(coll2)
+  .filter((q) => q.data.pubDate)
+  // @ts-ignore TS2345
+  .sort(sortByPubDate);
 const allTags: Set<string> = new Set(posts.filter(q => q.data.tags).map((q) => q.data.tags!).flat());
 ---
 
-<BaseHtml>
+<StarlightPage
+  frontmatter={{
+    title: "All Tags",
+    description: "All tags in this blog",
+    template: "doc",
+    tableOfContents: false,
+  }}
+>
   <div class="mx-auto flex flex-wrap max-w-screen-md">
     <Tags tags={['no-tag', ...allTags]} withHref={true} />
   </div>
-</BaseHtml>
+</StarlightPage>

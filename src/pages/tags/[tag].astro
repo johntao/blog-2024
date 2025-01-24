@@ -1,20 +1,20 @@
 ---
+import StarlightPage from "@astrojs/starlight/components/StarlightPage.astro";
 import PostList from "@/components/PostList.astro";
-import BaseHtml from "@/layouts/BaseHtml.astro";
-import type { BlogEntry } from "@/utils/data.util";
+import type { AnyEntry, BlogEntry } from "@/utils/data.util";
 import { getCollection } from "astro:content";
 
 //TODO: rework to group by
 export async function getStaticPaths(): Promise<any> {
-	const allPosts = await getCollection("blog");
-	const postsHaveTags = allPosts.filter(q => q.data.tags);
-	const postsNoTags = allPosts.filter(q => !q.data.tags);
+	const coll1: AnyEntry[] = await getCollection("docs");
+	const coll2: AnyEntry[] = await getCollection("logseq");
+	const allPosts = coll1.concat(coll2);
+	const postsHaveTags = allPosts.filter((q) => q.data.tags);
+	const postsNoTags = allPosts.filter((q) => !q.data.tags);
 	const tags: Set<string> = new Set(
-		postsHaveTags
-			.map((q) => q.data.tags!)
-			.flat(),
+		postsHaveTags.map((q) => q.data.tags!).flat(),
 	);
-	return ['no-tag', ...tags].map((tag, idx) => ({
+	return ["no-tag", ...tags].map((tag, idx) => ({
 		params: { tag },
 		props: {
 			posts: idx
@@ -33,7 +33,13 @@ const header = isUndefined ? "Posts without a tag" : `Posts with #${tag}`;
 const { posts } = Astro.props;
 ---
 
-<BaseHtml>
-	<header class="text-lg mb-4">{header}</header>
+<StarlightPage
+	frontmatter={{
+		title: header,
+		description: "All posts in this blog",
+		template: "doc",
+		tableOfContents: false,
+	}}
+>
 	<PostList posts={posts} />
-</BaseHtml>
+</StarlightPage>
