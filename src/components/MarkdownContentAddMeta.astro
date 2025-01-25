@@ -1,0 +1,43 @@
+---
+import type { Props } from "@astrojs/starlight/props";
+import Default from "@astrojs/starlight/components/MarkdownContent.astro";
+import FormattedDate from "./FormattedDate.astro";
+import Tags from "./Tags.astro";
+import getReadingTime from 'reading-time';
+// import { render } from "astro:content";
+
+const entry = Astro.props.entry;
+const isDefaultDocRender = !!entry.body;
+const { pubDate, updatedDate, tags } = entry.data;
+// const { remarkPluginFrontmatter } = await render(qq);
+const minutesRead = getReadingTime(entry.body || '').text;
+// const minutesRead = remarkPluginFrontmatter.minutesRead;
+---
+
+{
+  isDefaultDocRender ? (
+    <Default {...Astro.props}>
+      <article class="prose max-w-3xl dark:prose-invert mx-auto">
+        <header class="text-center">
+          <div class="mt-3">{tags && <Tags tags={tags} withHref={true} />}</div>
+          <div class="text-gray-500">
+            {pubDate && <FormattedDate className="sm:inline" date={pubDate} />}-
+            {minutesRead}
+            {updatedDate && (
+              <div class="italic">
+                {" "}
+                Last updated on <FormattedDate date={updatedDate} />
+              </div>
+            )}
+          </div>
+          <hr class="my-4" />
+        </header>
+        <slot />
+      </article>
+    </Default>
+  ) : (
+    <Default {...Astro.props}>
+      <slot />
+    </Default>
+  )
+}

@@ -36,6 +36,9 @@ export default defineConfig({
 		starlight({
 			title: '\\JT>',
 			// expressiveCode: true,
+			components: {
+				MarkdownContent: './src/components/MarkdownContentAddMeta.astro',
+			},
 			social: {
 				github: 'https://github.com/johntao',
 			},
@@ -80,13 +83,17 @@ export default defineConfig({
 		// 		// },
 		// }),
 		// mdx({
-		// 		// rehypePlugins: [rehypeMermaid],
-		// 		// syntaxHighlight: 'shiki',
-		// 		// shikiConfig: { theme: 'dracula' },
-		// 		// remarkPlugins: [remarkToc],
-		// 		// rehypePlugins: [rehypePresetMinify],
-		// 		// remarkRehype: { footnoteLabel: 'Footnotes' },
-		// 		// gfm: false,
+		// 	// rehypePlugins: [rehypeMermaid],
+		// 	// syntaxHighlight: 'shiki',
+		// 	// shikiConfig: { theme: 'dracula' },
+		// 	remarkPlugins: [
+		// 		remarkReadingTime,
+		// 		// remarkToc,
+		// 	],
+		// 	extendMarkdownConfig: true,
+		// 	// rehypePlugins: [rehypePresetMinify],
+		// 	// remarkRehype: { footnoteLabel: 'Footnotes' },
+		// 	// gfm: false,
 		// }),
 	],
 });
