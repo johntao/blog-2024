@@ -1,0 +1,21 @@
+---
+import { Image } from "astro:assets";
+const { alt, src, cap, width, height, format } = Astro.props;
+---
+
+<figure class={width ? "" : "override-nxtimg-parent"}>
+  {
+    width ? (
+      <img alt={alt} src={src} width={width} height={height} />
+    ) : (
+      <Image alt={alt} src={src} />
+    )
+  }
+  <figcaption>
+    {
+      [...cap.matchAll(/[\w ]+|\[([^\]]+)\]\(([^)]+)\)/g)].map((q) =>
+        !q[1] ? q[0] : <a href={q[2]}>{q[1]}</a>,
+      )
+    }
+  </figcaption>
+</figure>

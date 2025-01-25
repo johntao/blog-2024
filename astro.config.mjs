@@ -16,6 +16,10 @@ export default defineConfig({
 	// markdown: {
 	// 	remarkPlugins: [remarkReadingTime]
 	// },
+	image: {
+		// domains: ["imgur.com","i.imgur.com"],
+		remotePatterns: [{ protocol: "https" }],
+	},
 	markdown: {
 		remarkPlugins: [
 			// [remarkToc, { heading: 'toc', maxDepth: 3 } ],
@@ -52,7 +56,7 @@ export default defineConfig({
 				{
 					label: "Dev", items: [
 						{ label: "General", link: "/dev" },
-						// { label: "Web", link: "/web" },
+						{ label: "Web", link: "/web" },
 						// { label: "Tooling", link: "/tooling" },
 						// { label: "Odoo", link: "/odoo" },
 					]

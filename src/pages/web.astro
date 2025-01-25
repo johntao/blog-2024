@@ -1,0 +1,21 @@
+---
+import PostList from "@/components/PostList.astro";
+import { sortByPubDate } from "@/utils/data.util";
+import { getCollection } from "astro:content";
+import StarlightPage from "@astrojs/starlight/components/StarlightPage.astro";
+
+const posts = (await getCollection('docs'))
+  .filter((q) => q.data.pubDate && q.id.includes("web"))
+  // @ts-ignore TS2345
+  .sort(sortByPubDate);
+---
+
+<StarlightPage
+  frontmatter={{
+    title: "Category: Web Development in General",
+    description: "Web development in general, no specific topic.",
+    tableOfContents: false,
+  }}
+>
+  <PostList posts={posts} />
+</StarlightPage>
