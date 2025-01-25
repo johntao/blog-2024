@@ -9,6 +9,7 @@ https://tailwindcss.com/docs/adding-custom-styles#using-css-and-layer
 
 :root {
   --sl-content-width: 64rem;
+  --sl-sidebar-width: 12.8rem;
   --sl-nav-height: 2.5rem;
   --sl-text-lg: 1rem;
   --sl-text-xl: 1.125rem;
@@ -16,6 +17,13 @@ https://tailwindcss.com/docs/adding-custom-styles#using-css-and-layer
   --sl-text-3xl: 1.5rem;
   --sl-text-4xl: 1.75rem;
   --sl-text-5xl: 2rem;
+}
+
+/* <div class="right-sidebar-panel sl-hidden lg:sl-block">
+<div class="sl-container"> */
+div.right-sidebar-panel.sl-hidden>div.sl-container {
+  width: unset;
+  max-width: unset;
 }
 
 div.content-panel:has(.sl-container > #_top) {
@@ -30,6 +38,7 @@ div.content-panel:has(.sl-container > #_top) {
 
 h1#_top {
   margin-top: 0.5rem;
+  text-align: center;
 }
 
 site-search > button:first-of-type {
