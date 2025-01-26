@@ -11,7 +11,7 @@ const className = "mx-2 py-1";
 {
 	tags.map((tag: string) =>
 		withHref
-		? <a class={className} href={`/tag/${tag}`}>#{tag}</a>
+		? <a class={className} href={`/tags/${tag}`}>#{tag}</a>
 		: <span class={className}>#{tag}</span>,
 	)
 }

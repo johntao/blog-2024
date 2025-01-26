@@ -11,6 +11,7 @@
     "disable": "astro preferences disable devToolbar"
   },
   "dependencies": {
+    "@astrojs/rss": "^4.0.11",
     "@astrojs/starlight": "^0.31.1",
     "@astrojs/starlight-tailwind": "^3.0.0",
     "@astrojs/tailwind": "^5.1.4",

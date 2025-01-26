@@ -12,7 +12,7 @@ import { remarkReadingTime } from './src/utils/readingTime';
 // import { rehypeAccessibleEmojis } from 'rehype-accessible-emojis';
 
 export default defineConfig({
-	// site: 'https://johntao.one',
+	site: 'https://johntao.one',
 	// markdown: {
 	// 	remarkPlugins: [remarkReadingTime]
 	// },
