@@ -2,7 +2,7 @@
 import StarlightPage from "@astrojs/starlight/components/StarlightPage.astro";
 import Tags from '@/components/Tags.astro';
 import { getCollection } from "astro:content";
-import { sortByPubDate, type AnyEntry } from "@/utils/data.util";
+import { sortByPubDate, type AnyEntry } from "@/lib/data";
 
 const coll1: AnyEntry[] = await getCollection('docs');
 const coll2: AnyEntry[] = await getCollection('logseq');

@@ -1,6 +1,6 @@
 import rss from '@astrojs/rss';
 import { getCollection } from 'astro:content';
-import { isBlogEntry, type AnyEntry } from '@/utils/data.util';
+import { isBlogEntry, type AnyEntry } from '@/lib/data';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 
 export async function GET(context: { site: string; }) {

@@ -7,9 +7,10 @@ import tailwind from '@astrojs/tailwind';
 // import mdx from '@astrojs/mdx';
 // import sitemap from '@astrojs/sitemap';
 // import { astroExpressiveCode } from '@astrojs/starlight/expressive-code';
-import { remarkReadingTime } from './src/utils/readingTime';
+import { remarkReadingTime } from './src/lib/readingTime';
 // import remarkToc from 'remark-toc';
 // import { rehypeAccessibleEmojis } from 'rehype-accessible-emojis';
+import sidebar from './src/lib/sidebar';
 
 export default defineConfig({
 	site: 'https://johntao.one',
@@ -46,32 +47,9 @@ export default defineConfig({
 			social: {
 				github: 'https://github.com/johntao',
 			},
-			sidebar: [
-				{ label: "All Posts", link: "/posts" },
-				{
-					label: "Geek", items: [
-						{ label: "LogSeq", link: "/logseq" },
-					]
-				},
-				{
-					label: "Dev", items: [
-						{ label: "General", link: "/dev" },
-						{ label: "Web", link: "/web" },
-						// { label: "Tooling", link: "/tooling" },
-						// { label: "Odoo", link: "/odoo" },
-					]
-				},
-				{
-					label: "Life", items: [
-						{ label: "General", link: "/life" },
-						// { label: "Health", link: "/health" },
-						// { label: "Finance", link: "/finance" },
-					]
-				},
-				{ label: "All Tags", link: "/tags" },
-			],
+			sidebar,
 			customCss: [
-				'./src/tailwind.css',
+				'./src/styles/tailwind.css',
 				'./src/fonts/hack-subset.css',
 			],
 		}),
