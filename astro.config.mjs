@@ -43,6 +43,8 @@ export default defineConfig({
 			// expressiveCode: true,
 			components: {
 				MarkdownContent: './src/components/MarkdownContentAddMeta.astro',
+				ThemeProvider: './src/components/ThemeProviderLite.astro',
+				ThemeSelect: './src/components/ThemeSelectLite.astro',
 			},
 			social: {
 				github: 'https://github.com/johntao',
