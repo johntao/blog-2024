@@ -17,6 +17,15 @@ https://tailwindcss.com/docs/adding-custom-styles#using-css-and-layer
   --sl-text-3xl: 1.5rem;
   --sl-text-4xl: 1.75rem;
   --sl-text-5xl: 2rem;
+  --sl-color-accent-low: theme('colors.blue.950');
+  --sl-color-accent: theme('colors.blue.500');
+  --sl-color-accent-high: theme('colors.blue.500');
+}
+
+:root[data-theme='light'] {
+  --sl-color-accent-low: theme('colors.sky.950');
+  --sl-color-accent: theme('colors.sky.600');
+  --sl-color-accent-high: theme('colors.sky.200');
 }
 
 /* <div class="right-sidebar-panel sl-hidden lg:sl-block">
@@ -47,4 +56,28 @@ site-search > button:first-of-type {
 
 .jt-intro * {
   margin: 0 !important;
+}
+
+.prose h2, .prose h3 {
+  position: relative;
+}
+.prose h2::before {
+  position: absolute;
+  top: .375rem;
+  left: calc(var(--sl-text-3xl) * -1);
+  font-weight: 600;
+  color: var(--sl-color-text-accent);
+  content: "H2";
+  font-size: var(--sl-text-base);
+  line-height: var(--sl-text-h3);
+}
+.prose h3::before {
+  position: absolute;
+  top: .375rem;
+  left: calc(var(--sl-text-3xl) * -1);
+  font-weight: 600;
+  color: var(--sl-color-text-accent);
+  content: "H3";
+  font-size: var(--sl-text-sm);
+  line-height: var(--sl-text-h4);
 }

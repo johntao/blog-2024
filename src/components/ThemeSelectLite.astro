@@ -56,7 +56,7 @@ import { Icon } from "@astrojs/starlight/components";
 			super();
 			onThemeChange(loadTheme());
 			this.querySelector('svg')?.addEventListener('click', (e) => {
-				debugger;
+				// debugger;
 				if (e.currentTarget instanceof SVGElement) {
 					const oldTheme = document.documentElement.dataset.theme;
 					// @ts-ignore

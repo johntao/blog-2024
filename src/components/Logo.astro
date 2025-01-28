@@ -1,0 +1,36 @@
+---
+const { color, text } = Astro.props;
+---
+<span class="w-48 inline-block">
+  <b>{text}</b>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 200">
+    <!-- Left shape with curved edges -->
+    <path d="M30 120
+             C60 100, 40 40, 70 20
+             L170 20
+             C140 40, 160 100, 130 120
+             L30 120
+             Z"
+          fill={color}/>
+    <!-- Right shape with curved edges -->
+    <path d="M130 120
+             C160 100, 140 40, 170 20
+             L270 20
+             C240 40, 260 100, 230 120
+             L130 120
+             Z"
+          fill="#FFFFFF"/>
+    <!-- Outer border -->
+    <path d="M30 120
+             C60 100, 40 40, 70 20
+             L270 20
+             C240 40, 260 100, 230 120
+             L30 120
+             Z"
+        fill="none"
+        stroke={color}
+        stroke-width="2"
+        stroke-linejoin="round"
+        />
+  </svg>
+</span>
