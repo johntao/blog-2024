@@ -1,8 +1,9 @@
 ---
-import type { Props } from '../props';
-
-import MobileTableOfContents from 'virtual:starlight/components/MobileTableOfContents';
-import TableOfContents from 'virtual:starlight/components/TableOfContents';
+import type { Props } from "@astrojs/starlight/props";
+// import MobileTableOfContents from "@astrojs/starlight/components/MobileTableOfContents.astro";
+import MobileTableOfContents from "./MobileTableOfContents.astro";
+import TableOfContents from "@astrojs/starlight/components/TableOfContents.astro";
+import MobileMenuFooter from "./MobileMenuFooter.astro";
 ---
 
 {
@@ -13,6 +14,10 @@ import TableOfContents from 'virtual:starlight/components/TableOfContents';
 			</div>
 			<div class="right-sidebar-panel sl-hidden lg:sl-block">
 				<div class="sl-container">
+					{/* lg:desktop right side */}
+					<div id="eee">
+						<MobileMenuFooter {...Astro.props} />
+					</div>
 					<TableOfContents {...Astro.props} />
 				</div>
 			</div>
@@ -49,9 +54,10 @@ import TableOfContents from 'virtual:starlight/components/TableOfContents';
 			max-width: calc(
 				(
 					(
-							100vw - var(--sl-sidebar-width) - 2 * var(--sl-content-pad-x) - 2 *
-								var(--sl-sidebar-pad-x)
-						) * 0.25 /* MAGIC NUMBER 🥲 */
+							100vw - var(--sl-sidebar-width) - 2 * var(--sl-content-pad-x) -
+								2 * var(--sl-sidebar-pad-x)
+						) *
+						0.25 /* MAGIC NUMBER 🥲 */
 				)
 			);
 		}
