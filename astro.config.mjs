@@ -42,9 +42,13 @@ export default defineConfig({
 			title: '\\JT>',
 			// expressiveCode: true,
 			components: {
-				MarkdownContent: './src/components/MarkdownContentAddMeta.astro',
-				ThemeProvider: './src/components/ThemeProviderLite.astro',
-				ThemeSelect: './src/components/ThemeSelectLite.astro',
+				MarkdownContent: './src/components/sl/MarkdownContentAddMeta.astro',
+				ThemeProvider: './src/components/sl/ThemeProviderLite.astro',
+				ThemeSelect: './src/components/sl/ThemeSelectLite.astro',
+				Sidebar: './src/components/sl/sidebar/Sidebar.astro',
+				PageSidebar: './src/components/sl/sidebar/PageSidebar.astro',
+				MobileTableOfContents: './src/components/sl/sidebar/MobileTableOfContents.astro',
+				MobileMenuFooter: './src/components/sl/sidebar/MobileMenuFooter.astro',
 			},
 			social: {
 				github: 'https://github.com/johntao',
