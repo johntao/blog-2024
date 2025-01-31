@@ -1,0 +1,61 @@
+---
+import "@/styles/tailwind.css";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="w-full h-screen relative bg-amber-50 flex">
+      {/* Base paper color and grain */}
+      <div
+        class="absolute inset-0 flex-1"
+        style={{
+          backgroundColor: "#f5edd6",
+          backgroundImage: `
+            radial-gradient(at 50% 50%, rgba(255,255,255,0.1) 5%, transparent 45%),
+            repeating-linear-gradient(45deg,
+              rgba(0,0,0,0.02) 0px, rgba(0,0,0,0.02) 1px,
+              transparent 1px, transparent 3px
+            ),
+            repeating-linear-gradient(-45deg,
+              rgba(0,0,0,0.02) 0px, rgba(0,0,0,0.02) 1px,
+              transparent 1px, transparent 3px
+            )
+          `,
+          filter: "contrast(95%) brightness(105%)",
+        }}
+      >
+      </div>
+
+      {/* Noise overlay */}
+      <div
+        class="absolute inset-0 opacity-50 flex-1"
+        style={{
+          backgroundImage: `
+            radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.03) 100%),
+            repeating-conic-gradient(
+              rgba(227,217,189,1) 0% 25%,
+              rgba(227,217,189,0.5) 25% 50%
+            )
+          `,
+        }}
+      >
+      </div>
+
+      {/* Subtle vignette effect */}
+      <div
+        class="absolute inset-0 flex-1"
+        style={{
+          background:
+            "radial-gradient(circle at center, transparent 0%, rgba(227,217,189,1) 100%)",
+        }}
+      >
+      </div>
+    </div>
+  </body>
+</html>
