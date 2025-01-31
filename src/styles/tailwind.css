@@ -10,7 +10,7 @@ https://tailwindcss.com/docs/adding-custom-styles#using-css-and-layer
 :root {
   --sl-content-width: 64rem;
   --sl-sidebar-width: 12.8rem;
-  --sl-nav-height: 2.5rem;
+  --sl-nav-height: 0;
   --sl-text-lg: 1rem;
   --sl-text-xl: 1.125rem;
   --sl-text-2xl: 1.25rem;
@@ -19,7 +19,11 @@ https://tailwindcss.com/docs/adding-custom-styles#using-css-and-layer
   --sl-text-5xl: 2rem;
   --sl-color-accent-low: theme('colors.blue.950');
   --sl-color-accent: theme('colors.blue.500');
-  --sl-color-accent-high: theme('colors.blue.500');
+  --sl-color-accent-high: theme('colors.blue.400');
+}
+
+header.header {
+  display: none;
 }
 
 :root[data-theme='light'] {
@@ -64,7 +68,7 @@ site-search > button:first-of-type {
 .prose h2::before {
   position: absolute;
   top: .375rem;
-  left: calc(var(--sl-text-3xl) * -1);
+  left: calc(var(--sl-text-4xl) * -1);
   font-weight: 600;
   color: var(--sl-color-text-accent);
   content: "H2";
@@ -74,10 +78,17 @@ site-search > button:first-of-type {
 .prose h3::before {
   position: absolute;
   top: .375rem;
-  left: calc(var(--sl-text-3xl) * -1);
+  left: calc(var(--sl-text-4xl) * -1);
   font-weight: 600;
   color: var(--sl-color-text-accent);
   content: "H3";
   font-size: var(--sl-text-sm);
   line-height: var(--sl-text-h4);
 }
+
+/* @media (min-width: 50rem) {
+  #hello.left-2.top-2 {
+    right: 0;
+    left: auto;
+  }
+} */

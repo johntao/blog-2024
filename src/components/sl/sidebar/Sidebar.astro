@@ -1,0 +1,34 @@
+---
+import type { Props } from '@astrojs/starlight/props';
+import MobileMenuFooter from './MobileMenuFooter.astro';
+import SidebarPersister from '@astrojs/starlight/components/SidebarPersister.astro';
+import SiteTitle from '@astrojs/starlight/components/SiteTitle.astro';
+import SidebarSublist from '@astrojs/starlight/components/SidebarSublist.astro';
+
+const { sidebar } = Astro.props;
+
+---
+
+<SidebarPersister {...Astro.props}>
+	<div>
+		<!-- <span>H</span> -->
+		<div class="title-wrapper sl-flex">
+			<SiteTitle {...Astro.props} />
+		</div>
+		<!-- sm: Mobile Icon Menu Click -->
+		<!-- <span id="qqq">S</span> -->
+		<span class="md:sl-hidden">
+			<MobileMenuFooter {...Astro.props} />
+		</span>
+	</div>
+	<SidebarSublist sublist={sidebar} />
+</SidebarPersister>
+
+
+<!-- <style>
+	@media (min-width: 50rem) {
+		#qqq {
+			display: none;
+		}
+	}
+</style> -->
