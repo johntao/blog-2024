@@ -26,7 +26,8 @@ const { toc } = Astro.props;
             <TableOfContentsList toc={toc.items} isMobile />
           </div>
         </details>
-        <span id="www" class="fixed right-2 top-2">
+        {/* SSTL Component, Tablet View, Dock Right */}
+        <span id="www" class="fixed right-4 top-0">
           <MobileMenuFooter {...Astro.props} />
         </span>
       </nav>

@@ -9,15 +9,14 @@ const { sidebar } = Astro.props;
 
 ---
 
+<!-- SSTL, Desktop View, Dock Left -->
+<!-- SSTL, Phone View, Dock Top (Menu Icon Click) -->
 <SidebarPersister {...Astro.props}>
-	<div>
-		<!-- <span>H</span> -->
-		<div class="title-wrapper sl-flex">
+	<div class="h-8 flex mb-2">
+		<div class="title-wrapper flex-grow">
 			<SiteTitle {...Astro.props} />
 		</div>
-		<!-- sm: Mobile Icon Menu Click -->
-		<!-- <span id="qqq">S</span> -->
-		<span class="md:sl-hidden">
+		<span class="md:sl-hidden self-center mr-10">
 			<MobileMenuFooter {...Astro.props} />
 		</span>
 	</div>

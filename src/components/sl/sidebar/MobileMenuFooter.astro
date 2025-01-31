@@ -6,7 +6,8 @@ import ThemeSelect from '../ThemeSelectLite.astro';
 import type { Props } from '@astrojs/starlight/props';
 ---
 
-<div class="mobile-preferences inline-flex">
+<!-- SSTL Component -->
+<div class="mobile-preferences inline-flex items-center">
   <div class="sl-flex print:hidden">
 		<Search {...Astro.props} />
 	</div>
@@ -22,7 +23,7 @@ import type { Props } from '@astrojs/starlight/props';
 		margin-inline-end: auto;
 		gap: 1rem;
 		align-items: center;
-		padding-block: 1rem;
+		/* padding-block: 1rem; */
 	}
 	.social-icons:empty {
 		display: none;
@@ -30,7 +31,7 @@ import type { Props } from '@astrojs/starlight/props';
 	.mobile-preferences {
 		justify-content: space-between;
 		flex-wrap: wrap;
-		border-top: 1px solid var(--sl-color-gray-6);
+		/* border-top: 1px solid var(--sl-color-gray-6); */
 		column-gap: 1rem;
 		padding: 0.5rem 0;
 	}

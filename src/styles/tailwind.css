@@ -20,6 +20,7 @@ https://tailwindcss.com/docs/adding-custom-styles#using-css-and-layer
   --sl-color-accent-low: theme('colors.blue.950');
   --sl-color-accent: theme('colors.blue.500');
   --sl-color-accent-high: theme('colors.blue.400');
+  --sl-z-index-navbar: 20;
 }
 
 header.header {
@@ -92,3 +93,12 @@ site-search > button:first-of-type {
     left: auto;
   }
 } */
+
+.sidebar-content.sl-flex {
+  gap: 0;
+  padding-top: 0.5rem;
+}
+
+.sl-flex.md\:sl-hidden {
+  top: 0.5rem;
+}
