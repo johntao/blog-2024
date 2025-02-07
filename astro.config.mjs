@@ -13,7 +13,7 @@ import { remarkReadingTime } from './src/lib/readingTime';
 import sidebar from './src/lib/sidebar';
 
 export default defineConfig({
-	site: 'https://johntao.github.io',
+	site: 'https://johntao.github.io/blog-2024',
 	// markdown: {
 	// 	remarkPlugins: [remarkReadingTime]
 	// },
