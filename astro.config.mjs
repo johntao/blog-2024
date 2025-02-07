@@ -12,9 +12,12 @@ import { remarkReadingTime } from './src/lib/readingTime';
 // import { rehypeAccessibleEmojis } from 'rehype-accessible-emojis';
 import sidebar from './src/lib/sidebar';
 
+const isDev = import.meta.env.DEV; // true in development, false in production
+
+// console.error('isDev', isDev);
 export default defineConfig({
 	site: 'https://johntao.github.io/blog-2024',
-	base: "blog-2024",
+	base: isDev ? '/' : "blog-2024",
 	// markdown: {
 	// 	remarkPlugins: [remarkReadingTime]
 	// },
