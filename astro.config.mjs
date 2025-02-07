@@ -14,6 +14,7 @@ import sidebar from './src/lib/sidebar';
 
 export default defineConfig({
 	site: 'https://johntao.github.io/blog-2024',
+	base: "blog-2024",
 	// markdown: {
 	// 	remarkPlugins: [remarkReadingTime]
 	// },
