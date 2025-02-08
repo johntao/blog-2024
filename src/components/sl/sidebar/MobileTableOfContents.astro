@@ -1,6 +1,7 @@
 ---
 import { Icon } from "@astrojs/starlight/components";
-import TableOfContentsList from "@johntao/starlight-forked/components/TableOfContentsList.astro";
+// CUSTOMIZED!!
+import TableOfContentsList from "@astrojs/starlight/components/TableOfContentsList.astro";
 import MobileMenuFooter from "./MobileMenuFooter.astro";
 import type { Props } from "@astrojs/starlight/props";
 
@@ -121,6 +122,7 @@ const { toc } = Astro.props;
 </style>
 
 <!-- <script>
+ // CUSTOMIZED!!
   import { StarlightTOC } from "@astrojs/starlight/util";
 
   class MobileStarlightTOC extends StarlightTOC {
